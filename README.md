@@ -7,6 +7,7 @@ któremu można zaufać — oraz przegląd gotowych harnessów agentowych.**
 ![Kurs 1: 10 części, ~47 h](https://img.shields.io/badge/kurs%201-10%20części%20·%20~47%20h-blue)
 ![Kurs 2: 19 części, ~102 h](https://img.shields.io/badge/kurs%202-19%20części%20·%20~102%20h-blue)
 ![Przegląd: 20 harnessów agentowych](https://img.shields.io/badge/przegląd-20%20harnessów%20agentowych-orange)
+![Przegląd: 15 asystentów AI](https://img.shields.io/badge/przegląd-15%20asystentów%20AI-orange)
 ![Licencja: CC BY 4.0 + MIT](https://img.shields.io/badge/licencja-CC%20BY%204.0%20%2B%20MIT-lightgrey)
 
 Bez frameworków na start i bez magii. Każdy mechanizm budujesz sam, od zera, na modelach uruchomionych
@@ -72,6 +73,21 @@ lokalni agenci jako wykonawcy. Stan na 11 października 2026.
 | [02-KLOCKI](harnessy-agentowe/02-KLOCKI.md) | wyszukiwanie, monitoring cen, dane finansowe, powiadomienia, harmonogram, pamięć, głos, obraz |
 | [03-ARCHITEKTURA](harnessy-agentowe/03-ARCHITEKTURA.md) | wzorzec planista–wykonawcy na 4× R9700, tryb w pełni lokalny, pięć gotowych układów, koszty |
 | [ZRODLA](harnessy-agentowe/ZRODLA.md) | źródła z datą sprawdzenia i tym, co z nich wziąłem |
+
+### Przegląd — [asystenci AI: 15 najlepszych](asystenci-ai/README.md) (`asystenci-ai/`)
+
+Czego uczą najlepsze istniejące asystenty AI — codzienne, profesjonalne, autonomicznie wykonujące zadania i „żyjące"
+w tle: otwarte i zamknięte, ich architektura, modele biznesowe, możliwość pracy offline i lekcje dla lokalnego asystenta
+dla polskich profesjonalistów, którzy nie mogą wysyłać danych do USA. Stan na 11 października 2026.
+
+| Plik | Co w nim jest |
+|---|---|
+| [README](asystenci-ai/README.md) | mapa rynku, piętnastka w tabeli, 10 lekcji, metoda wyboru |
+| [01-PROFILE](asystenci-ai/01-PROFILE.md) | 15 profili po dziewięć obszarów i lista „warto znać" |
+| [02-RYNEK](asystenci-ai/02-RYNEK.md) | modele biznesowe, cenniki, liczby, przejęcia, porażki, trendy 2026 |
+| [03-WZORCE-TECHNICZNE](asystenci-ai/03-WZORCE-TECHNICZNE.md) | wzorce techniczne, macierz offline, architektura lokalnego asystenta na biurko |
+| [04-POLSKA-I-SUWERENNOSC](asystenci-ai/04-POLSKA-I-SUWERENNOSC.md) | RODO, AI Act, tajemnice zawodowe, konkurencja w Polsce i UE, polskie modele, sprzęt, szanse |
+| [ZRODLA](asystenci-ai/ZRODLA.md) | źródła z datą sprawdzenia |
 
 ---
 
