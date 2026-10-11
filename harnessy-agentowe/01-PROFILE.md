@@ -36,11 +36,11 @@ zanim uznasz, że „harness X nie działa z lokalnym modelem".
 |---|---|---|---|
 | H1 | **Responses API zamiast Chat Completions.** Coraz więcej narzędzi domyślnie woła `/v1/responses` (OpenAI Agents SDK, Microsoft Agent Framework — `OpenAIChatClient`, n8n — przełącznik w węźle, Windmill — dostawca OpenAI). Codex CLI od lutego 2026 obsługuje **tylko** Responses API. | błąd 400/404, „type must be output_text" | wybierz tryb `chat_completions` / dostawcę „OpenAI-compatible"; dla Codex CLI — inny harness |
 | H2 | **`reasoning_content` DeepSeeka przy wywołaniach narzędzi.** W trybie myślenia DeepSeek V4 wymaga odesłania treści rozumowania w turach z narzędziami. Gubiły ją LangChain (#40219, otwarte), Microsoft Agent Framework (naprawione 09.2026), Pydantic AI (naprawione w v2). | błąd 400 przy drugiej turze z narzędziem | aktualna wersja frameworka; w LibreChat `includeReasoningContent: true`; albo wyłącz myślenie dla wykonawców |
-| H3 | **Okno kontekstu zgadywane z nazwy modelu.** Harness bierze limit z katalogu chmurowego albo domyślne 128K/200K zamiast z serwera (Hermes, QwenPaw #7979, Goose #12048, LibreChat #14228, Strands #4620). | kompakcja nie odpala albo odpala za wcześnie, ucięte odpowiedzi | ustaw jawnie `131072` (Twój slot) w konfiguracji modelu |
-| H4 | **Zmienny początek promptu zabija prompt cache.** Znacznik czasu albo losowa kolejność narzędzi w prompcie systemowym unieważnia cache llama.cpp w każdej turze (OpenClaw, LibreChat #16877, nanobot #4867). | każda tura liczy cały kontekst od nowa — przy 13,6 tok/s na agenta to minuty | stały prefiks: data w wiadomości użytkownika, nie w systemie; sprawdzaj `cache_n` w logach llama-server |
+| H3 | **Okno kontekstu zgadywane z nazwy modelu.** Harness bierze limit z katalogu chmurowego albo domyślne 128K/200K zamiast z serwera (z llama.cpp: QwenPaw #7979, LibreChat #14228; z własnym dostawcą OpenAI-compatible: Goose #12048; z Ollamą: Strands #4620; domyślne 128K w Hermesie). | kompakcja nie odpala albo odpala za wcześnie, ucięte odpowiedzi | ustaw jawnie `131072` (Twój slot) w konfiguracji modelu |
+| H4 | **Zmienny początek promptu zabija prompt cache.** Znacznik czasu albo losowa kolejność narzędzi w prompcie systemowym unieważnia cache serwera w każdej turze (z llama.cpp: OpenClaw, LibreChat #16877; z Ollamą i innymi lokalnymi serwerami: nanobot #4867). | każda tura czyta cały kontekst od nowa — przy około 1 200 tok/s czytania promptu to dziesiątki sekund na turę | stały prefiks: data w wiadomości użytkownika, nie w systemie; sprawdzaj `cache_n` w logach llama-server |
 | H5 | **Za dużo narzędzi naraz.** Lokalne modele tracą jakość przy długich listach narzędzi i schematów MCP. | wybór złego narzędzia, pętle | 5–15 narzędzi na wykonawcę; 2–3 serwery MCP, nie dziesięć |
-| H6 | **Brak limitu współbieżności na endpoint.** Masz 4 sloty. Prawie wszystkie frameworki limitują równoległość w obrębie jednego uruchomienia, nie globalnie (wyjątek: Pydantic AI). | kolejka w llama-server rośnie, timeouty | jeden limit 4 w jednym miejscu: bramka (Bifrost), llama-swap albo `ConcurrencyLimiter` |
-| H7 | **Schematy narzędzi, których gramatyka llama.cpp nie przyjmuje.** Np. `pattern` bez `^…$` (Kilo #12773), regresje w Qwen Code i Cline po aktualizacjach. | „Unable to generate parser for this template" | przypinaj wersje harnessu, testuj po aktualizacji (promptfoo — patrz [02-KLOCKI.md](02-KLOCKI.md)) |
+| H6 | **Brak limitu współbieżności na endpoint.** Masz 4 sloty. Prawie wszystkie frameworki limitują równoległość w obrębie jednego uruchomienia, nie globalnie (wyjątek: Pydantic AI). | kolejka w llama-server rośnie, timeouty | jeden limit 4 w jednym miejscu, z kolejką: bramka (Bifrost), `ConcurrencyLimiter` albo kolejka zadań. Uwaga: `concurrencyLimit` w llama-swap nie kolejkuje — nadmiarowe zapytanie dostaje od razu 429 |
+| H7 | **Schematy narzędzi, których gramatyka llama.cpp nie przyjmuje.** Np. `pattern` bez `^…$` (Kilo #12773, llama-server), regresje schematów w Qwen Code (#10435 i kolejne). Pokrewny przypadek z Ollamą: zmiana składni narzędzi w Cline 4.1 (#13008). | „Unable to generate parser for this template" (Kilo #12408) | przypinaj wersje harnessu, testuj po aktualizacji (promptfoo — patrz [02-KLOCKI.md](02-KLOCKI.md)) |
 
 ---
 
@@ -100,7 +100,8 @@ obok MCP i AGENTS.md. Ma CLI, aplikację desktop i serwer ACP; repozytorium prze
 
 **Przewaga.** Najszerszy zestaw „poza kodowaniem": receptury YAML (*recipes*) jako jednostka powtarzalnej pracy,
 wbudowany harmonogram cron, subagenci z własnym dostawcą i modelem, *tool shim* dla modeli, które słabo wołają
-narzędzia, bramka Telegram, dyktowanie głosem (także lokalnym Whisperem), tryb Adversary — osobny model recenzuje
+narzędzia (eksperymentalny: osobny model-tłumacz działa domyślnie przez Ollamę albo przez wbudowany llama.cpp Goose'a,
+więc z samym llama-swap go nie użyjesz — DeepSeek i tak ma natywne wywołania narzędzi), bramka Telegram, dyktowanie głosem (także lokalnym Whisperem), tryb Adversary — osobny model recenzuje
 każde wywołanie narzędzia. Neutralne zarządzanie przez fundację.
 
 **Lokalny model.** Plik dostawcy w `~/.config/goose/custom_providers/` z `"engine": "openai"`,
@@ -198,8 +199,9 @@ Zadania poboczne (wizja, kompresja, recenzja w tle) mają osobne modele; recenzj
 bo inaczej podwaja obciążenie slotów.
 
 **Głos i obraz.** Push-to-talk w CLI, odpowiedzi głosowe na Telegramie i Discordzie. STT: lokalny faster-whisper
-(język: `stt.local.language`), TTS: Edge, ElevenLabs, OpenAI albo lokalny NeuTTS. Od v0.20 strumieniowanie
-z przerywaniem w pół zdania. Obrazy trafiają natywnie do modelu z wizją; dla tekstowego DeepSeeka opis robi
+(język: `stt.local.language`). TTS: domyślnie Edge TTS — darmowa usługa w chmurze Microsoftu, z polskimi głosami;
+do tego ElevenLabs, OpenAI albo lokalny NeuTTS (polski niepotwierdzony w dokumentacji). Czyli: rozpoznawanie mowy
+lokalnie, synteza domyślnie w chmurze. Od v0.20 strumieniowanie z przerywaniem w pół zdania. Obrazy trafiają natywnie do modelu z wizją; dla tekstowego DeepSeeka opis robi
 narzędzie `vision_analyze` z osobnym modelem wizyjnym.
 
 **Bezpieczeństwo.** „Smart approvals" (pomocniczy LLM ocenia oznaczone komendy) plus twarda lista zakazów,
@@ -713,8 +715,9 @@ z modelem lokalnym — model wybierany per węzeł.
 **⚠️ Licencja.** Sustainable Use License to nie open source w rozumieniu OSI: wolno używać wewnętrznie i we własnych
 procesach, nie wolno oferować n8n jako usługi; pliki `.ee.` są na licencji komercyjnej.
 
-**⚠️ Bezpieczeństwo.** Krytyczna luka CVE-2026-21858 (styczeń 2026, nieuwierzytelniony dostęp do plików przez
-webhooki). Nie wystawiaj instancji do internetu bez aktualizacji. Limit współbieżności produkcyjnej nie obejmuje
+**⚠️ Bezpieczeństwo.** Krytyczna luka CVE-2026-21858 (7.01.2026): nieuwierzytelniony dostęp do plików przez
+obsługę webhooków, który według ostrzeżenia australijskiego CERT-u (ACSC) pozwala na zdalne wykonanie kodu bez
+logowania. Nie wystawiaj instancji do internetu bez aktualizacji. Limit współbieżności produkcyjnej nie obejmuje
 podprzepływów.
 
 **Głos i obraz.** Brak pętli głosowej (do zbudowania: notatka głosowa z Telegrama → lokalny Whisper → agent → TTS);
@@ -793,8 +796,8 @@ wycofany w trakcie życia; ryzyko rozjazdu z upstreamem.
 
 ## Pozostali kandydaci (miejsca 21–64)
 
-Przeszli kryteria wejścia, ale przegrali punktacją. Dla każdego jedno zdanie: dlaczego warto wiedzieć,
-że istnieje, i co go zatrzymało.
+Przeszli kryteria wejścia (Paperclip i Hive — tylko pośrednio, przez adaptery), ale przegrali punktacją.
+Dla każdego jedno zdanie: dlaczego warto wiedzieć, że istnieje, i co go zatrzymało.
 
 | # | Harness | Kategoria | Wynik | Za | Przeciw |
 |---|---|---|---|---|---|
@@ -831,7 +834,7 @@ Przeszli kryteria wejścia, ale przegrali punktacją. Dla każdego jedno zdanie:
 | 51 | [AG2](https://github.com/ag2ai/ag2) | framework Py | 62 | wbudowany głos (kaskada i realtime) | v1 niekompatybilne ze starym AutoGen |
 | 52 | [Open Interpreter](https://github.com/openinterpreter/openinterpreter) | kodujący | 61 | przepisany w Rust, „emulacja harnessu" per model | wersje 0.0.x |
 | 53 | [Mistral Vibe](https://github.com/mistralai/mistral-vibe) | kodujący | 60 | wbudowany głos | głos chmurowy; brak Anthropic; błędy szablonów z llama.cpp |
-| 54 | [Paperclip](https://github.com/paperclipai/paperclip) | meta-harness | 60 | „firma z agentów" z budżetami | brak natywnego adaptera lokalnego modelu |
+| 54 | [Paperclip](https://github.com/paperclipai/paperclip) | meta-harness | 60 | „firma z agentów" z budżetami | lokalny model tylko pośrednio (przez adaptery OpenCode albo Pi) |
 | 55 | [smolagents](https://github.com/huggingface/smolagents) | framework Py | 60 | najmniejszy czytelny rdzeń (CodeAgent) | spowolnione utrzymanie, brak trwałości |
 | 56 | [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | kodujący | 59 | 100 linii, tylko bash — świetny do nauki | brak MCP i subagentów z założenia |
 | 57 | [CAMEL](https://github.com/camel-ai/camel) | framework Py | 58 | szeroki katalog narzędzi | od pół roku tylko wydania alfa |
@@ -841,18 +844,19 @@ Przeszli kryteria wejścia, ale przegrali punktacją. Dla każdego jedno zdanie:
 | 61 | [IronClaw](https://github.com/nearai/ironclaw) | osobisty | 55 | narzędzia w WASM, ochrona sekretów | przepisanie 1.0 zresetowało funkcje |
 | 62 | [Activepieces](https://github.com/activepieces/activepieces) | workflow | 53 | MIT i ogromna biblioteka integracji | agenci wyłączeni w darmowej edycji Community |
 | 63 | [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) | osobisty | 51 | najprostsza instalacja | brak wielu agentów (#2635) |
-| 64 | [Hive](https://github.com/aden-hive/hive) | framework Py | 50 | „kolonie" agentów z odzyskiwaniem po awarii | słabe wsparcie lokalnych modeli (#7324) |
+| 64 | [Hive](https://github.com/aden-hive/hive) | framework Py | 50 | „kolonie" agentów z odzyskiwaniem po awarii | lokalny model tylko pośrednio (przez LiteLLM), bezpośrednie wsparcie to otwarte zgłoszenie (#7324) |
 
 ## Wykluczeni na wejściu
 
-Nie spełnili któregoś z trzech warunków (licencja pozwalająca na self-hosting, udokumentowany lokalny endpoint
-OpenAI-compatible, aktywność: commit ≤ 3 miesiące i wydanie ≤ 6 miesięcy przed 11.10.2026).
+Nie spełnili któregoś z czterech warunków (licencja pozwalająca na self-hosting, udokumentowany lokalny endpoint
+OpenAI-compatible, aktywność: commit ≤ 3 miesiące i wydanie ≤ 6 miesięcy przed 11.10.2026, projekt nie jest
+oficjalnie zakończony).
 
 | Projekt | Powód |
 |---|---|
 | [Roo Code](https://github.com/RooCodeInc/Roo-Code) | zarchiwizowany 15.05.2026 (kontynuacja społeczności: Zoo Code; migracja: Kilo Code) |
 | [Flowise](https://github.com/FlowiseAI/Flowise) | wygaszony, zarchiwizowany 10.08.2026; niezałatane krytyczne luki zostaną niezałatane |
-| [Continue](https://github.com/continuedev/continue) | projekt zakończony (przejęcie przez Cursor), repozytorium tylko do odczytu |
+| [Continue](https://github.com/continuedev/continue) | opiekunowie ogłosili koniec projektu (przejęcie przez Cursor; README: „no longer actively maintained"); ostatnie wydanie 2.0.0 z 19.06.2026 |
 | [Plandex](https://github.com/plandex-ai/plandex) | brak commitów od 3.10.2025 |
 | [Aider](https://github.com/Aider-AI/aider) | ostatni commit 22.05.2026, ostatnie wydanie 9.08.2025 — w praktyce wstrzymany |
 | [Khoj](https://github.com/khoj-ai/khoj) | ostatnie wydanie 26.03.2026, tryb utrzymania |

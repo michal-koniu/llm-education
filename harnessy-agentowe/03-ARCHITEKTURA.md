@@ -28,7 +28,8 @@ dopóki go nie zbudujesz i nie zmierzysz.
 | Sloty w llama-swap | `--parallel 4`, kontekst 512k = **4 × 131k** | — |
 | Generowanie, 1 agent | **22,6 tok/s** | 141 tok/s |
 | Generowanie, 4 agentów naraz | **13,6 tok/s na agenta** (54,3 łącznie) | 81 tok/s na agenta (325 łącznie) |
-| Przetwarzanie promptu | ~560 tok/s (512 tokenów), ~1090 tok/s (4096 tokenów) | — |
+| Czytanie promptu (4 tys. tokenów na agenta) | **1 186 tok/s** dla 1 agenta; **1 694 tok/s łącznie** dla 4 agentów | — |
+| Optimum | **3 agentów naraz**: każdy zachowuje 75% prędkości solo, maszyna robi 2,2× więcej pracy | — |
 | Jakość — trudny zestaw zadań (PL / EN) | **92 / 93** (agenci 97, research 94, długie dokumenty 86 / 88) | 47 / 52 |
 
 Źródła: [PARALLEL.md](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/PARALLEL.md) i
@@ -40,11 +41,17 @@ Trzy wnioski, które sterują całą architekturą:
 1. **VRAM jest pełny.** DeepSeek zostawia na każdej karcie około 1,4 GB. Model mowy, wizji albo generowania obrazów
    nie zmieści się obok — musi działać na CPU, dostać kartę po wymianie modelu w llama-swap (to trwa) albo trafić do
    chmury. To najważniejsze ograniczenie dla U4 i U5.
-2. **Kontekst kosztuje czas, nie tylko pamięć.** Przy ~1000 tok/s przetwarzania kontekst 50 tys. tokenów bez cache
-   to około 50 sekund, zanim agent napisze pierwsze słowo. Stały prefiks promptu (pułapka H4 w
-   [01-PROFILE.md](01-PROFILE.md#siedem-pułapek-wspólnych-dla-wszystkich)) jest ważniejszy niż wybór harnessu.
-3. **Cztery sloty to twardy limit.** Piąte zapytanie czeka w kolejce. Limit 4 ustaw w jednym miejscu — w bramce
-   (Bifrost), we frameworku (`ConcurrencyLimiter` w Pydantic AI) albo w kolejce zadań (DBOS, Prefect).
+2. **Kontekst kosztuje czas, nie tylko pamięć — i czytanie jest wspólne.** Jeden agent czyta prompt z prędkością
+   około 1 200 tok/s, więc kontekst 50 tys. tokenów bez cache to około 40 sekund, zanim napisze pierwsze słowo.
+   Gdy startuje kilku naraz, dzielą tę prędkość między siebie: łącznie rośnie ona tylko do około 1 700 tok/s, więc
+   4 agentów, z których każdy zaczyna od 16 tys. tokenów kontekstu, czeka **44 s** na pierwszy token. Dzięki slotom
+   każdy agent ma własny prompt cache i w kolejnych turach czyta tylko nową część rozmowy — pod warunkiem stałego
+   prefiksu (pułapka H4 w [01-PROFILE.md](01-PROFILE.md#siedem-pułapek-wspólnych-dla-wszystkich)). To ważniejsze
+   niż wybór harnessu.
+3. **Cztery sloty to twardy limit, trzy — optimum.** Planuj 3 wykonawców naraz i jeden slot w zapasie (na planistę
+   w trybie w pełni lokalnym albo na pilne zadanie). Piąte zapytanie czeka w kolejce. Limit ustaw w jednym miejscu
+   z kolejką — w bramce (Bifrost), we frameworku (`ConcurrencyLimiter` w Pydantic AI) albo w kolejce zadań
+   (DBOS, Prefect).
 
 Masz też w llama-swap wariant `gpt-oss-20b-cpu`, który działa bez kart. Grupa llama-swap, w której modele nie wymieniają
 się nawzajem, pozwala trzymać DeepSeeka na GPU i małe modele na CPU jednocześnie — to wejście dla szybkich, prostych
@@ -82,6 +89,24 @@ Osiem zasad, zebranych z najlepszych pomysłów harnessów z rankingu:
 7. **Myślenie tylko tam, gdzie trzeba.** Dla prostych wykonawców wyłącz tryb myślenia DeepSeeka albo upewnij się,
    że harness odsyła `reasoning_content` (pułapka H2).
 8. **Mierz na swoich zadaniach.** Skuteczność i liczba tokenów Opusa na ukończone zadanie, nie na zapytanie.
+
+### Tryb w pełni lokalny
+
+Gdy dane nie mogą wyjść z domu (np. logi służbowe w U1) albo nie chcesz płacić za chmurę, ten sam wzorzec działa bez
+Opusa — planistą zostaje DeepSeek. Układ na 4 sloty:
+
+| Slot | Rola | Ustawienia |
+|---|---|---|
+| 1 | planista: plan, kontrakty zadań, synteza wyników | DeepSeek z włączonym myśleniem, cały kontekst zadania |
+| 2–4 | wykonawcy (3 = zmierzone optimum) | DeepSeek, myślenie wyłączone dla prostych zadań, małe zestawy narzędzi tylko do odczytu |
+| CPU | szybkie klasyfikacje, routing, krótkie odpowiedzi głosowe | `gpt-oss-20b-cpu` |
+
+Czego brakuje bez Opusa i jak to nadrobić: planista nie jest mądrzejszy od wykonawców, więc **zaostrz kontrakty**
+(węższe zadania, jawne kryteria „gotowe", listy kontrolne), **przenieś więcej sprawdzania do kodu** (walidacja,
+testy, porównanie z regułami) i **eskaluj do człowieka zamiast do Opusa**. Na trudnym zestawie zadań DeepSeek osiągnął
+97 w zadaniach agentowych i 94 w researchu, więc ten tryb jest realny — ale słabiej wypada w długich dokumentach
+(86 / 88) i powtarzalności (83), więc tam dodaj powtórne przejście albo człowieka. Każdy harness z rankingu pozwala
+ustawić ten sam lokalny model planiście i wykonawcom.
 
 **Lokalny wykonawca jako filtr prywatności.** Wykonawca może streścić logi i usunąć z nich sekrety, zanim cokolwiek
 trafi do chmury. Przy danych służbowych to często warunek, by w ogóle użyć planisty w chmurze — zanim wyślesz cokolwiek
@@ -202,7 +227,8 @@ Dlaczego nie DeepSeek bezpośrednio jako „głos": około 20 tokenów do pierws
 0,9–1,5 s samego generowania, plus przetwarzanie promptu. Całkowitego opóźnienia tego układu **nie mierzyłem**.
 
 Najprostszy start bez budowania: **Hermes Agent** — notatki głosowe na Telegramie, lokalny faster-whisper z językiem
-`pl`, odpowiedzi głosem. Asynchronicznie, ale działa od pierwszego dnia.
+`pl`, odpowiedzi głosem. Asynchronicznie, ale działa od pierwszego dnia. Uwaga: syntezę mowy robi domyślnie chmurowy
+Edge TTS. Jeśli głos ma zostać w domu, wybierz **Moltis** (lokalne STT i Piper z polskimi głosami) albo własny Pipecat.
 
 ### U5 — zdjęcia i obrazy
 
@@ -229,11 +255,12 @@ Ceny API Anthropic (USD za milion tokenów, 11.10.2026, [cennik](https://platfor
 | Claude Opus 5.5 | 4,00 | 0,20 | 20,00 |
 | Claude Sonnet 5.5 | 2,00 | 0,10 | 10,00 |
 | Claude Haiku 5.5 (prompt ≤ 100 tys. tokenów) | 0,10 | 0,01 | 0,50 |
+| Claude Haiku 5.5 (prompt powyżej 100 tys. tokenów — cała tura 5× drożej) | 0,50 | 0,05 | 2,50 |
 
 Batch API: −50% na wejściu i wyjściu (zadania, które mogą poczekać).
 
-**Sufit Twojej maszyny:** 54,3 tok/s × 86 400 s ≈ **4,7 mln tokenów wyjścia na dobę** — przy czterech slotach zajętych
-bez przerwy przez 24 godziny. Ta sama liczba tokenów wyjścia kosztowałaby w chmurze:
+**Sufit Twojej maszyny — tylko wyjście:** 54,3 tok/s × 86 400 s ≈ **4,7 mln tokenów wyjścia na dobę** — przy czterech
+slotach zajętych bez przerwy przez 24 godziny. Ta sama liczba tokenów wyjścia kosztowałaby w chmurze:
 
 | Model | Koszt 4,7 mln tokenów wyjścia |
 |---|---|
@@ -244,8 +271,26 @@ bez przerwy przez 24 godziny. Ta sama liczba tokenów wyjścia kosztowałaby w c
 Prąd policz sam: zmierz pobór z gniazdka przy pełnym obciążeniu i pomnóż przez stawkę. Karty masz ograniczone do 250 W;
 przy założeniu 1,2 kW dla całej maszyny i 1 zł za kWh wychodzi około 29 zł na dobę ciągłej pracy (założenie, nie pomiar).
 
-**Wniosek:** w porównaniu z Haiku 5.5 lokalny DeepSeek **nie wygrywa ceną tokena**. Wygrywa czym innym: prywatnością
-(dane nie wychodzą z domu), brakiem limitów i kolejek, pracą offline i nielimitowanymi eksperymentami na sprzęcie, który
+**Ale agent to głównie wejście, nie wyjście.** Realistyczna tura wykonawcy (założenia, nie pomiar): kontekst 30 tys.
+tokenów, z czego 28 tys. z cache, 2 tys. nowego wejścia i 500 tokenów wyjścia. Na tej maszynie 4 agentów robi taką turę
+w około 42 s (8 tys. nowych tokenów czytanych łącznie z prędkością ~1 700 tok/s to ~5 s, potem 500 tokenów przy
+13,6 tok/s to ~37 s), czyli około 8 300 tur na dobę przy pełnym obciążeniu. Te same tury w chmurze
+(pomijam niewielki koszt zapisu do cache):
+
+| Model i kontekst | Koszt jednej tury | 8 300 tur na dobę |
+|---|---|---|
+| Haiku 5.5, kontekst 30 tys. | ~0,0007 USD | ~6 USD |
+| Haiku 5.5, kontekst 120 tys. (powyżej progu 100 tys.) | ~0,008 USD | ~68 USD |
+| Sonnet 5.5, kontekst 30 tys. | ~0,012 USD | ~98 USD |
+| Opus 5.5, kontekst 30 tys. | ~0,024 USD | ~196 USD |
+
+Prąd przy pełnym obciążeniu z przykładu wyżej to ~29 zł na dobę, czyli około 7 USD przy założonym kursie 4 zł za dolara.
+
+**Wniosek:** przy krótkich kontekstach Haiku 5.5 kosztuje **mniej więcej tyle co prąd** tej maszyny przy pełnym
+obciążeniu (~6 wobec ~7 USD na dobę) — a gdy maszyna stoi bezczynnie, chmura nie kosztuje nic, prąd tak. Przy
+kontekstach powyżej 100 tys. tokenów albo w porównaniu z Sonnetem i Opusem lokalny DeepSeek jest **około 10 do 30 razy
+tańszy** — o ile jego jakość wystarcza. Pewne zalety lokalne, niezależne od cen: prywatność
+(dane nie wychodzą z domu), brak limitów i kolejek, praca offline i nielimitowane eksperymenty na sprzęcie, który
 już masz. Czy Haiku 5.5 dorównuje DeepSeekowi jakością na Twoich zadaniach — **nie wiadomo**: nie był mierzony na
 trudnym zestawie z [local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench).
 To dobry następny pomiar.

@@ -1,6 +1,7 @@
 # llm-education
 
-**Dwa kursy po polsku: jak naprawdę działają lokalne modele językowe i jak zbudować wokół nich agenta, któremu można zaufać.**
+**Po polsku: dwa kursy o tym, jak naprawdę działają lokalne modele językowe i jak zbudować wokół nich agenta,
+któremu można zaufać — oraz przegląd gotowych harnessów agentowych.**
 
 ![Język: polski](https://img.shields.io/badge/język-polski-red)
 ![Kurs 1: 10 części, ~47 h](https://img.shields.io/badge/kurs%201-10%20części%20·%20~47%20h-blue)
@@ -69,7 +70,8 @@ lokalni agenci jako wykonawcy. Stan na 11 października 2026.
 | [README](harnessy-agentowe/README.md) | ranking, porównanie techniczne, wybór do zastosowania, werdykt „budować czy brać gotowe" |
 | [01-PROFILE](harnessy-agentowe/01-PROFILE.md) | 20 profili z konfiguracją lokalnego modelu i siedem pułapek wspólnych dla wszystkich |
 | [02-KLOCKI](harnessy-agentowe/02-KLOCKI.md) | wyszukiwanie, monitoring cen, dane finansowe, powiadomienia, harmonogram, pamięć, głos, obraz |
-| [03-ARCHITEKTURA](harnessy-agentowe/03-ARCHITEKTURA.md) | wzorzec planista–wykonawcy na 4× R9700, pięć gotowych układów, koszty |
+| [03-ARCHITEKTURA](harnessy-agentowe/03-ARCHITEKTURA.md) | wzorzec planista–wykonawcy na 4× R9700, tryb w pełni lokalny, pięć gotowych układów, koszty |
+| [ZRODLA](harnessy-agentowe/ZRODLA.md) | źródła z datą sprawdzenia i tym, co z nich wziąłem |
 
 ---
 

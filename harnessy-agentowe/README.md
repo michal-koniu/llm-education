@@ -57,14 +57,18 @@ Pięć zastosowań, według których oceniam każdy harness:
 - **U2 i U3 → własna aplikacja na [Pydantic AI](01-PROFILE.md#5-pydantic-ai)** (jedyny framework z wbudowanym limitem
   4 slotów) **albo [LangGraph](01-PROFILE.md#1-langgraph)** (najdojrzalsza trwałość) + klocki z [02-KLOCKI.md](02-KLOCKI.md).
   Bez kodu: [n8n](01-PROFILE.md#18-n8n).
-- **U4 i U5 na start → [Hermes Agent](01-PROFILE.md#4-hermes-agent)**: notatki głosowe na Telegramie z lokalnym Whisperem,
-  „mostek wizji" dla tekstowego DeepSeeka, najlepszy cron. Rozmowa na żywo po polsku — [Pipecat](02-KLOCKI.md#głos).
+- **U4 i U5 na start → [Hermes Agent](01-PROFILE.md#4-hermes-agent)**: notatki głosowe na Telegramie z lokalnym
+  rozpoznawaniem mowy (faster-whisper), „mostek wizji" dla tekstowego DeepSeeka, najlepszy cron. Uwaga: synteza mowy
+  domyślnie idzie przez chmurę (Edge TTS), a lokalny polski głos nie jest potwierdzony — w pełni lokalny głos z polskim
+  Piperem ma [Moltis](01-PROFILE.md#15-moltis). Rozmowa na żywo po polsku — [Pipecat](02-KLOCKI.md#głos).
 - **DeepSeek-V4-Flash nie widzi obrazów** i zajmuje praktycznie cały VRAM — głos i wizja muszą iść na CPU, na zwolnioną
   kartę albo do chmury ([03-ARCHITEKTURA.md](03-ARCHITEKTURA.md#1-zasoby-co-naprawdę-masz)).
 - **Subagenci Claude Code na lokalnych modelach to nie jest wspierana funkcja.** Działa odwrotnie: Claude orkiestruje,
   lokalni agenci są jego narzędziami (MCP).
-- **Lokalnie nie jest taniej niż Claude Haiku 5.5** (0,10 / 0,50 USD za milion tokenów). Lokalnie wygrywa prywatnością,
-  brakiem limitów i pracą offline ([koszty](03-ARCHITEKTURA.md#5-koszty-czy-lokalnie-jest-taniej)).
+- **Lokalnie nie zawsze jest taniej.** Przy krótkich kontekstach Claude Haiku 5.5 (0,10 / 0,50 USD za milion tokenów)
+  kosztuje mniej więcej tyle co prąd tej maszyny przy pełnym obciążeniu; przy kontekstach powyżej 100 tys. tokenów
+  i w porównaniu z Sonnetem czy Opusem lokalny DeepSeek wychodzi wyraźnie taniej. Pewne zalety lokalne to prywatność,
+  brak limitów i praca offline ([koszty](03-ARCHITEKTURA.md#5-koszty-czy-lokalnie-jest-taniej)).
 
 ---
 
@@ -96,9 +100,9 @@ Szczegóły, konfiguracja lokalnego modelu, słabe strony i pomysły do ukradzen
 | # | Harness | Kategoria | Czym jest | Do czego służy | Jaki problem rozwiązuje (przewaga) | Licencja |
 |---|---|---|---|---|---|---|
 | 1 | [LangGraph](01-PROFILE.md#1-langgraph) | framework Py | runtime agentów jako grafów stanów z checkpointem po każdym kroku | trwałe, wznawialne przepływy wieloagentowe z człowiekiem w pętli | przerwane zadanie wraca dokładnie tam, gdzie stanęło — także po restarcie; najdojrzalsza trwałość w Pythonie | MIT |
-| 2 | [Goose](01-PROFILE.md#2-goose) | kodujący | agent ogólnego przeznaczenia w Ruście, pod fundacją AAIF (Linux Foundation) | kod, automatyzacje i powtarzalne „receptury" na własnej maszynie | receptury + cron + subagenci z własnym modelem w jednym narzędziu; *tool shim* ratuje modele, które słabo wołają narzędzia | Apache-2.0 |
+| 2 | [Goose](01-PROFILE.md#2-goose) | kodujący | agent ogólnego przeznaczenia w Ruście, pod fundacją AAIF (Linux Foundation) | kod, automatyzacje i powtarzalne „receptury" na własnej maszynie | receptury + cron + subagenci z własnym modelem w jednym narzędziu; eksperymentalny *tool shim* (tłumacz przez Ollamę albo wbudowany llama.cpp) ratuje modele, które słabo wołają narzędzia | Apache-2.0 |
 | 3 | [OpenHands](01-PROFILE.md#3-openhands) | kodujący | platforma agentów kodujących + SDK + serwer agentów | „zespół inżynierów" działający stale: rozmowy, automatyzacje z crona i webhooków | najpełniejszy stos do osadzenia we własnej aplikacji; kontener na każdą rozmowę; agent wystawiony jako „model" OpenAI | MIT |
-| 4 | [Hermes Agent](01-PROFILE.md#4-hermes-agent) | osobisty | samouczący się asystent z 25+ komunikatorami, głosem i cronem | osobisty agent dostępny z telefonu, zadania planowane, delegowanie | wzorzec „planista z czołówki, tani wykonawcy" wpisany w konfigurację; najmocniejszy cron; głos lokalnie | MIT |
+| 4 | [Hermes Agent](01-PROFILE.md#4-hermes-agent) | osobisty | samouczący się asystent z 25+ komunikatorami, głosem i cronem | osobisty agent dostępny z telefonu, zadania planowane, delegowanie | wzorzec „planista z czołówki, tani wykonawcy" wpisany w konfigurację; najmocniejszy cron; głos w komunikatorach z lokalnym rozpoznawaniem mowy | MIT |
 | 5 | [Pydantic AI](01-PROFILE.md#5-pydantic-ai) | framework Py | typowany framework agentów od twórców Pydantic | produkcyjne agenty z walidowanym wyjściem strukturalnym | jedyny współdzielony limiter współbieżności na model — dokładnie 4 sloty; najlepsze wyjście strukturalne; trwałość przez Temporal / DBOS / Prefect | MIT |
 | 6 | [Deep Agents](01-PROFILE.md#6-deep-agents) | framework Py | gotowy harness w stylu Claude Code na LangGraph | długie zadania: research, kod, ops — bez budowania hydrauliki | planowanie + system plików + subagenci + kompakcja w jednym wywołaniu, na trwałości LangGraph | MIT |
 | 7 | [Strands Agents](01-PROFILE.md#7-strands-agents) | framework Py | SDK agentów od AWS + gotowy harness | własna pętla bez pisania własnej pętli, dowolny model i chmura | natywny dostawca llama.cpp z gramatykami i `cache_prompt` zamiast udawania OpenAI | Apache-2.0 |
@@ -129,7 +133,7 @@ na Claude, a inni na Twoim llama-swap. Gwiazdki i wydania: API GitHuba, 11.10.20
 | 1 | LangGraph | <!-- gh:langchain-ai/langgraph -->43,1k | 1.2.14 (6.10) | ✅ | ✅ model per węzeł | ✅ | ⚠️ kaskada DIY | ✅ | ⚠️ Agent Server | ⚠️ człowiek w pętli, bez piaskownicy |
 | 2 | Goose | <!-- gh:aaif-goose/goose -->55,1k | 1.54.0 (8.10) | ✅ | ✅ `GOOSE_SUBAGENT_*` | ✅ | ⚠️ dyktowanie, bez TTS | ✅ | ✅ cron | ⚠️ tryby zatwierdzeń, bez piaskownicy |
 | 3 | OpenHands | <!-- gh:OpenHands/OpenHands -->90,5k | 1.26.0 (8.10) | ✅ | ✅ profil per subagent | ✅ | ⚠️ tylko wejście | ✅ | ✅ cron, webhook | ✅ kontener na rozmowę |
-| 4 | Hermes Agent | <!-- gh:NousResearch/hermes-agent -->252,7k | 0.21.6 (8.10) | ✅ | ✅ `delegation.*` | ✅ | ✅ STT + TTS, komunikatory | ✅ mostek wizji | ✅ najlepszy cron | ✅ smart approvals, Docker, SSH |
+| 4 | Hermes Agent | <!-- gh:NousResearch/hermes-agent -->252,7k | 0.21.6 (8.10) | ✅ | ✅ `delegation.*` | ✅ | ⚠️ STT lokalnie, TTS domyślnie w chmurze (Edge) | ✅ mostek wizji | ✅ najlepszy cron | ✅ smart approvals, Docker, SSH |
 | 5 | Pydantic AI | <!-- gh:pydantic/pydantic-ai -->20,5k | 2.55.0 (9.10) | ✅ | ✅ + limit współbieżności | ✅ | ⚠️ realtime tylko chmura | ✅ | ❌ (Prefect / DBOS) | ⚠️ zatwierdzenia narzędzi |
 | 6 | Deep Agents | <!-- gh:langchain-ai/deepagents -->30,1k | 0.7.23 (7.10) | ✅ | ✅ model per subagent | ✅ | ❌ | ⚠️ | ⚠️ Agent Server | ✅ backendy piaskownic |
 | 7 | Strands Agents | <!-- gh:strands-agents/harness-sdk -->8,8k | harness 0.2.0 (8.10) | ✅ natywny llama.cpp | ✅ | ✅ | ⚠️ tylko chmura | ✅ | ❌ | ⚠️ |
@@ -187,7 +191,7 @@ Co wybrać — i z jakimi klockami:
 | **U1** DevOps | OpenCode (Opus główny, DeepSeek subagenci) | Goose; albo Claude Code + MCP do lokalnych agentów | kubernetes-mcp-server, mcp-grafana (tylko odczyt), srt |
 | **U2** dochód pasywny | własna aplikacja: Pydantic AI albo LangGraph | n8n (bez kodu), OpenHands SDK (przepływy wokół kodu) | Prefect albo DBOS, Cognee, ntfy |
 | **U3** rynki i okazje | własny lejek (timery + Pydantic AI) albo n8n | Hermes Agent (strażnicy cron), Local Deep Research | SearXNG, Crawl4AI, changedetection.io, OpenBB, ntfy / Telegram |
-| **U4** głos | Hermes Agent (notatki głosowe, od razu) | Moltis (lokalne STT / TTS); docelowo własny Pipecat | Pipecat + Smart Turn, whisper.cpp / Parakeet, Piper → Chatterbox |
+| **U4** głos | Hermes Agent (notatki głosowe od razu; TTS w chmurze) | Moltis (w pełni lokalnie, Piper po polsku); docelowo własny Pipecat | Pipecat + Smart Turn, whisper.cpp / Parakeet, Piper → Chatterbox |
 | **U5** obrazy | Hermes Agent albo ZeroClaw (mostek wizji) | własny potok | DeepSeek Vision-Exp (test), Qwen3.6-35B-A3B, Docling + PaddleOCR-VL |
 
 Jak to złożyć w całość na tym sprzęcie: [03-ARCHITEKTURA.md](03-ARCHITEKTURA.md).
@@ -232,10 +236,12 @@ do internetu.
 
 ## Jak liczyłem ranking
 
-**1. Warunki wejścia** (wszystkie trzy): kod publiczny i licencja pozwalająca na self-hosting (źródłowo-dostępne
-dopuszczone, ale oznaczone ⚠️); udokumentowane podłączenie lokalnego modelu przez endpoint zgodny z OpenAI;
-aktywność — commit nie starszy niż 3 miesiące i wydanie (także przedpremierowe) nie starsze niż 6 miesięcy
-przed 11.10.2026. Sprawdzonych: 72 projekty, przeszło 64, odpadło 8.
+**1. Warunki wejścia** (wszystkie cztery): kod publiczny i licencja pozwalająca na self-hosting (źródłowo-dostępne
+dopuszczone, ale oznaczone ⚠️); udokumentowane podłączenie lokalnego modelu przez endpoint zgodny z OpenAI
+(bezpośrednio albo — oznaczone — pośrednio, przez adapter); aktywność — commit nie starszy niż 3 miesiące i wydanie
+(także przedpremierowe) nie starsze niż 6 miesięcy przed 11.10.2026; projekt nie jest oficjalnie zakończony — dlatego
+odpada np. Continue, którego opiekunowie ogłosili koniec projektu, choć ostatnie wydanie pochodzi z czerwca 2026.
+Sprawdzonych: 72 projekty, przeszło 64, odpadło 8.
 
 **2. Sześć kryteriów, każde 1–5, z wagami według moich celów:**
 
