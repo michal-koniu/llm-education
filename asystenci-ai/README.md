@@ -45,8 +45,8 @@ Wynik 0–100 według wag z sekcji [Jak wybierałem](#jak-wybierałem). Pełne p
 <!-- main-table -->
 | # | Asystent | Kod | Rodzaj | Cel | Przewaga | Na czym zarabia | Offline | Wynik |
 |---|---|---|---|---|---|---|---|---|
-| 1 | [OpenClaw](01-PROFILE.md#1-openclaw) | otwarty, MIT, ⭐ <!-- gh:openclaw/openclaw -->391,7k | żyjący | osobisty agent działający stale, sterowany z komunikatorów | ekosystem, kanały, umiejętności, fundacja; baza dla Microsoft Autopilot | nie zarabia sam — fundacja non-profit; zarabiają firmy budujące na nim | **Tak** z lokalnym modelem | 100 |
-| 2 | [Claude](01-PROFILE.md#2-claude) | zamknięty | codzienny · profesjonalny · wykonawca | asystent do pracy: czat, Cowork, Claude Code, computer use | jakość modelu w zadaniach agentowych i kodzie; MCP i umiejętności | subskrypcje i API; Claude Code ponad 2,5 mld USD przychodu w skali roku (II 2026) | Nie | 97 |
+| 1 | [OpenClaw](01-PROFILE.md#1-openclaw) | otwarty, MIT, ⭐ <!-- gh:openclaw/openclaw -->391,7k | żyjący | osobisty agent działający stale, sterowany z komunikatorów | ekosystem, kanały, umiejętności, fundacja; baza dla Microsoft Autopilot | nie zarabia sam — fundacja non-profit; zarabiają firmy budujące na nim | **Częściowo** — rdzeń z lokalnym modelem tak, kanały komunikatorów wymagają sieci | 100 |
+| 2 | [Claude](01-PROFILE.md#2-claude) | zamknięty | codzienny · profesjonalny · wykonawca | asystent do pracy: czat, Cowork, Claude Code, computer use | jakość modelu w zadaniach agentowych i kodzie; MCP i umiejętności | subskrypcje i API; Claude Code ponad 2,5 mld USD przychodu w skali roku (II 2026, *dane firmy*); szacunek prasy dla całej firmy: ok. 44 mld USD run-rate (V 2026) | Nie | 97 |
 | 3 | [Abridge](01-PROFILE.md#3-abridge) | zamknięty | profesjonalny (medycyna) | notatka lekarska z rozmowy z pacjentem | „Linked Evidence" — każde zdanie notatki ma odnośnik do nagrania | licencje dla szpitali | Nie | 94 |
 | 4 | [Harvey](01-PROFILE.md#4-harvey) | zamknięty | profesjonalny (prawo) | asystent kancelarii: analiza, przegląd dokumentów, przepływy | zaufanie dużych kancelarii, własny model Tenet | stanowiska w kancelariach; wycena 15,5 mld USD (IX 2026) | Nie | 94 |
 | 5 | [Hermes Agent](01-PROFILE.md#5-hermes-agent) | otwarty, MIT, ⭐ <!-- gh:NousResearch/hermes-agent -->252,7k | żyjący | osobisty agent z pamięcią, cronem, głosem, kanałami | uczy się umiejętności z doświadczenia, dobry z lokalnymi modelami | open source; Nous Research zarabia na modelach i chmurze | **Częściowo** (głos TTS domyślnie w chmurze) | 93 |
@@ -57,8 +57,8 @@ Wynik 0–100 według wag z sekcji [Jak wybierałem](#jak-wybierałem). Pełne p
 | 10 | [Granola](01-PROFILE.md#10-granola) | zamknięty | profesjonalny (spotkania) | notatki ze spotkań bez bota na rozmowie | nagrywa lokalnie dźwięk z komputera, notatka = szkic użytkownika + transkrypcja | subskrypcje | Nie | 87 |
 | 11 | [Sierra](01-PROFILE.md#11-sierra) | zamknięty | profesjonalny (obsługa klienta) | agent obsługi klienta dla firm | płatność za wynik, ewaluacja pass^k i symulacje | opłata za rozwiązaną sprawę | Nie | 85 |
 | 12 | [OpenEvidence](01-PROFILE.md#12-openevidence) | zamknięty | profesjonalny (medycyna) | odpowiedzi medyczne z cytatami z literatury | licencje na źródła, cytaty, darmowy dla lekarzy | reklamy farmaceutyczne | Nie | 84 |
-| 13 | [browser-use](01-PROFILE.md#13-browser-use) | otwarty, MIT, ⭐ <!-- gh:browser-use/browser-use -->117,6k | wykonawca | biblioteka do agentów obsługujących przeglądarkę | podejście przez DOM zamiast zrzutów ekranu — szybciej i taniej | open source + chmura i własny model | **Tak** z lokalnym modelem | 83 |
-| 14 | [Noxtua](01-PROFILE.md#14-noxtua) | zamknięty | profesjonalny (prawo, UE) | asystent prawny na europejskiej, suwerennej chmurze | dane i modele na suwerennej chmurze UE; w Polsce jako Beck-Noxtua | licencje (Beck-Noxtua: 590 zł netto/mies.) | Nie (chmura UE) | 78 |
+| 13 | [browser-use](01-PROFILE.md#13-browser-use) | otwarty, MIT, ⭐ <!-- gh:browser-use/browser-use -->117,6k | wykonawca | biblioteka do agentów obsługujących przeglądarkę | podejście przez DOM zamiast zrzutów ekranu — szybciej i taniej | open source + chmura i własny model | **Częściowo** — z lokalną przeglądarką i modelem tak, internet potrzebny do stron | 83 |
+| 14 | [Noxtua](01-PROFILE.md#14-noxtua) | zamknięty | profesjonalny (prawo, UE) | asystent prawny na europejskiej, suwerennej chmurze | dane na chmurze UE/CH; poziom Athena na modelach open source, Minerva na modelach frontier w europejskim układzie; w Polsce jako Beck-Noxtua | licencje (Beck-Noxtua: 590 zł netto/mies.) | Nie (chmura UE) | 78 |
 | 15 | [Perplexity](01-PROFILE.md#15-perplexity) | zamknięty | codzienny · wykonawca | wyszukiwanie z odpowiedzią i cytatami, przeglądarka Comet | cytaty, szybkość, agent lokalny Portable Computer | subskrypcje, firmy, API | **Częściowo** (Portable Computer) | 77 |
 <!-- /main-table -->
 
@@ -84,8 +84,7 @@ Kto nie zmieścił się w piętnastce, a warto go znać: [01-PROFILE.md](01-PROF
    Dla asystenta, któremu ktoś powierza klientów, liczy się powtarzalność.
 8. **Model biznesowy idzie za wartością.** Od stanowisk do użycia i do płatności za wynik; ale nagłe zmiany cennika
    (Cursor) i koszt modeli z czołówki (Canva) potrafią zaboleć.
-9. **Europa jest niedoobsłużona.** Część nowych funkcji agentowych gigantów omija EOG, a polskie wymagania tajemnicy
-   zawodowej ograniczają chmurę z USA — to luka dla lokalnego produktu ([04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md)).
+9. **Europa jest niedoobsłużona.** Część nowych funkcji agentowych gigantów omija EOG, a tajemnica zawodowa (art. 6 Prawa o adwokaturze, art. 3 ustawy o radcach prawnych) i § 23e Kodeksu Etyki Adwokackiej wymagają „należytej ochrony" informacji poufnych, a chmura z USA niesie dodatkowo ryzyko z CLOUD Act — to luka dla lokalnego produktu ([04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md)).
 10. **Lokalnie da się sensownie.** Otwarte harnessy (OpenClaw, Hermes, browser-use) z lokalnym modelem działają bez
     internetu w zakresie pracy na dokumentach i plikach; słabe miejsca to świeża wiedza z sieci, polski głos i wizja.
 
@@ -98,8 +97,7 @@ Kto nie zmieścił się w piętnastce, a warto go znać: [01-PROFILE.md](01-PROF
   [Noxtua](01-PROFILE.md#14-noxtua).
 - **Wszystko na biurku**: model, wyszukiwanie w dokumentach, transkrypcja, pamięć, logi. Chmurę traktuj jako wyjątek
   na danych niezwiązanych z klientem. Architektura i macierz offline: [03-WZORCE-TECHNICZNE.md](03-WZORCE-TECHNICZNE.md).
-- **Cytaty i weryfikacja jako funkcja główna** — kodeks etyki adwokackiej (§ 23e, od VI 2026) wymaga osobistej
-  weryfikacji wyników AI. Szczegóły prawne i ceny konkurencji: [04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md).
+- **Cytaty i weryfikacja jako funkcja główna** — Kodeks Etyki Adwokackiej § 23e (przyjęty przez NRA 12–13.06.2026; data wejścia w życie nieustalona) wymaga osobistej weryfikacji wyników AI. Szczegóły prawne i ceny konkurencji: [04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md).
 - **Kotwice cenowe w Polsce**: Beck-Noxtua 590 zł netto/mies. za użytkownika, Noa Notes 199 zł/mies. + VAT — lokalny
   asystent z jednorazowym sprzętem musi się z tym porównać.
 - **Mój rig** (4 sloty DeepSeek-V4-Flash, tylko tekst) nadaje się na prototyp; dla klienta liczy się mniejsza, cicha
@@ -120,8 +118,7 @@ finansach, profesjonalni w medycynie, kodzie i innych zawodach) plus rynek polsk
 | A — przejrzystość architektury | 15% | ile wiadomo, jak to jest zbudowane (kod, dokumentacja, publikacje) |
 
 Wynik = 20 × (0,35·T + 0,25·I + 0,25·L + 0,15·A). Ograniczenia: każdy z czterech rodzajów co najmniej dwa razy, obecne
-i otwarte, i zamknięte, co najmniej jeden przykład europejski stawiający na prywatność (Noxtua). Remisy rozstrzyga
-trakcja, potem alfabet. Następni w kolejce: UI-TARS 76, Legora 74, Heidi 74, M365 Copilot 74, Genspark 72, Poke 72.
+i otwarte, i zamknięte, co najmniej jeden przykład europejski stawiający na prywatność (Noxtua). Remisy rozstrzyga trakcja, potem kolejność redakcyjna (ChatGPT, Gemini i Cursor mają po 87 pkt i T=5). Następni w kolejce: UI-TARS 76, Legora 74, Heidi 74, M365 Copilot 74, Genspark 72, Poke 72.
 
 ---
 

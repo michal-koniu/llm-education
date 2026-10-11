@@ -99,7 +99,7 @@ to nie usługa z USA — pod warunkiem, że telemetria jest wyłączona i opisan
 | Art. 10 RODO | Dane o wyrokach i czynach zabronionych | Dotyczy obrońców w sprawach karnych — te same reguły co dla danych szczególnych w projekcie |
 | Art. 28 RODO | Podmiot przetwarzający potrzebuje umowy z art. 28 ust. 3; podprzetwarzający — zgody | Każde API chmurowe to procesor. **Dostawca pudełka ze zdalnym dostępem serwisowym też staje się procesorem** — stąd „wsparcie bez dostępu" albo gotowa umowa powierzenia |
 | Art. 32 RODO | Bezpieczeństwo przetwarzania | Szyfrowanie dysku, konta per użytkownik, logi, kopie zapasowe — lokalnie to obowiązek klienta i produktu |
-| Art. 33–34 RODO | Zgłaszanie naruszeń | Skradzione pudełko bez szyfrowania dysku = naruszenie do zgłoszenia |
+| Art. 33–34 RODO | Zgłaszanie naruszeń | Kradzież pudełka to naruszenie ochrony danych (art. 4 pkt 12); zgłoszenie do UODO w 72 h (art. 33), chyba że ryzyko jest mało prawdopodobne. Brak szyfrowania zwykle oznacza też obowiązek zawiadomienia osób (art. 34); szyfrowanie może go zwolnić (art. 34 ust. 3 lit. a) |
 | Art. 35 ust. 3 lit. b + motyw 91 RODO | DPIA dla dużej skali danych szczególnych; motyw 91: pojedynczy lekarz lub prawnik to nie „duża skala" | Solo-praktyka zwykle bez obowiązkowej DPIA; przychodnia i większa kancelaria — już tak. **Gotowy wzór DPIA to tani atut sprzedażowy** |
 | Art. 44–49 RODO | Transfery poza EOG: adekwatność (art. 45), SCC (art. 46), wyjątki (art. 49) | Model lokalny = brak transferu dla części AI; chmura USA = DPF albo SCC + ocena transferu |
 | Art. 48 RODO | Nakaz sądu państwa trzeciego tylko przez umowę międzynarodową | Patrz CLOUD Act wyżej — konflikt praw leży po stronie dostawcy |
@@ -258,7 +258,7 @@ czacie dla klientów i krótki pakiet szkoleniowy z art. 4 dla personelu.
 | Art. 9 | O opinię może wystąpić podmiot objęty AI Act **albo planujący nim zostać**; stan faktyczny lub zdarzenie przyszłe; ten sam podmiot ponownie najwcześniej po 30 dniach (ust. 5) | Możesz zapytać przed startem sprzedaży |
 | Art. 11 | Opłata **150 zł**; zwrot m.in. gdy Komisja nie wyda opinii w terminie | Koszt pomijalny |
 | Art. 12 | Opinia w 30 dni, w sprawach szczególnie skomplikowanych 60 dni (ust. 1); **brak opinii w terminie = opinia zgodna ze stanowiskiem wnioskodawcy** (ust. 3) | Milcząca zgoda działa na twoją korzyść |
-| Art. 13 | Opinia **wiąże** Komisję i inne organy w danej sprawie dla wskazanego stanu faktycznego | Dokument do pokazania izbie i klientowi |
+| Art. 13 | Opinia wiąże KRiBSI oraz organy i jednostki, o których mowa w art. 12 ust. 2 (te, od których Komisja zasięgnęła opinii) — dla wskazanego stanu faktycznego (ust. 1); nie można jej zmienić, gdy wystąpiły nieodwracalne skutki (ust. 2). Ustawa nic nie mówi o związaniu sądów ani izb zawodowych | Dokument do pokazania izbie i klientowi |
 | Art. 15 | Komisja może zmienić lub uchylić opinię m.in. po zmianie prawa lub wytycznych UE | Opinia nie jest wieczna — śledź zmiany |
 | Art. 127 | Wejście w życie 14 dni po ogłoszeniu (**11.08.2026**); art. 8–18 i rozdz. 3–5, 8, 9 po 3 miesiącach (**28.10.2026**) | Opinie indywidualne od 28.10.2026 |
 
@@ -267,8 +267,7 @@ Daty potwierdzają też [gdpr.pl](https://gdpr.pl/ustawa-o-systemach-sztucznej-i
 Ustawa przewiduje też piaskownicę regulacyjną (art. 91) i kary według rozdziału XII AI Act (art. 104).
 
 **Pytanie, które warto zadać KRiBSI po 28.10.2026** (przykład, nie wzór wniosku): „Czy lokalny asystent do
-redagowania, streszczania i transkrypcji dla kancelarii i gabinetów, bez triażu, scoringu i sugestii diagnoz, jest
-poza załącznikiem III albo objęty art. 6 ust. 3?" Za 150 zł, z milczącą zgodą po 30–60 dniach, to najtańszy
+redagowania, streszczania i transkrypcji dla kancelarii i gabinetów, bez triażu, scoringu i sugestii diagnoz, jest poza załącznikiem III?" (osobny wniosek: czy jest objęty art. 6 ust. 3 — jedno zagadnienie na wniosek, art. 9 ust. 3 pkt 1) Za 150 zł, z milczącą zgodą po 30–60 dniach, to najtańszy
 dokument redukujący ryzyko, jaki można pokazać ostrożnej izbie.
 
 ### Jeśli sprzedajesz asystenta: PLD i CRA
@@ -550,7 +549,7 @@ II 2026), RTX PRO 6000 ok. +87% od premiery — **wyceny dla klienta dawaj z ter
   Na Windows: Strix Halo 128 GB.
 - **Kancelaria 1–5 osób, RAG po aktach:** liczy się prefill i współbieżność → GB10 (ASUS GX10, ok. 24,5 tys. zł):
   CUDA, vLLM, gwarancja OEM. Biuro na Macach → M5 Ultra. Ponad 5 osób naraz → wieża z RTX PRO 6000 (łącznie
-  ok. 90–120 tys. zł wg researchu).
+  ok. 90–120 tys. zł wg cen z ceneo.pl).
 - **Gabinet lekarski** (Whisper + notatka, zwykle jeden lekarz naraz): Mac mini M5 Pro 48–64 GB albo Mac Studio M5 Max;
   przy kilku gabinetach — jeden GB10 jako serwer.
 - **Energia (orientacyjnie, bez ceny prądu):** Strix Halo pod obciążeniem ok. 110 W × 8 h × 21 dni ≈ 18,5 kWh
@@ -574,7 +573,7 @@ klienta**: głośny, gorący i wymaga opieki nad ROCm. Szczegóły układu: [har
 | Notariusz | Szkice i porównania dokumentów, wyszukiwanie w archiwum kancelarii | Tajemnica z art. 18; brak wytycznych KRN — szansa i niepewność zarazem | Brak danych |
 | Biegły rewident | Przegląd dokumentacji badania, wyszukiwanie w papierach roboczych, ślad audytowy | Art. 78 bez limitu czasu | Brak danych |
 
-**Siedem obietnic, które da się udowodnić** (na podstawie researchu, sekcja F):
+**Siedem obietnic, które da się udowodnić** (na podstawie źródeł z tego przeglądu):
 
 1. **„Nic nie wychodzi z pokoju"** — brak procesora (art. 28) i transferu (art. 44–49) dla części AI, brak CLOUD Act,
    brak zależności od DPF.

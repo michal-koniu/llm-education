@@ -233,7 +233,7 @@ Gwiazdki GitHuba z API 11.10.2026.
 | 4 | [Harvey](01-PROFILE.md#4-harvey) | 1 500 organizacji, 100k+ prawników (V 2026); 80% Am Law 100 (9.09.2026, *dane firmy*) | ARR >400 mln USD (IX 2026, *szacunek prasy*) | 550 mln przy 15,5 mld (9.09.2026) | [Harvey](https://www.harvey.ai/blog/harvey-raises-dollar550m-at-a-dollar155b-valuation-to-help-legal-teams-own-their-intelligence), [itbrief](https://itbrief.co.uk/story/harvey-launches-500-legal-ai-agents-builder-tool), [raising.fi](https://raising.fi/news/harvey-undisclosed-september-2026) |
 | 5 | [Hermes Agent](01-PROFILE.md#5-hermes-agent) | ⭐ 252,7k; „sklonowany ponad 24 mln razy", „ok. 2,5% światowego zużycia tokenów" (X 2026, *dane firmy*) | brak danych | Nous Research: 90 mln USD (X 2026) | [Nous](https://nousresearch.com/a-note-on-our-fundraise), [GitHub](https://github.com/NousResearch/hermes-agent) |
 | 6 | [Manus](01-PROFILE.md#6-manus) | 80 mln wirtualnych komputerów, 147 bln tokenów (XII 2025, *dane firmy*) | ARR 100 mln USD (XII 2025, *dane firmy*); ok. 450 mln annualizowane (VI 2026, *Sacra, niezweryfikowane u źródła*) | seria B ok. 75 mln przy ok. 500 mln (IV 2025); runda >500 mln USD (8.10.2026, wycena nieujawniona) | [Manus](https://manus.im/blog/manus-100m-arr), [Sacra](https://sacra.com/c/manus), [TechCrunch](https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/) |
-| 7 | [ChatGPT](01-PROFILE.md#7-chatgpt) | 900 mln tygodniowo (II 2026); 1,2 mld tygodniowo (29.09.2026) | brak danych w moich źródłach | brak danych w moich źródłach | [Wikipedia](https://en.wikipedia.org/wiki/ChatGPT), [Decrypt](https://decrypt.co/379584/openai-ai-agents-computers-devday-2026-everything-announced) |
+| 7 | [ChatGPT](01-PROFILE.md#7-chatgpt) | 900 mln tygodniowo (II 2026); 1,2 mld tygodniowo (29.09.2026) | 13,1 mld USD zaksięgowane w 2025; ARR „blisko 70 mld USD" (29.09.2026, *Axios przez Reuters, źródło anonimowe*) | runda 122 mld USD przy wycenie 852 mld USD (ok. 1.04.2026) | [Wikipedia](https://en.wikipedia.org/wiki/ChatGPT), [Decrypt](https://decrypt.co/379584/openai-ai-agents-computers-devday-2026-everything-announced) |
 | 8 | [Gemini](01-PROFILE.md#8-gemini) | 1 mld+ miesięcznie (11.08.2026, *dane firmy*) | nieujawniane osobno (Google) | — (Google) | [Google](https://blog.google/innovation-and-ai/products/gemini-app/one-billion-monthly-users/) |
 | 9 | [Cursor](01-PROFILE.md#9-cursor) | brak danych | ARR 2 mld USD (II 2026, *Bloomberg*); 3 mld (V 2026, *Bloomberg wg Wikipedii*) | seria D 2,3 mld przy 29,3 mld (13.11.2025); SpaceX ok. 60 mld w akcjach (finalizacja 14.08.2026) | [Bloomberg](https://www.bloomberg.com/news/articles/2026-03-02/cursor-recurring-revenue-doubles-in-three-months-to-2-billion), [Cursor](https://cursor.com/blog/joining-spacex), [Wikipedia](https://en.wikipedia.org/wiki/Cursor_%28company%29) |
 | 10 | [Granola](01-PROFILE.md#10-granola) | 250k+ aktywnych (poł. 2025, *Sacra, niezweryfikowane*) | nieujawniony; ARR +ok. 250% w I kw. 2026 (*agregator*) | seria C 125 mln przy 1,5 mld (25.03.2026) | [TNW](https://thenextweb.com/news/granola-series-c-meeting-ai-enterprise-context), [arr.club](https://www.arr.club/granola/granola-arr-grow-at-250-in-q1-2026) |
@@ -262,7 +262,7 @@ Gwiazdki GitHuba z API 11.10.2026.
 **Jak to czytać:**
 
 - **Najszybsze rampy przychodu w historii oprogramowania** to narzędzia dla programistów: Cursor od 100 mln (I 2025)
-  do 2 mld USD ARR (II 2026), Claude Code >2,5 mld run-rate po niecałym roku.
+  do 2 mld USD ARR (II 2026; według Bloomberga 3 mld, V 2026), Claude Code >2,5 mld run-rate po niecałym roku.
 - **Prawo to drugi najgorętszy pion:** Harvey z 3 mld (II 2025) do 15,5 mld USD wyceny (IX 2026), Legora od ok. 1 mln
   do 100 mln ARR w 18 miesięcy ([TNW](https://thenextweb.com/news/legora-just-hit-100-million-in-revenue-it-took-18-months)).
 - **Otwarte projekty mierzą się zasięgiem, nie przychodem.** Liczby „klonów" i „clawów" to deklaracje — nie da się ich
@@ -485,6 +485,25 @@ Anthropic rozszerzył „Claude for Legal" o wtyczki dziedzinowe i konektory do 
 Thomson Reuters buduje nowy CoCounsel na Claude Agent SDK
 ([LawSites](https://www.lawnext.com/2026/06/thomson-reuters-opens-early-access-to-the-next-generation-of-cocounsel-legal-saying-beta-users-fing-loved-the-product.html)).
 Piony bronią się treścią, przepływem pracy i integracjami.
+
+### 9. Luka europejska i słaba retencja agentów konsumenckich
+
+- **Europa dostaje nowe funkcje agentowe później albo wcale.** Wg stanu na 11.10.2026 Gemini Spark nie jest dostępny
+  w EOG, Szwajcarii i Wielkiej Brytanii ([prasa](https://www.androidheadlines.com/2026/07/google-gemini-spark-expands-to-ai-pro-subscribers.html));
+  ChatGPT Health (start 7.01.2026) i pierwszy „dot" w planie Pro też nie obejmują EOG
+  ([Wikipedia](https://en.wikipedia.org/wiki/ChatGPT), [blog](https://www.eesel.ai/blog/openai-dots));
+  Siri AI (iOS 27, 14.09.2026) nie jest dostępna na iPhone'ach w UE z powodu sporu o DMA
+  ([heise](https://www.heise.de/en/news/Siri-AI-in-the-EU-iPhone-and-iPad-users-must-continue-to-wait-11476320.html));
+  Alexa+ nie jest oferowana w Polsce
+  ([Amazon](https://www.aboutamazon.com/news/devices/alexa-plus-international-launch), kraju nie ma na liście).
+  W Polsce ChatGPT Free i Go ma od 24.08.2026 reklamy kontekstowe. To luka, w którą może wejść lokalny produkt.
+- **Agent w tle nie znaczy nawyk.** Muse Meta'y (premiera 8.09.2026, własna maszyna wirtualna w chmurze na użytkownika)
+  miał 5 mln pobrań w USA w 22 dni, ale tylko ok. 700 tys. dziennych użytkowników pod koniec IX 2026
+  ([CryptoBriefing, prasa](https://cryptobriefing.com/meta-muse-app-store-retention/)); dostępny tylko w USA i Kanadzie
+  ([Meta](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)). Lekcja: sama możliwość działania w tle nie
+  utrzymuje użytkownika — liczy się konkretna, powtarzalna korzyść, jak notatka z wizyty co dzień.
+- **Muse Glimmer** (10.08.2026, Apache 2.0, ok. 30 mld parametrów, 4-bit na GPU 24 GB) to otwarty model agentowy
+  Meta'y; jakość po polsku niezweryfikowana ([TechCrunch](https://techcrunch.com/2026/08/10/metas-new-glimmer-ai-model-offers-a-hint-at-zuckerbergs-personal-intelligence-vision/), [VentureBeat](https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now)).
 
 ---
 

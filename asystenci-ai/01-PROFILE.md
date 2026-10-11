@@ -343,7 +343,7 @@ nie słyszy — mowa musi przejść przez osobny model STT (patrz [Głos](../har
 - **Własny test ASR na polskich nazwach leków** (lista z ChPL) — to tam leży największe ryzyko i najlepszy argument
   sprzedażowy.
 - **Zakres: tylko dokumentacja.** Kodeks Etyki Lekarskiej art. 12 wymaga zgody pacjenta i certyfikowanego algorytmu
-  przy AI w postępowaniu diagnostycznym lub leczniczym; notatka i pisma bez sugestii diagnozy są poza tym zakresem
+  przy AI w postępowaniu diagnostycznym lub leczniczym; notatka i pisma bez sugestii diagnozy są — wg mojej wykładni — poza zakresem art. 12 KEL (NIL nie zajął stanowiska w sprawie skrybów)
   (szczegóły w [04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md); to nie jest porada prawna).
 - **Usuwanie nagrania po podpisaniu notatki** i wsparcie techniczne bez dostępu do danych: dostawca z dostępem
   zdalnym do komputera przychodni staje się podmiotem przetwarzającym (art. 28 RODO) związanym tajemnicą
@@ -812,7 +812,7 @@ DOM i drzewie dostępności (zob. [browser-use](#13-browser-use)).
 
 **Warto wiedzieć.**
 - **Cmentarz produktów:** Operator (I–VIII 2025), Pulse (ok. 9 miesięcy), Atlas (21.10.2025 – 9.08.2026; tylko macOS,
-  ok. 10 mln MAU wg szacunku 36Kr), Custom GPTs (XII 2026). Wg Wikipedii sam „ChatGPT agent" zniknął na początku VIII 2026
+  ok. 10 mln MAU wg szacunku 36Kr), Custom GPTs (wygaszanie zapowiedziane na XII 2026). Wg Wikipedii sam „ChatGPT agent" zniknął na początku VIII 2026
   na rzecz Work (niezweryfikowane gdzie indziej). Hasło OpenAI: „AI browsers should be a feature, not a destination";
   wszystkie AI-przeglądarki razem miały poniżej 1% rynku.
 - **Atlas i bezpieczeństwo:** „Tainted Memories" (LayerX, X 2025; OpenAI kwestionuje), wstrzyknięcia i wycieki przez URL.
@@ -843,7 +843,7 @@ DOM i drzewie dostępności (zob. [browser-use](#13-browser-use)).
 **Kategoria:** codzienny + wykonawca · **Kod:** zamknięty (otwarta rodzina Gemma obok) · **Firma:** Google / Alphabet (USA) ·
 **Wynik: 87** (T5 I4 L4 A4)
 
-> Asystent wbudowany w Androida, Chrome i Workspace (950 mln MAU w II kw. 2026), z agentem, który pracuje w chmurze albo
+> Asystent wbudowany w Androida, Chrome i Workspace (ponad 1 mld MAU, 11.08.2026, *dane firmy*), z agentem, który pracuje w chmurze albo
 > w Twoim zalogowanym Chrome. W czołówce za dystrybucję i za najlepiej opisaną publicznie architekturę bezpieczeństwa
 > agenta przeglądarkowego: planista + krytyk + zbiory originów.
 
@@ -872,7 +872,7 @@ Deweloperom Google sprzedaje model computer use do automatyzacji interfejsów.
   Commerce Protocol, pyta przed zakupem i publikacją. Tylko USA.
 - **Gemini Computer Use w API:** od 7.10.2025 (2.5, przeglądarka); w 2026 Gemini 3.8 Flash (zalecany), 3.5 Flash-Lite
   i 3 Flash Preview, w przeglądarce, na Androidzie i na desktopie.
-- **Gems → Skills** wywoływane „/" w polu zapytania (migracja 17.11.2026).
+- **Gems → Skills** wywoływane „/" w polu zapytania (migracja zapowiedziana na 17.11.2026).
 - **Na urządzeniu:** Gemini Nano przez AICore — streszczanie, korekta, przepisywanie, opis obrazu, transkrypcja offline.
 
 **Przewaga.**
@@ -923,9 +923,7 @@ Deweloperom Google sprzedaje model computer use do automatyzacji interfejsów.
 - Alphabet nie wydziela subskrypcji AI: segment „subscriptions, platforms and devices" dał 12,9 mld USD w II kw. 2026
   (+15% r/r).
 
-**Offline.** **Częściowo.** Gemini Nano na wspieranych telefonach robi offline proste rzeczy (streszczenie, korekta,
-transkrypcja), ale to nie jest asystent. Aplikacja, Live, Spark, Agent i auto browse działają tylko w chmurze. Gemmę 4
-można postawić u siebie obok DeepSeeka (licencję trzeba sprawdzić). Lokalny odpowiednik Sparka to harmonogram + kolejka
+**Offline.** **Nie.** Gemini Nano na wspieranych telefonach robi offline tylko proste rzeczy (streszczenie, korekta, transkrypcja) i nie jest asystentem. Aplikacja, Live, Spark, Agent i auto browse działają tylko w chmurze. Gemmę 4 można postawić u siebie, ale na rigu dopiero po zwolnieniu karty z DeepSeeka (licencję trzeba sprawdzić). Lokalny odpowiednik Sparka to harmonogram + kolejka
 zadań z limitem równoległości (u mnie 4 sloty) + przeglądarka w kontenerze + planista i krytyk.
 
 **Co przenieść do siebie.**
@@ -1227,15 +1225,14 @@ recepcja kancelarii) potrzebowałby: lokalnego modelu z zasadami w prostym języ
   rozliczony pakiet faktur KSeF — zamiast za tokeny, których lokalnie i tak prawie nie liczysz.
 - **Wąskie zadanie ze zdefiniowaną miarą sukcesu** na start (np. „projekt odpowiedzi na wezwanie do zapłaty
   zatwierdzony bez poprawek”), a nie „asystent do wszystkiego”.
-- **Protokół zamiast scrapingu:** gdy banki i urzędy zaczną wystawiać interfejsy dla osobistych agentów (PAP),
+- **Protokół zamiast scrapingu:** gdy banki i urzędy zaczną wystawiać interfejsy dla osobistych agentów (Personal Agent Protocol),
   agent biura będzie działał przez API z jawnie nadanym dostępem — warto już teraz oddzielać warstwę narzędzi od
   logiki agenta ([09-PROTOKOLY-MCP-CLI-A2A.md](../kurs_aplikacje_agentowe/09-PROTOKOLY-MCP-CLI-A2A.md)).
 
 **Warto wiedzieć.**
 - Założona przez Breta Taylora i Claya Bavora; start produktu w II 2024.
 - Ekspansja do Francji i biuro w Tokio (XII 2025); przejęcie startupu Fragment z YC (23.04.2026).
-- Bezpośredni konkurent Decagon (seria D 250 mln USD przy 4,5 mld, 27.01.2026) tego samego dnia co PAP ogłosił
-  własny protokół zgody i zaufania dla osobistych agentów, PACT (6.10.2026) — standard nie jest jeszcze przesądzony.
+- Bezpośredni konkurent Decagon (seria D: 250 mln USD przy 4,5 mld USD, 27.01.2026) ogłosił własny protokół zgody i zaufania PACT 6.10.2026 — tego samego dnia, w którym Sierra z Metą ogłosiła Personal Agent Protocol; standard nie jest jeszcze przesądzony.
 - Rynek idzie w stronę ceny za wynik: Intercom Fin bierze 0,99 USD za rozwiązaną sprawę, Parloa — za minutę lub
   interakcję *(cenniki firm)*.
 
@@ -1564,7 +1561,7 @@ Komentarzy Legalis/LEX lokalnie nie odtworzysz — i nie trzeba (patrz niżej).
 **Otwarty czy zamknięty.** Aplikacje, Comet i harness są zamknięte. Lokalny Portable Computer uruchamia **otwarte
 modele**: Qwen 3.8 27B i dotrenowany przez Perplexity „PPLX 27B" (Nvidia Nemotron 3.5 Lightning zapowiedziany). Otwarty jest
 też **BrowseSafe** — klasyfikator prompt injection na bazie Qwen3-30B-A3B wraz z benchmarkiem BrowseSafe-Bench (Hugging
-Face, ok. 7.12.2025; licencji prasa nie podaje). Self-hosting: tak dla Portable Computer (na własnym GPU), nie dla reszty.
+Face, ok. 7.12.2025; licencji prasa nie podaje). Lokalne uruchomienie licencjonowanego produktu: tylko Portable Computer (na własnym GPU Nvidia), nie reszta.
 
 **Cel.** Dla ludzi, którzy dużo szukają i czytają: odpowiedź z cytatami zamiast listy linków. Na tym Perplexity zbudowała
 agenta w przeglądarce (Comet), chmurowego orkiestratora wielu modeli (Computer, plan Max) i — dla tych, którzy nie chcą
@@ -1635,15 +1632,12 @@ wysyłać danych — agenta w pełni lokalnego.
   przychód z aplikacji w Indiach ok. 156 tys. USD/mies. *(Appfigures przez TechCrunch)*.
 - Umowa chmurowa z Azure: 750 mln USD na 3 lata (I 2026). Udział w rynku aplikacji asystentów: poniżej 5% (V 2026).
 
-**Offline.** **Częściowo — w pełni dla Portable Computer.** Wyszukiwarka, Comet (rozumowanie na serwerach) i Computer to
-chmura. Portable Computer działa bez internetu: model 27B, narzędzia i piaskownica lokalnie, eskalacja do chmury jest
-opcjonalna (konektory typu Gmail czy Drive oczywiście potrzebują sieci). Haczyk dla mnie: wymaga Nvidii, więc na 4× AMD
-Radeon AI PRO R9700 gotowy produkt nie ruszy. Wzorzec za to przenosi się w całości — skoro Perplexity uruchamia model 27B
-na 24 GB, karta R9700 z 32 GB pomieści go na jednym slocie.
+**Offline.** **Częściowo.** Wyszukiwarka, Comet (rozumowanie na serwerach) i Computer to
+chmura. Portable Computer wykonuje inferencję i narzędzia lokalnie (model 27B, piaskownica), ale produkt jest zamknięty i w cenie Pro/Max; pracy bez sieci (aktywacja subskrypcji, pobranie modeli, aktualizacje) nie zweryfikowałem — źródłem jest tylko prasa. Konektory (Gmail, Drive) i opcjonalna eskalacja do chmury wymagają sieci. Haczyk dla mnie: wymaga Nvidii, więc na 4× AMD
+Radeon AI PRO R9700 gotowy produkt nie ruszy. Wzorzec za to przenosi się w całości — skoro Perplexity uruchamia model 27B na 24 GB, ten rozmiar zmieści się na jednej karcie 32 GB, ale dopiero po jej zwolnieniu: przy DeepSeek-V4-Flash na 4 kartach zostaje ok. 1,4 GB wolnego VRAM na kartę (zob. [architektura harnessów](../harnessy-agentowe/03-ARCHITEKTURA.md)); do testów — wymiana modelu w llama-swap albo osobna maszyna.
 
 **Co przenieść do siebie.**
-- **Specyfikacja pudełka na biurku potwierdzona przez rynek:** model ~27B + vLLM + 24–32 GB VRAM. Na rigu jedna karta może
-  trzymać agenta 27B obok DeepSeek-V4-Flash; Qwen3.8-27B deklaruje przy tym 84,3% na OSWorld-Verified (karta modelu, VIII
+- **Specyfikacja pudełka na biurku potwierdzona przez rynek:** model ~27B + vLLM + 24–32 GB VRAM. Na rigu agent 27B (Q4 ok. 18,5 GB) zmieści się na jednej karcie dopiero po jej zwolnieniu z DeepSeeka; Qwen3.8-27B deklaruje przy tym 84,3% na OSWorld-Verified (karta modelu, VIII
   2026, niezweryfikowane niezależnie) — uzupełnienie tekstowego DeepSeeka w zadaniach na ekranie.
 - **Fail closed:** nie ma piaskownicy — agent nie startuje
   ([piaskownica](../kurs_lokalne_modele/07-SANDBOX-BEZPIECZENSTWO-MONITORING.md)).
@@ -1726,7 +1720,7 @@ wiersz z jedną liczbą i datą, jeśli research ją potwierdził. Gwiazdki z AP
 | Doubao (ByteDance) | codzienny, Chiny | zamknięty | Ponad 200 mln DAU (IX 2026, LatePost przez TechNode); umiejętności uczone z nagrania ekranu i przekazanie zadania z telefonu na PC. Od 15.07.2026 chińskie przepisy zamknęły agentów tworzonych przez użytkowników. | [TechNode](https://technode.com/2026/09/23/bytedance-doubao-general-session-team-cuts/) |
 | Qwen app (Alibaba) | codzienny, Chiny | aplikacja zamknięta, modele otwarte | Kampania za ok. 6 mld RMB dała skok DAU, ale sesja trwa ok. 1,3 min — kupieni użytkownicy nie zostają. 167 mln MAU (V–VI 2026). Ważniejszy jest model: Qwen 3.8 27B napędza lokalny Portable Computer [Perplexity](01-PROFILE.md#15-perplexity). | [TechTimes](https://www.techtimes.com/articles/323907/20260811/qwen-sells-paid-office-subscriptions-users-it-bought-with-free-bubble-tea.htm) |
 | DeepSeek app | codzienny | aplikacja zamknięta, wagi MIT | 130 mln MAU (V 2026). Aplikacja jest słaba agentowo, ale wagi V4-Flash na MIT to silnik mojego rigu. Berliński urząd ochrony danych zażądał usunięcia aplikacji ze sklepów w Niemczech (27.06.2025) — liczy się, gdzie przetwarzane są dane. | [Hugging Face](https://huggingface.co/api/models?author=deepseek-ai&sort=lastModified) · [netzpolitik](https://netzpolitik.org/2025/datenschutzbehoerde-greift-ein-deepseek-fliegt-aus-den-app-stores/) |
-| Mistral Vibe (dawniej Le Chat) | codzienny + firmowy (UE) | aplikacja zamknięta, wiele modeli otwartych | Dowód, że „suwerenne AI" to płacący rynek: 3 mld EUR przy wycenie ponad 21 mld EUR (8.09.2026), Pro za 14,99 USD, on-premise dla firm, 100+ konektorów z pełnym MCP. | [TechCrunch](https://techcrunch.com/2026/09/08/mistral-raises-e3b-as-sovereign-ai-becomes-big-business/) · [cennik](https://mistral.ai/pricing) |
+| Mistral Vibe (dawniej Le Chat) | codzienny + firmowy (UE) | aplikacja zamknięta, wiele modeli otwartych | Dowód, że „suwerenne AI" to płacący rynek: 3 mld EUR przy wycenie ponad 21 mld EUR (8.09.2026), Pro 14,99 EUR bez VAT (wersja USD strony podaje 14,99 USD), on-premise dla firm, 100+ konektorów z pełnym MCP. | [TechCrunch](https://techcrunch.com/2026/09/08/mistral-raises-e3b-as-sovereign-ai-becomes-big-business/) · [cennik](https://mistral.ai/pricing) |
 | Instinct | codzienny, przez iMessage | zamknięty | Konsjerż w iMessage: dzwoni do firm, ma własne adresy e-mail, używa tymczasowych poświadczeń i izolowanych piaskownic. Seria C 1 mld USD przy wycenie 10 mld USD (28.09.2026). | [Pulse 2.0](https://pulse2.com/instinct-raises-1-billion-series-c-at-10-billion-valuation/) |
 
 ### Wykonawcy, przeglądarki i otwarte szkielety
@@ -1740,7 +1734,7 @@ wiersz z jedną liczbą i datą, jeśli research ją potwierdził. Gwiazdki z AP
 | Microsoft Fara-7B + MagenticLite | wykonawca na urządzeniu | otwarty, MIT | Model computer use 7B (z Qwen2.5-VL) trenowany na 145 tys. syntetycznych trajektorii: WebVoyager 73,5%, ok. 16 kroków na zadanie wobec ok. 41 (XI 2025, *dane firmy*). Destylacja dużego agenta do małego modelu. | [MSR](https://www.microsoft.com/en-us/research/blog/fara-7b-an-efficient-agentic-model-for-computer-use/) |
 | Open-AutoGLM (Z.ai) | wykonawca na telefonie | otwarty, Apache-2.0; model MIT | AutoGLM-Phone-9B steruje Androidem przez ADB i wymaga GPU 24 GB+; wersja chmurowa kosztowała ok. 0,2 USD za zadanie (VIII 2025). Telefon lub VM jako piaskownica zamiast prawdziwego pulpitu. | [repo](https://github.com/zai-org/Open-AutoGLM) |
 | Skywork Desktop | wykonawca biurowy | zamknięty (części otwarte) | Pracuje na wskazanych folderach w lokalnej izolowanej VM, oddaje gotowe dokumenty, slajdy i arkusze; „AI tool business" Kunlun ma ponad 100 mln USD ARR (II kw. 2026). Modele w chmurze. | [Skywork](https://skywork.ai/desktop/en/index.html) · [36Kr](https://eu.36kr.com/en/p/3878113666724100) |
-| Opera Neon | przeglądarka agentowa | zamknięty | Firma z Norwegii (EOG). Agent czyta DOM zamiast zrzutów ekranu; od 14.08.2026 darmowy plan dla zewnętrznych agentów przez MCP i Opera Browser CLI — lokalny agent może sterować prawdziwą przeglądarką. Neon za 19,90 USD/mies. Notatka w researchu wskazuje rozwój przeglądarki desktopowej w Polsce — bez źródła, niezweryfikowane. | [Opera](https://blogs.opera.com/news/2026/08/your-ai-agents-can-use-opera-neon-free-of-charge/) · [MCP](https://press.opera.com/2026/03/31/opera-neon-adds-mcp-connector/) |
+| Opera Neon | przeglądarka agentowa | zamknięty | Firma z Norwegii (EOG). Agent czyta DOM zamiast zrzutów ekranu; od 14.08.2026 darmowy plan dla zewnętrznych agentów przez MCP i Opera Browser CLI — lokalny agent może sterować prawdziwą przeglądarką. Neon za 19,90 USD/mies.  | [Opera](https://blogs.opera.com/news/2026/08/your-ai-agents-can-use-opera-neon-free-of-charge/) · [MCP](https://press.opera.com/2026/03/31/opera-neon-adds-mcp-connector/) |
 | Fellou + Eko | przeglądarka agentowa | przeglądarka zamknięta, Eko MIT (ok. 4,96k gwiazdek) | Plan widoczny i edytowalny przed wykonaniem, koszt w kredytach pokazany przed startem (ok. 250 kredytów, czyli 2–2,4 USD na złożone zadanie, X 2026). Brave wykazało, że treść strony trafiała do modelu automatycznie. Brak nowości w 2026. | [cennik](https://fellou.ai/pricing) · [Eko](https://github.com/FellouAI/eko) |
 | Amazon Nova Act | wykonawca firmowy | zamknięty | Rozliczenie 4,75 USD za godzinę pracy agenta, a czas czekania na człowieka jest darmowy; workflow łączy deterministyczny kod Pythona z krokami `act()` w języku naturalnym. | [cennik](https://aws.amazon.com/nova/pricing/) · [AWS](https://aws.amazon.com/blogs/aws/build-reliable-ai-agents-for-ui-workflow-automation-with-amazon-nova-act-now-generally-available/) |
 

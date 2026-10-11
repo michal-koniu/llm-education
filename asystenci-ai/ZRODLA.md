@@ -523,6 +523,85 @@ OpenAI i Perplexity pochodzi z prasy, karty systemowej (PDF) i Wikipedii; oznacz
 | [apple.com](https://www.apple.com/pl/shop/buy-mac/mac-mini) | Mac mini M5 Pro od 8 499 zł |
 | [ceneo.pl](https://www.ceneo.pl/;szukaj-ryzen+ai+max%2B+395+128gb) | mini PC Strix Halo 128 GB, 13 490–19 999 zł |
 
+## Wzorce techniczne (03-WZORCE-TECHNICZNE.md)
+
+Sprawdzone przez zespół researchu 11.10.2026 (pliki `research/2–6`); dane firm oznaczone w tekście *(dane firmy)*.
+
+| Źródło | Co wziąłem |
+|---|---|
+| [Manus: Context Engineering for AI Agents](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus) | sześć reguł kontekstu, KV-cache jako główna metryka, `todo.md`, stosunek wejścia do wyjścia ~100:1 |
+| [Manus: Browser Operator](https://manus.im/blog/manus-browser-operator) · [Cloud Browser](https://manus.im/docs/features/cloud-browser.md) | lokalna przeglądarka jako aktuator, logowanie każdej akcji, „Take Over", bankowość przez lokalną przeglądarkę |
+| [E2B: jak Manus używa E2B](https://e2b.dev/blog/how-manus-uses-e2b-to-provide-agents-with-virtual-computers) | mikro-VM Firecracker ~150 ms, rezygnacja z Dockera |
+| [Harvey: multi-model by design](https://www.harvey.ai/en-US/blog/why-harvey-is-multi-model-by-design) | routing po zadaniu, przełączanie przy awarii, lista modeli administratora, BigLaw Bench |
+| [Harvey: Tenet](https://www.harvey.ai/blog/post-training-update-harvey-tenet) | Kimi K3 + RL, bez danych klientów, koszt komórki ~1/10, −90% na zapytaniu |
+| [Harvey II](https://www.harvey.ai/blog/introducing-harvey-ii) | „Spaces" sprawy |
+| [Harvey: MCP Policy Engine](https://www.harvey.ai/blog/building-harveys-mcp-policy-engine) | „śmiertelna trójca", przypinanie narzędzi, Rego, sanitizer Unicode poza modelem |
+| [Google: architektura bezpieczeństwa agenta w Chrome](https://blog.google/security/architecting-security-for-agentic/) | krytyk zgodności z celem, Agent Origin Sets, deterministyczne potwierdzenia, dziennik pracy |
+| [Gemini API: computer use](https://ai.google.dev/gemini-api/docs/computer-use) | `safety_decision`, 7 kategorii polityk |
+| [Google: Gemini Spark](https://support.google.com/gemini/answer/16596215) | oddawanie logowania i płatności, niedostępność w EOG |
+| [Google: CC](https://blog.google/technology/google-labs/cc-ai-agent/) | codzienny e-mail jako interfejs |
+| [OpenClaw: Microsoft Autopilot](https://openclaw.ai/blog/microsoft-autopilot-openclaw) | kontrola zgodności z polityką, maskowanie sekretów w zatwierdzeniach, „nieznany wynik — bez ponowienia" |
+| [OpenClaw docs: heartbeat](https://docs.openclaw.ai/gateway/heartbeat) · [standing orders](https://docs.openclaw.ai/automation/standing-orders) · [dreaming](https://docs.openclaw.ai/concepts/dreaming) · [workspace](https://docs.openclaw.ai/concepts/agent-workspace) · [local models](https://docs.openclaw.ai/gateway/local-models) · [indeks](https://docs.openclaw.ai/llms.txt) | puls co 30 min i limity wybudzeń, kontrakt programu, pamięć w plikach, brak twardej piaskownicy, praca offline, kanały |
+| [OpenClaw: security in public](https://openclaw.ai/blog/openclaw-security-in-public) · [ClawScan](https://openclaw.ai/blog/tencent-aig-joins-clawscan) | statystyka zgłoszeń (1 309 / 746 / 87%), skanowanie umiejętności |
+| [The Register: OpenClaw 2.0](https://www.theregister.com/ai-and-ml/2026/08/31/openclaw-20-pours-glitter-on-slow-burning-security-dumpster-fire/5293492) | piaskownica nadal nie domyślna |
+| [Cisco: OpenClaw security nightmare](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) | 26% z 31 000 umiejętności z podatnością, eksfiltracja przez `curl` |
+| [Hermes docs: memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory) · [skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) | limity 2 200 / 1 375 znaków, zamrożona migawka, umiejętności skanowane przy instalacji |
+| [OpenHands: condenser](https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents) · [runtime](https://docs.openhands.dev/usage/architecture/runtime) · [security](https://docs.openhands.dev/sdk/guides/security) | kondensacja kontekstu, strumień zdarzeń, `ConfirmRisky` i analizatory ryzyka |
+| [digitalapplied: ChatGPT Work](https://www.digitalapplied.com/blog/chatgpt-work-openai-agent-launch-2026) | „Plan mode" jako granica zgody |
+| [Decrypt: DevDay 2026](https://decrypt.co/379584/openai-ai-agents-computers-devday-2026-everything-announced) | otwarcie harnessu Codex |
+| [TechCrunch: ChatGPT Pulse](https://techcrunch.com/2025/09/25/openai-launches-chatgpt-pulse-to-proactively-write-you-morning-briefs/) | nocny brief |
+| [Claude: browser use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) · [computer use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) | drzewo dostępności, referencje elementów, koszt zrzutu 1 000–1 800 tokenów |
+| [Simon Willison: Claude Cowork](https://simonwillison.net/2026/Jan/12/claude-cowork/) | lokalna VM, montowanie wybranych folderów |
+| [PromptArmor: Cowork exfiltration](https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files) | eksfiltracja przez dozwolone API |
+| [Claude for Chrome](https://claude.com/blog/claude-for-chrome) · [Anthropic: prompt injection defenses](https://www.anthropic.com/research/prompt-injection-defenses) | potwierdzenia przed publikacją i zakupem; 23,6% → 11,2%, ~1% dla Opus 4.5 |
+| [Claude: pamięć](https://claude.com/resources/articles/claudes-memory-works-everywhere-and-you-decide-whats-in-it) | pamięć w plikach tematycznych, tematy wrażliwe domyślnie niezapisywane |
+| [Claude Code: data usage](https://code.claude.com/docs/en/data-usage) | poświadczenia poza VM, proxy ruchu |
+| [browser-use: ain.ua](https://en.ain.ua/2025/03/25/browser-use-raises-17m) · [changelog CDP](https://browser-use.com/changelog/19-8-2025) · [changelog Agency](https://browser-use.com/changelog/3-4-2026) · [docs](https://docs.browser-use.com/cloud/choosing-an-agent) · [BU 2.0](https://docs.browser-use.com/open-source/bu-2-0-model-card) · [raport WebVoyager](https://browser-use.com/posts/sota-technical-report) | „tekst najpierw", CDP, zatwierdzenia tylko przed akcją zewnętrzną, secret bindings, funkcje tylko w chmurze, 89,1% po usunięciu 55 zadań |
+| [HAL: Online-Mind2Web](https://hal.cs.princeton.edu/online_mind2web) | niezależne 40,0% dla browser-use + Sonnet 4 |
+| [UI-TARS-desktop](https://github.com/bytedance/UI-TARS-desktop) · [UI-TARS-1.5-7B](https://huggingface.co/ByteDance-Seed/UI-TARS-1.5-7B) | model wizyjny GUI, hybryda GUI + DOM, przeglądarka zdarzeń, ~27,5% OSWorld dla 7B |
+| [Agent S](https://github.com/simular-ai/Agent-S) | osobny model „gdzie kliknąć", wybór najlepszego przebiegu, 72,6% OSWorld |
+| [MSR: Fara-7B](https://www.microsoft.com/en-us/research/blog/fara-7b-an-efficient-agentic-model-for-computer-use/) | trening małego modelu na syntetycznych trajektoriach |
+| [Microsoft: agent workspace](https://support.microsoft.com/en-us/windows/experimental-agentic-features-a25ede8a-e4c2-4841-85a8-44839191dfb3) | osobne konto Windows dla agenta, sześć folderów |
+| [Microsoft 365 Copilot: prywatność](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy) | modele Anthropic poza EU Data Boundary |
+| [Jones Day: Amazon v. Perplexity](https://www.jonesday.com/en/insights/2026/09/ninth-circuit-vacates-cfaa-injunction-against-perplexitys-comet-ai-agent) | wykonanie lokalne, rozumowanie w chmurze w Comet |
+| [the-decoder: BrowseSafe](https://the-decoder.com/perplexitys-browsesafe-tries-to-patch-the-gaping-security-holes-inherent-in-ai-browser-agents/) | 91% wykrywalności, ~10% ataków przechodzi |
+| [TechCrunch: Perplexity Computer](https://techcrunch.com/2026/02/27/perplexitys-new-computer-is-another-bet-that-users-need-many-ai-models/) | 19 modeli z podagentami |
+| [NVIDIA NemoClaw](https://github.com/NVIDIA/NemoClaw) · [NanoClaw](https://github.com/nanocoai/nanoclaw) | piaskownica domyślnie i akceptacja egress; kontener na agenta, bramki skryptowe, bramka poświadczeń |
+| [Kortix README](https://raw.githubusercontent.com/kortix-ai/suna/main/README.md) | broker poświadczeń z jednym tokenem |
+| [Lindy: cennik](https://www.lindy.ai/pricing) · [Lindy: iMessage](https://www.lindy.ai/blog/imessage-api-three-rewrites-one-apple-ban-and-what-actually-works) | zatwierdzenia wg wpływu na zewnątrz; blokada Apple ID, stosunek ~10:1 |
+| [TechCrunch: Poke przepisy](https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/) · [TechCrunch: Poke w Apple Messages](https://techcrunch.com/2026/06/04/apple-approves-poke-as-the-first-ai-agent-on-its-messages-for-business-platform/) · [Cognition](https://cognition.com/blog/interaction) | przepisy tekstowe, pierwszy agent w Messages for Business, >100 mln wiadomości |
+| [LexisNexis: Protégé](https://www.lexisnexis.com/community/pressroom/b/news/posts/lexis-with-protege-accelerates-frictionless-agentic-productivity-from-first-idea-to-review-ready-legal-work-product) | umiejętności partnerów, klientów „wkrótce" |
+| [Spellbook](https://www.spellbook.com/press) · [LawNext: Spellbook](https://www.lawnext.com/2025/08/spellbook-becomes-one-of-the-first-legal-ai-platforms-to-launch-gpt-5.html) | wtyczka Word; odsetek przyjętych sugestii jako metryka |
+| [Noxtua](https://www.noxtua.com/) · [Noxtua security](https://www.noxtua.com/security) | Athena / Minerva, suwerenna chmura UE, wtyczki Word i Outlook |
+| [Nabla: niezawodność STT](https://nabla.com/blog/assessing-the-reliability-of-nablas-speech-to-text-engine) | Whisper + 7 000 h audio medycznego, surowa transkrypcja nie trafia do dokumentacji |
+| [Abridge: confabulation elimination](https://www.abridge.com/ai/science-confabulation-hallucination-elimination) | Linked Evidence, strażnik 97% wobec 82% |
+| [Wikipedia: OpenEvidence](https://en.wikipedia.org/wiki/OpenEvidence) | RAG nad licencjonowaną literaturą z cytatami |
+| [Hebbia: Matrix 2.0](https://www.hebbia.com/blog/introducing-matrix-2-0) | interfejs siatki, punkty kontroli człowieka, „widać, skąd każda liczba" |
+| [CoCounsel Legal](https://legal.thomsonreuters.com/en/products/cocounsel-legal) | Tabular Analysis 10 000 × 100 |
+| [Prawo.pl: LEX Expert AI](https://www.prawo.pl/prawnicy-sady/lex-expert-ai-nowym-narzedziem-dla-prawnikow) | odpowiedzi z linkami do fragmentów LEX |
+| [Decagon: Series D](https://decagon.ai/blog/series-d-announcement) | Agent Operating Procedures |
+| [Basis: behavior specs](https://www.getbasis.ai/blogs/behavior-specs-an-open-standard-for-supervising-long-horizon-agents) | ocena trajektorii, specyfikacje ukryte przed agentem |
+| [Sierra: τ-bench](https://sierra.ai/blog/benchmarking-ai-agents) | pass^k, spadek do ~25% przy pass^8 |
+| [Cursor: Composer 2](https://cursor.com/blog/composer-2) · [Gigazine](https://gigazine.net/gsc_news/en/20260323-cursor-admits-composer-2-kimi) · [Cursor: data use](https://cursor.com/data-use) | otwarta baza Kimi, nieujawniona przy premierze; zapytania przez backend |
+| [itbrief: Glean Tau](https://itbrief.asia/story/glean-launches-tau-to-cut-enterprise-ai-token-costs) | routing, 0,58 wobec 2,98 USD na zadanie (benchmark producenta) |
+| [Granola: transkrypcja](https://docs.granola.ai/help-center/taking-notes/transcription) · [Startup Fortune](https://startupfortune.com/granola-ai-meeting-notes-are-not-as-private-as-you-might-think/) · [ppc.land](https://ppc.land/granola-sued-for-recording-meetings-without-consent-to-train-ai-models/) | dwa kanały „Ja / Oni", brak zapisu audio; domyślne udostępnianie i trening; pozew *Chamberlain v. Granola* |
+| [TechCrunch: Ghost](https://techcrunch.com/2026/10/05/at-19-ghost-founder-raises-11-million-to-build-a-3499-computer-for-your-personal-ai/) | zapora wyjścia jako funkcja zaufania |
+| [Brave: Comet prompt injection](https://brave.com/blog/comet-prompt-injection/) | przyczyna strukturalna, same-origin nie chroni |
+| [TechCrunch: OpenAI o prompt injection](https://techcrunch.com/2025/12/22/openai-says-ai-browsers-may-always-be-vulnerable-to-prompt-injection-attacks/) · [The Register: Gartner](https://www.theregister.com/2025/12/08/gartner_recommends_ai_browser_ban/) | „mało prawdopodobne, by został w pełni rozwiązany"; zalecenie blokady przeglądarek AI |
+| [The Register: Comet kalendarz](https://www.theregister.com/2026/03/03/perplexity_comet_browser_hole_cal_invite/) · [BleepingComputer: BragJack](https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/) | atak bez kliknięcia; „wymuszanie promptu" w pięciu produktach |
+| [ComplexDiscovery](https://complexdiscovery.com/ninth-circuit-vacates-amazon-injunction-ai-agent-logs-emerge-as-ediscovery-issue/) | dzienniki agenta jako dowód (tylko tytuł) |
+| [NRA: § 23e ZZEA](https://www.adwokatura.pl/z-zycia-nra/zmiany-w-zbiorze-zasad-etyki-adwokackiej-naczelna-rada-adwokacka-przyjela-nowe-regulacje-dotyczace-korzystania-ze-sztucznej-inteligencji-w-wykonywaniu-zawodu-adwokata/) | osobista weryfikacja, „należyta ochrona", wskazanie narzędzi na prośbę klienta |
+| [RODO](https://eur-lex.europa.eu/eli/reg/2016/679/oj) | art. 28, rozdział V, art. 32, art. 33–34, motyw 26 |
+| [EDPB: AI Privacy Risks – LLMs](https://www.edpb.europa.eu/our-work-tools/our-documents/support-pool-experts-projects/ai-privacy-risks-mitigations-large_pt) | ryzyko ponownej identyfikacji |
+| [18 U.S.C. § 2713](https://www.law.cornell.edu/uscode/text/18/2713) | CLOUD Act |
+| [UODO, 26.06.2026](https://uodo.gov.pl/pl/138/4449) | „regularnie mierzyć i testować wdrożone środki bezpieczeństwa" |
+| [PLCC](https://huggingface.co/spaces/sdadas/plcc) · [CPTUB](https://huggingface.co/spaces/speakleash/cptu_bench) | polskie testy akceptacyjne; najlepszy otwarty 89,83 wobec 92–97 |
+| [arXiv 2609.32042: PolAgentBench](https://arxiv.org/abs/2609.32042) | klif między 3 a 2 bitami w zadaniach agentowych |
+| [arXiv 2608.30929](https://arxiv.org/abs/2608.30929) · [arXiv 2511.04205](https://arxiv.org/abs/2511.04205) · [arXiv 2606.12250](https://arxiv.org/abs/2606.12250) · [arXiv 2608.12928](https://arxiv.org/abs/2608.12928) | wyszukiwanie przepisów 72,3% / BM25 61,7%; egzamin KIO; −31 pp na egzaminach medycznych; słaba wizja w polskich pytaniach medycznych |
+| [arXiv 2606.29537: OSWorld 2.0](https://arxiv.org/abs/2606.29537) | 20,6% ukończonych długich zadań, przyczyny porażek |
+| [Bielik-11B-v3](https://huggingface.co/speakleash/Bielik-11B-v3.0-Instruct) · [Bielik-Guard](https://huggingface.co/speakleash/Bielik-Guard-0.5B-v1.1) · [gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) | licencja Apache-2.0, rozmiary, precyzja klasyfikatora 75,28% |
+| [Przegląd harnessów: 02-KLOCKI](../harnessy-agentowe/02-KLOCKI.md) · [03-ARCHITEKTURA](../harnessy-agentowe/03-ARCHITEKTURA.md) · [01-PROFILE](../harnessy-agentowe/01-PROFILE.md) | narzędzia lokalne (głos, obraz, piaskownice, kanały), liczby rigu (1 186 tok/s, 13,6 tok/s, 104,2 GB, powtarzalność 83), Moltis, ZeroClaw, OpenCode, Hermes TTS |
+
 ## Polska i suwerenność (04-POLSKA-I-SUWERENNOSC.md)
 
 | Źródło | Co wziąłem |
@@ -604,3 +683,15 @@ OpenAI i Perplexity pochodzi z prasy, karty systemowej (PDF) i Wikipedii; oznacz
 | [ceneo GX10](https://www.ceneo.pl/;szukaj-ascent+gx10), [ceneo DGX Spark](https://www.ceneo.pl/;szukaj-dgx+spark), [ceneo Strix Halo](https://www.ceneo.pl/;szukaj-ryzen+ai+max%2B+395+128gb), [ceneo RTX PRO 6000](https://www.ceneo.pl/;szukaj-rtx+pro+6000+blackwell), [ceneo R9700](https://www.ceneo.pl/;szukaj-radeon+ai+pro+r9700) | Ceny w Polsce 11.10.2026 |
 | [NVIDIA forum (zmiana ceny)](https://forums.developer.nvidia.com/t/2-23-2026-price-change-announcement/361713), [tech-insider](https://tech-insider.org/nvidia-rtx-pro-6000-blackwell-price-2026/) | Wzrost cen sprzętu z dużą pamięcią |
 | [EuroHPC AI Factories](https://www.eurohpc-ju.europa.eu/ai-factories_en), [Beyond.pl](https://beyond.pl/en/) | Gdzie dostrajać modele poza biurkiem |
+
+## Uzupełnienie: luka europejska i retencja agentów (02-RYNEK.md)
+
+| Źródło | Co wziąłem |
+|---|---|
+| [cryptobriefing.com](https://cryptobriefing.com/meta-muse-app-store-retention/) | prasa: Muse — 5 mln pobrań w USA w 22 dni, ok. 700 tys. dziennych użytkowników pod koniec IX 2026 (02-RYNEK, 9. Luka europejska) |
+| [about.fb.com](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/) | Meta (dane firmy): Muse z 8.09.2026, chmurowa maszyna wirtualna, dostępność USA i Kanada |
+| [techcrunch.com](https://techcrunch.com/2026/08/10/metas-new-glimmer-ai-model-offers-a-hint-at-zuckerbergs-personal-intelligence-vision/) | prasa: Muse Glimmer, 10.08.2026 |
+| [venturebeat.com](https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now) | prasa: Glimmer — Apache 2.0, ok. 30 mld parametrów, 4-bit na GPU 24 GB |
+| [heise.de](https://www.heise.de/en/news/Siri-AI-in-the-EU-iPhone-and-iPad-users-must-continue-to-wait-11476320.html) | prasa: Siri AI (iOS 27, 14.09.2026) niedostępna na iPhone'ach w UE (DMA) |
+| [aboutamazon.com](https://www.aboutamazon.com/news/devices/alexa-plus-international-launch) | Amazon: lista krajów Alexa+ — bez Polski |
+| [androidheadlines.com](https://www.androidheadlines.com/2026/07/google-gemini-spark-expands-to-ai-pro-subscribers.html) | prasa: Gemini Spark niedostępny w EOG, Szwajcarii i Wielkiej Brytanii |
