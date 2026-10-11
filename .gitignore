@@ -1,0 +1,13 @@
+# Wszystko, co tworzą kursy, zostaje lokalnie (patrz README: "Gdzie powstają pliki")
+kurs_lokalne_modele/praca/
+kurs_aplikacje_agentowe/praca/
+.venvs/
+narzedzia/
+
+# Stare wersje lekcji i prywatne notatki
+**/archiwum-*/
+*.bak-*
+CZYTAJ-TO-PIERWSZE-notatki-prywatne.txt
+
+__pycache__/
+*.pyc
