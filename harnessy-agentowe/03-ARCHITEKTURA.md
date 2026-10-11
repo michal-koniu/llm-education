@@ -32,8 +32,8 @@ dopóki go nie zbudujesz i nie zmierzysz.
 | Optimum | **3 agentów naraz**: każdy zachowuje 75% prędkości solo, maszyna robi 2,2× więcej pracy | — |
 | Jakość — trudny zestaw zadań (PL / EN) | **92 / 93** (agenci 97, research 94, długie dokumenty 86 / 88) | 47 / 52 |
 
-Źródła: [PARALLEL.md](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/PARALLEL.md) i
-[RESULTS.md](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/RESULTS.md)
+Źródła: [PARALLEL.md](https://github.com/michal-koniu/local-llm-bench-results/blob/main/PARALLEL.md) i
+[RESULTS.md](https://github.com/michal-koniu/local-llm-bench-results/blob/main/RESULTS.md)
 w repozytorium wyników; model: [karta DeepSeek-V4-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash).
 
 Trzy wnioski, które sterują całą architekturą:
@@ -292,7 +292,7 @@ kontekstach powyżej 100 tys. tokenów albo w porównaniu z Sonnetem i Opusem lo
 tańszy** — o ile jego jakość wystarcza. Pewne zalety lokalne, niezależne od cen: prywatność
 (dane nie wychodzą z domu), brak limitów i kolejek, praca offline i nielimitowane eksperymenty na sprzęcie, który
 już masz. Czy Haiku 5.5 dorównuje DeepSeekowi jakością na Twoich zadaniach — **nie wiadomo**: nie był mierzony na
-trudnym zestawie z [local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench).
+trudnym zestawie z [local-llm-quality-bench](https://github.com/michal-koniu/local-llm-quality-bench).
 To dobry następny pomiar.
 
 **W hybrydzie koszt robi planista.** Przykład (założenia, nie pomiar): 30 wywołań Opusa dziennie, każde 20 tys. tokenów

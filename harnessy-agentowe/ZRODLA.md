@@ -109,6 +109,6 @@ Twierdzenia, które najbardziej zmieniały ranking, sprawdziłem sam, poza agent
 
 | Źródło | Co wziąłem |
 |---|---|
-| [local-llm-bench-results — PARALLEL.md](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/PARALLEL.md) | 22,6 tok/s dla 1 agenta, 13,6 tok/s na agenta przy 4 (54,3 łącznie); czytanie promptu 1 186 tok/s (1 agent) i 1 694 tok/s łącznie (4); optimum 3 agentów; 44 s oczekiwania przy 4 agentach po 16 tys. tokenów; gpt-oss-20b 141 i 81 tok/s |
-| [local-llm-bench-results — RESULTS.md](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/RESULTS.md) | trudny zestaw zadań: DeepSeek-V4-Flash 92 / 93, gpt-oss-20b 47 / 52 |
+| [local-llm-bench-results — PARALLEL.md](https://github.com/michal-koniu/local-llm-bench-results/blob/main/PARALLEL.md) | 22,6 tok/s dla 1 agenta, 13,6 tok/s na agenta przy 4 (54,3 łącznie); czytanie promptu 1 186 tok/s (1 agent) i 1 694 tok/s łącznie (4); optimum 3 agentów; 44 s oczekiwania przy 4 agentach po 16 tys. tokenów; gpt-oss-20b 141 i 81 tok/s |
+| [local-llm-bench-results — RESULTS.md](https://github.com/michal-koniu/local-llm-bench-results/blob/main/RESULTS.md) | trudny zestaw zadań: DeepSeek-V4-Flash 92 / 93, gpt-oss-20b 47 / 52 |
 | konfiguracja llama-swap tej maszyny | kwantyzacja UD-IQ3_XXS (104,2 GB), kontekst 512k na 4 sloty, co najmniej 1,4 GB wolnego VRAM na kartę, limit mocy kart 250 W, wariant `gpt-oss-20b-cpu` |

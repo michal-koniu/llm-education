@@ -323,7 +323,7 @@ miesiące). Wyniki U1–U5 pochodzą z analizy dokumentacji. Żaden harness nie 
 | router hybrydowy | [kurs 2, część 17](../kurs_aplikacje_agentowe/17-HYBRYDA-I-ROUTER.md) |
 | gotowi asystenci AI (rynek, architektura, offline, Polska) | [przegląd asystentów AI](../asystenci-ai/README.md) |
 
-Pomiary tej maszyny: [local-llm-bench-results](https://github.com/michal-konik-human/local-llm-bench-results)
-(szybkość i jakość, także [agenci równolegle](https://github.com/michal-konik-human/local-llm-bench-results/blob/main/PARALLEL.md)).
+Pomiary tej maszyny: [local-llm-bench-results](https://github.com/michal-koniu/local-llm-bench-results)
+(szybkość i jakość, także [agenci równolegle](https://github.com/michal-koniu/local-llm-bench-results/blob/main/PARALLEL.md)).
 
 Licencja tekstu: CC BY 4.0 — jak całe repozytorium ([LICENSE.md](../LICENSE.md)).

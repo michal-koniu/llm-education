@@ -7,7 +7,7 @@ Teksty lekcji (pliki `*.md` w `kurs_lokalne_modele/` i `kurs_aplikacje_agentowe/
 https://creativecommons.org/licenses/by/4.0/deed.pl (tekst prawny: https://creativecommons.org/licenses/by/4.0/legalcode.pl).
 
 Możesz je kopiować, rozpowszechniać i zmieniać w dowolnym celu, także komercyjnym, pod warunkiem podania autora
-(np. „Michał Konik, llm-education, https://github.com/michal-konik-human/llm-education"), linku do licencji
+(np. „Michał Konik, llm-education, https://github.com/michal-koniu/llm-education"), linku do licencji
 i informacji, czy wprowadzono zmiany.
 
 ## Kod: MIT

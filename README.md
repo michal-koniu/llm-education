@@ -94,7 +94,7 @@ dla polskich profesjonalistów, którzy nie mogą wysyłać danych do USA. Stan 
 ## Jak zacząć
 
 ```bash
-git clone https://github.com/michal-konik-human/llm-education.git
+git clone https://github.com/michal-koniu/llm-education.git
 cd llm-education
 source rig-env.sh        # ustawia ścieżki kursów, modeli i llama.cpp
 ```
@@ -149,10 +149,10 @@ Wszystko, co tworzą kursy, powstaje **wewnątrz repozytorium**, w katalogach ig
 
 | Repozytorium | Co to jest |
 |---|---|
-| [local-llm-perf-bench](https://github.com/michal-konik-human/local-llm-perf-bench) | pomiar szybkości modeli w llama.cpp |
-| [local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench) | pomiar jakości modeli jako agentów, po polsku i angielsku |
-| [local-llm-bench-results](https://github.com/michal-konik-human/local-llm-bench-results) | wyniki obu benchmarków z tej maszyny |
-| [radeon-r9700-rocm-notes](https://github.com/michal-konik-human/radeon-r9700-rocm-notes) | notatki o sprzęcie: 4× R9700 + ROCm |
+| [local-llm-perf-bench](https://github.com/michal-koniu/local-llm-perf-bench) | pomiar szybkości modeli w llama.cpp |
+| [local-llm-quality-bench](https://github.com/michal-koniu/local-llm-quality-bench) | pomiar jakości modeli jako agentów, po polsku i angielsku |
+| [local-llm-bench-results](https://github.com/michal-koniu/local-llm-bench-results) | wyniki obu benchmarków z tej maszyny |
+| [radeon-r9700-rocm-notes](https://github.com/michal-koniu/radeon-r9700-rocm-notes) | notatki o sprzęcie: 4× R9700 + ROCm |
 
 ## Licencja
 

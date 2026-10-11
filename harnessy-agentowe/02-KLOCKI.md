@@ -166,7 +166,7 @@ alerty), **U4** głos, **U5** obrazy.
 | [promptfoo](https://github.com/promptfoo/promptfoo) ⭐ | testy regresji promptów i wywołań narzędzi: DeepSeek kontra Opus na Twoich zadaniach, red teaming | MIT | dostawca llama.cpp | **przejęty przez OpenAI 9.03.2026**, nadal MIT; 0.124.0 przeniósł wiele SDK do instalacji opcjonalnej |
 
 Kursy mają już własne narzędzia do ewaluacji — [kurs 2, część 14](../kurs_aplikacje_agentowe/14-EWALUACJA.md) i
-[local-llm-quality-bench](https://github.com/michal-konik-human/local-llm-quality-bench).
+[local-llm-quality-bench](https://github.com/michal-koniu/local-llm-quality-bench).
 
 ---
 
