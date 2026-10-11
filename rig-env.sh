@@ -8,9 +8,9 @@
 # powstaje WEWNĄTRZ repozytorium, w katalogach ignorowanych przez git.
 export LLMEDU="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 case "$LLMEDU" in *" "*) echo "⚠️  Ścieżka repozytorium zawiera spację - polecenia kursu jej nie obsłużą: $LLMEDU" ;; esac
-export KURS=$LLMEDU/kurs_lokalne_modele/praca         # kurs 1: skrypty, bazy, eval, gramatyki
+export KURS=$LLMEDU/pl/kurs_lokalne_modele/praca         # kurs 1: skrypty, bazy, eval, gramatyki
 export AGENT=$KURS/agent                              # kurs 1, część 6+: agent zbudowany od zera
-export OSA=$LLMEDU/kurs_aplikacje_agentowe/praca/os-agenta   # kurs 2: system "OS agenta"
+export OSA=$LLMEDU/pl/kurs_aplikacje_agentowe/praca/os-agenta   # kurs 2: system "OS agenta"
 export VENVS=$LLMEDU/.venvs                           # środowiska Pythona kursów (hf, kurs, dok, ...)
 export NARZEDZIA=$LLMEDU/narzedzia                    # narzędzia budowane w kursie (whisper.cpp, piper)
 mkdir -p "$KURS" "$(dirname "$OSA")" "$VENVS" "$NARZEDZIA"

@@ -2,7 +2,7 @@
 
 ## Treść lekcji: CC BY 4.0
 
-Teksty lekcji (pliki `*.md` w `kurs_lokalne_modele/` i `kurs_aplikacje_agentowe/`) są udostępnione na licencji
+Teksty lekcji (pliki `*.md` w `pl/kurs_lokalne_modele/` i `pl/kurs_aplikacje_agentowe/`) są udostępnione na licencji
 **Creative Commons Uznanie autorstwa 4.0 Międzynarodowe (CC BY 4.0)**:
 https://creativecommons.org/licenses/by/4.0/deed.pl (tekst prawny: https://creativecommons.org/licenses/by/4.0/legalcode.pl).
 
@@ -12,7 +12,7 @@ i informacji, czy wprowadzono zmiany.
 
 ## Kod: MIT
 
-Dotyczy fragmentów kodu w lekcjach, `rig-env.sh` oraz katalogu `kurs_aplikacje_agentowe/szkielet/`.
+Dotyczy fragmentów kodu w lekcjach, `rig-env.sh` oraz katalogu `pl/kurs_aplikacje_agentowe/szkielet/`.
 
 Copyright (c) 2026 Michal Konik
 

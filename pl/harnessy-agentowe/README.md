@@ -326,4 +326,4 @@ miesiące). Wyniki U1–U5 pochodzą z analizy dokumentacji. Żaden harness nie 
 Pomiary tej maszyny: [local-llm-bench-results](https://github.com/michal-koniu/local-llm-bench-results)
 (szybkość i jakość, także [agenci równolegle](https://github.com/michal-koniu/local-llm-bench-results/blob/main/PARALLEL.md)).
 
-Licencja tekstu: CC BY 4.0 — jak całe repozytorium ([LICENSE.md](../LICENSE.md)).
+Licencja tekstu: CC BY 4.0 — jak całe repozytorium ([LICENSE.md](../../LICENSE.md)).
