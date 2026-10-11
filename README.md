@@ -5,6 +5,7 @@
 ![Język: polski](https://img.shields.io/badge/język-polski-red)
 ![Kurs 1: 10 części, ~47 h](https://img.shields.io/badge/kurs%201-10%20części%20·%20~47%20h-blue)
 ![Kurs 2: 19 części, ~102 h](https://img.shields.io/badge/kurs%202-19%20części%20·%20~102%20h-blue)
+![Przegląd: 20 harnessów agentowych](https://img.shields.io/badge/przegląd-20%20harnessów%20agentowych-orange)
 ![Licencja: CC BY 4.0 + MIT](https://img.shields.io/badge/licencja-CC%20BY%204.0%20%2B%20MIT-lightgrey)
 
 Bez frameworków na start i bez magii. Każdy mechanizm budujesz sam, od zera, na modelach uruchomionych
@@ -55,6 +56,20 @@ budzą się sami, pamiętają, są mierzeni i nie mogą zrobić Ci krzywdy:
 | Produkcja | 17–19 | router hybrydowy, wydania i utrzymanie, projekt końcowy |
 
 ⚠️ **Kurs 2 zaczynaj dopiero po części 6 kursu 1** — cały stoi na pętli agenta, którą tam budujesz.
+
+### Przegląd — [harnessy agentowe dla lokalnych modeli](harnessy-agentowe/README.md) (`harnessy-agentowe/`)
+
+Kursy uczą budować od zera. Przegląd odpowiada na pytanie, **co już istnieje**: ranking 20 najlepszych otwartych
+harnessów (z 72 sprawdzonych), które zamieniają lokalny model w agenta — czym się różnią, jaki problem każdy rozwiązuje
+lepiej od konkurencji, jak podłączyć go do llama-swap i jak złożyć z nich aplikacje hybrydowe: Claude Opus jako planista,
+lokalni agenci jako wykonawcy. Stan na 11 października 2026.
+
+| Plik | Co w nim jest |
+|---|---|
+| [README](harnessy-agentowe/README.md) | ranking, porównanie techniczne, wybór do zastosowania, werdykt „budować czy brać gotowe" |
+| [01-PROFILE](harnessy-agentowe/01-PROFILE.md) | 20 profili z konfiguracją lokalnego modelu i siedem pułapek wspólnych dla wszystkich |
+| [02-KLOCKI](harnessy-agentowe/02-KLOCKI.md) | wyszukiwanie, monitoring cen, dane finansowe, powiadomienia, harmonogram, pamięć, głos, obraz |
+| [03-ARCHITEKTURA](harnessy-agentowe/03-ARCHITEKTURA.md) | wzorzec planista–wykonawcy na 4× R9700, pięć gotowych układów, koszty |
 
 ---
 
