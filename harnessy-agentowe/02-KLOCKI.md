@@ -20,7 +20,7 @@ alerty), **U4** głos, **U5** obrazy.
 
 ## Spis treści
 
-1. [Brama i routing modeli](#brama-i-routing-modeli)
+1. [Bramka i routing modeli](#bramka-i-routing-modeli)
 2. [Wyszukiwanie i pobieranie stron](#wyszukiwanie-i-pobieranie-stron)
 3. [Agenci przeglądarkowi](#agenci-przeglądarkowi)
 4. [Deep research](#deep-research)
@@ -39,7 +39,7 @@ alerty), **U4** głos, **U5** obrazy.
 
 ---
 
-## Brama i routing modeli
+## Bramka i routing modeli
 
 | Narzędzie | Do czego | Licencja | Lokalnie | Uwagi (2026) |
 |---|---|---|---|---|
@@ -125,7 +125,7 @@ alerty), **U4** głos, **U5** obrazy.
 |---|---|---|---|---|
 | [ntfy](https://github.com/binwiederhier/ntfy) ⭐ | push na telefon jednym `curl -d "…" host/temat` — najprostsze narzędzie dla agenta | Apache-2.0 / GPLv2 | jeden plik binarny | dla natychmiastowych powiadomień na iOS ustaw `upstream-base-url` na ntfy.sh |
 | [Apprise](https://github.com/caronc/apprise) ⭐ | jedna biblioteka → 100+ kanałów; routing w konfiguracji, nie w kodzie agenta | BSD-2 | pip | **v2.0.0 (26.09.2026) łamie API** (`notify()` zwraca obiekt) — przypnij 2.x |
-| [Telegram Bot API](https://core.telegram.org/bots/api) | interaktywne alerty z przyciskami („odłóż", „otwórz ofertę"), rozmowa z agentem z telefonu; od Bot API 10.2 notatki głosowe | darmowe | long polling — bez publicznego adresu | konto przypięte do numeru, usługa scentralizowana — nie wysyłaj tam danych służbowych |
+| [Telegram Bot API](https://core.telegram.org/bots/api) | interaktywne alerty z przyciskami („odłóż", „otwórz ofertę"), rozmowa z agentem z telefonu, notatki głosowe jako wejście (wersje 10.1–10.3 z 2026 dodały m.in. formatowanie, wiadomości ulotne i nowe opcje wejścia głosowego) | darmowe | long polling — bez publicznego adresu | konto przypięte do numeru, usługa scentralizowana — nie wysyłaj tam danych służbowych |
 | [Gotify](https://github.com/gotify/server) | w pełni samodzielny serwer wiadomości | MIT | jeden plik binarny | bez przekaźnika zewnętrznego |
 | [Matrix](https://github.com/element-hq/synapse) | szyfrowane pokoje, które w całości są Twoje — dobre na incydenty U1 | AGPL-3.0 (Synapse) | pip / continuwuity jako plik binarny | największy narzut utrzymania |
 
@@ -203,7 +203,7 @@ w [01-PROFILE.md](01-PROFILE.md#siedem-pułapek-wspólnych-dla-wszystkich)).
 
 ## Głos
 
-**Kluczowe ograniczenie:** DeepSeek-V4-Flash w 3 bitach zajmuje około 103 GB, a z 4 slotami po 131k praktycznie
+**Kluczowe ograniczenie:** DeepSeek-V4-Flash w 3 bitach zajmuje 104,2 GB, a z 4 slotami po 131k praktycznie
 całe 128 GB VRAM. Każdy model mowy na GPU musi albo działać na CPU, albo dostać kartę zwolnioną przez llama-swap.
 
 | Warstwa | Wybór | Licencja | Polski | Uwagi |
@@ -220,7 +220,7 @@ całe 128 GB VRAM. Każdy model mowy na GPU musi albo działać na CPU, albo dos
 | TTS angielski | [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Apache-2.0 | ❌ | mały i dobry — tylko EN |
 | ⚠️ do omijania przy U2 | XTTS-v2, F5-TTS, Higgs Audio v3, Fish Audio S2 | niekomercyjne wagi | — | licencja blokuje użycie zarobkowe |
 
-**Mowa-do-mowy (speech-to-speech) po polsku lokalnie na AMD — w październiku 2026 nie istnieje.** Moshi to EN i CUDA,
+**Mowa-do-mowy (speech-to-speech) po polsku lokalnie na AMD — w październiku 2026 nie znalazłem działającego modelu.** Moshi to EN i CUDA,
 Qwen3-Omni nie mówi po polsku, Unmute to EN/FR i CUDA. Działa tylko kaskada STT → LLM → TTS
 (szczegóły i opóźnienia: [03-ARCHITEKTURA.md](03-ARCHITEKTURA.md#u4--rozmowa-głosowa-po-polsku)).
 

@@ -17,8 +17,9 @@ ma też własne linki źródłowe.
   → gwiazdki, licencje, daty ostatnich wydań i commitów, status „archived" w [README.md](README.md) i profilach;
   liczba porad bezpieczeństwa OpenClaw (722 w 2026: 14 krytycznych, 249 wysokich, 390 średnich, 69 niskich)
   i Open WebUI (158 w 2026).
-- Wydania przedpremierowe nie są zwracane przez `releases/latest` — dla DeepSeek Harness i LibreChat wersję wziąłem
-  ze stron wydań projektu.
+- `releases/latest` pomija wydania przedpremierowe, a w monorepozytoriach zwraca wydanie innego pakietu. Dla
+  LangGraph (pakiet `langgraph`), Strands Agents (harness), Kilo Code (wtyczka JetBrains), DeepSeek Harness
+  i LibreChat wersję wziąłem ze stron wydań projektu.
 
 ## 2. Harnessy z czołówki
 
@@ -70,7 +71,7 @@ Twierdzenia, które najbardziej zmieniały ranking, sprawdziłem sam, poza agent
 | deep research | [Local Deep Research](https://github.com/LearningCircuit/local-deep-research), [#6820](https://github.com/LearningCircuit/local-deep-research/issues/6820), [GPT Researcher](https://github.com/assafelovic/gpt-researcher) | subskrypcje tematów, brak limitu subagentów, BM25 zamiast embeddingów |
 | ceny i zmiany | [changedetection.io](https://github.com/dgtlmoon/changedetection.io), [Huginn](https://github.com/huginn/huginn), [urlwatch](https://github.com/thp/urlwatch) | tryb ceny i dostępności, reguły AI przez llama.cpp |
 | finanse | [OpenBB ODP — MCP](https://docs.openbb.co/odp/python/quickstart/mcp), [edgartools](https://github.com/dgunning/edgartools), [CCXT](https://github.com/ccxt/ccxt), [TradingAgents v0.6.0](https://github.com/TauricResearch/TradingAgents/releases/tag/v0.6.0), [yfinance](https://github.com/ranaroussi/yfinance) | dostawca per poziom (Opus `deep_think`), limity SEC, warunki danych |
-| powiadomienia | [ntfy — konfiguracja](https://docs.ntfy.sh/config/), [Apprise — wydania](https://github.com/caronc/apprise/releases), [Telegram Bot API — zmiany](https://core.telegram.org/bots/api-changelog) | `upstream-base-url`, łamiące v2.0.0, notatki głosowe w Bot API 10.2 |
+| powiadomienia | [ntfy — konfiguracja](https://docs.ntfy.sh/config/), [Apprise — wydania](https://github.com/caronc/apprise/releases), [Telegram Bot API — zmiany](https://core.telegram.org/bots/api-changelog) | `upstream-base-url`, łamiące v2.0.0, nowe opcje wejścia głosowego w Bot API 10.1–10.3 |
 | harmonogram | [Prefect — serwer](https://docs.prefect.io/v3/manage/server), [DBOS](https://github.com/dbos-inc/dbos-transact-py), [Temporal](https://github.com/temporalio/temporal), [timery systemd](https://github.com/systemd/systemd/blob/main/man/systemd.timer.xml) | SQLite bez Dockera, kolejki z limitem, `Persistent=true` |
 | pamięć | [Cognee — dostawcy LLM](https://docs.cognee.ai/setup-configuration/llm-providers), [Cognee v1.6.0](https://github.com/topoteretes/cognee/releases/tag/v1.6.0), [Graphiti](https://github.com/getzep/graphiti), [Mem0](https://github.com/mem0ai/mem0) | tryb bez klucza chmurowego, usunięcie pamięci grafowej z Mem0 OSS |
 | obserwowalność | [Phoenix — self-hosting](https://arize.com/docs/phoenix/self-hosting), [Langfuse](https://github.com/langfuse/langfuse), [OpenLIT](https://github.com/openlit/openlit), [promptfoo](https://github.com/promptfoo/promptfoo) | licencja ELv2, monitoring GPU AMD, przejęcie promptfoo przez OpenAI |

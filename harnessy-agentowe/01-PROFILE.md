@@ -73,6 +73,10 @@ równoległość w obrębie jednego uruchomienia — globalny limit 4 zapytań t
 **Głos i obraz.** Brak głosu w czasie rzeczywistym; oficjalny przewodnik proponuje „kanapkę"
 STT → agent → TTS. Obrazy przechodzą jako bloki multimodalne do modelu z wizją.
 
+**Bezpieczeństwo.** Brak wbudowanej piaskownicy (dają ją Deep Agents). Middleware z limitami wywołań modelu
+i narzędzi, wykrywaniem PII i człowiekiem w pętli; otwarte zgłoszenia o brakujących hakach przed wykonaniem
+narzędzia (#8817, #8818).
+
 **Słabe strony.** Warstwy LangChain to miejsce, gdzie psują się lokalne modele: gubienie
 `reasoning_content` (#40219, otwarte), rozbite argumenty narzędzi w strumieniu (#35514). Serwer z cronem
 w wersji self-hosted to płatny dodatek LangSmith. `langgraph-supervisor` zarchiwizowano w 2026 —
@@ -83,7 +87,8 @@ jako mechanizm pytania człowieka; mały słownik decyzji człowieka (zatwierdź
 lista wbudowanych middleware (retry, fallback modelu, limity wywołań, wykrywanie PII) jako checklista tego,
 co każdy harness musi mieć.
 
-**Źródła:** [modele](https://docs.langchain.com/oss/python/langchain/models) ·
+**Źródła:** [repozytorium](https://github.com/langchain-ai/langgraph) ·
+[modele](https://docs.langchain.com/oss/python/langchain/models) ·
 [trwałe wykonanie](https://docs.langchain.com/oss/python/langgraph/durable-execution) ·
 [wzorce wieloagentowe](https://docs.langchain.com/oss/python/langchain/multi-agent) ·
 [#40219](https://github.com/langchain-ai/langchain/issues/40219)
@@ -112,6 +117,12 @@ bo `max_tokens` jest dzielone między rozumowanie i odpowiedź (#11142); ignorow
 **Wielu agentów i hybryda.** `GOOSE_SUBAGENT_PROVIDER` / `GOOSE_SUBAGENT_MODEL` ustawiają model wykonawców,
 a receptura może go nadpisać (`settings.goose_provider` / `goose_model`). Główna sesja na Anthropic, wykonawcy
 na llama-swap — wspierane. Subagenci działają tylko w trybie autonomicznym.
+
+**Głos i obraz.** Dyktowanie w aplikacji desktop (dostawcy chmurowi albo lokalny Whisper), bez syntezy mowy.
+Obrazy, gdy model ma wizję; dla własnego endpointu trzeba włączyć `supports_vision` per model (#11998).
+
+**Bezpieczeństwo.** Tryby `GOOSE_MODE` (auto, approve, smart_approve, chat), uprawnienia per narzędzie,
+wykrywanie prompt injection, tryb Adversary, haki przed wywołaniem narzędzia.
 
 **Harmonogram i tryb bezgłowy.** `goose schedule add --cron … --recipe-source …`, `goose run -t "…"`,
 `goose serve` (serwer ACP z TLS).
@@ -256,6 +267,9 @@ moduł subagentów daje orkiestratorowi menu modeli (`SubAgents(models={…})`),
 **Głos i obraz.** `agent.realtime(...)` działa tylko z chmurowymi modelami (OpenAI Realtime, Gemini Live, xAI);
 lokalnie zostaje kaskada STT → agent → TTS, którą składasz sam. Obrazy i dokumenty na wejściu.
 
+**Bezpieczeństwo.** Narzędzia wymagające zatwierdzenia (*deferred tools*), limity użycia i budżety per delegacja.
+Powłoka w module Coder jest nieograniczona — piaskownicę dodajesz sam.
+
 **Słabe strony.** Heurystyki dla serwerów OpenAI-compatible (włączanie myślenia po pierwszym znaku nazwy modelu,
 #4878); bardzo szybkie wydania i łamiąca migracja v2; ogromne pliki rdzenia.
 
@@ -288,6 +302,11 @@ Dziedziczy błędy LangChain z modelami lokalnymi (pułapka H2).
 **Wielu agentów i hybryda.** Główny agent `model=ChatAnthropic(...)`, subagenci
 `{"name": "researcher", "model": ChatOpenAI(base_url=...)}`. Kilka wywołań `task` w jednej turze to równoległość;
 asynchroniczni subagenci (start / check / update / cancel) działają w tle na serwerze.
+
+**Głos i obraz.** Brak głosu; obrazy jako wiadomości multimodalne LangChain.
+
+**Bezpieczeństwo.** Backendy piaskownic (Modal, Runloop, własne), reguły uprawnień do plików,
+`interrupt_on` per narzędzie.
 
 **Słabe strony.** Wersje 0.x z dziesiątkami wydań; brak limitu współbieżności dla równoległych `task`; bez głosu.
 
@@ -322,6 +341,8 @@ orkiestruje wykonawców na `LlamaCppModel`; wzorce agents-as-tools, Swarm, Graph
 
 **Głos i obraz.** `BidiAgent` (GA 5.10.2026) — tylko modele chmurowe (Nova Sonic, OpenAI Realtime, Gemini Live).
 Obrazy jako bloki treści.
+
+**Bezpieczeństwo.** Moduł `sandbox`, guardrails, interwencje i sterowanie (*steering*) w pętli.
 
 **Słabe strony.** Domyślne ustawienia pod AWS / Bedrock; limit współbieżności w Pythonie dopiero w PR (#3156);
 około 40 wydań w 2026.
@@ -362,6 +383,9 @@ Znany błąd: dołączona biblioteka przerywa turę, gdy strumień niesie `funct
 **Wielu agentów i hybryda.** Agent `plan` / `build` na `anthropic/claude-opus-5-5`, subagenci na
 `llama/deepseek-v4-flash` — model ustawiany per agent. Od 9.01.2026 Anthropic blokuje logowanie subskrypcją
 Pro/Max w narzędziach firm trzecich — potrzebny klucz API.
+
+**Głos i obraz.** Brak własnego głosu (prośba #33300; tylko wtyczki społeczności). Załączniki obrazów są
+skalowane przed wysłaniem i działają z modelem, który ma wizję.
 
 **Bezpieczeństwo.** Reguły `allow` / `ask` / `deny` z wzorcami, np.
 `"bash": {"kubectl get *": "allow", "rm *": "deny"}`. Brak piaskownicy systemowej; zgłoszono obejścia
@@ -406,6 +430,12 @@ models:
 **Wielu agentów i hybryda.** Agent prowadzący na `langchain_anthropic:ChatAnthropic`, subagenci z
 `model: deepseek-local`. Limity: liczba subagentów na uruchomienie i sufity tokenów.
 
+**Głos i obraz.** Brak głosu w wersji 2.0. `supports_vision: true` włącza narzędzie `view_image`;
+przeglądarka Playwright robi zrzuty ekranu.
+
+**Bezpieczeństwo.** Piaskownica lokalna, Docker albo Kubernetes; domyślnie nasłuch tylko na loopback; README
+ostrzega, że administrator bramki to w praktyce wykonanie kodu.
+
 **Harmonogram.** Zadania `once` / `cron` / `interval` z celem, warunkiem stopu i limitem uruchomień;
 Telegram (long polling) i Slack.
 
@@ -443,6 +473,9 @@ Ustaw `native_tools = true` — domyślnie lokalne endpointy dostają narzędzia
 **Głos i obraz.** Piper jako lokalny TTS, rozmowy telefoniczne przez operatorów SIP. Obrazy dla tekstowego modelu
 przekierowywane do osobnego dostawcy wizji.
 
+**Bezpieczeństwo.** Domyślnie `supervised`: działania średniego ryzyka wymagają zatwierdzenia, wysokiego są
+blokowane; zatwierdzenia kworum; tryb YOLO tylko na maszyny deweloperskie.
+
 **Słabe strony.** Duża złożoność konfiguracji (cztery sekcje TOML), wiele otwartych zgłoszeń, rozdmuchiwanie
 kontekstu przez powtarzanie rozumowania (#10396).
 
@@ -476,6 +509,12 @@ dopiero we wrześniu 2026 (#8382).
 **Wielu agentów i hybryda.** Menedżer Magentic albo planista na `AnthropicClient`, wykonawcy na kliencie
 lokalnym — każdy agent ma własnego klienta.
 
+**Głos i obraz.** Wejście audio do modeli, które je obsługują, ale bez agentów głosowych w czasie rzeczywistym
+w Pythonie; obrazy jako treść wiadomości.
+
+**Bezpieczeństwo.** FIDES (etykiety poufności i integralności, `SecureMCPToolProxy`) i CodeAct w mikro-VM
+Hyperlight. FIDES nie działa wewnątrz zagnieżdżonych wywołań CodeAct (#9251).
+
 **Słabe strony.** Przykłady nastawione na Azure / Foundry; zmiany łamiące nawet po GA; brak głosu w czasie
 rzeczywistym w Pythonie.
 
@@ -508,9 +547,11 @@ Znany błąd: obrazy WebP psują sesję llama.cpp (#7406).
 
 **Wielu agentów i hybryda.** W obie strony: lokalny DeepSeek jako rodzic deleguje do dziecka Claude Code
 (z ustalonym `permissionMode`), albo rodzic na Anthropic, a dzieci dsh na lokalnym modelu. `maxActiveSubagents`
-ma domyślnie 8 — ustaw 4.
+ma domyślnie 8 — ustaw 4. To nie jest gotowy preset „Claude planuje, lokalni wykonują" — układ składasz
+z wtyczek w profilu.
 
-**Głos.** Eksperymentalne STT; lokalny SenseVoice nie obsługuje polskiego.
+**Głos i obraz.** Eksperymentalne STT; lokalny SenseVoice nie obsługuje polskiego. Obrazy włączane per model
+(`input: [text, image]`).
 
 **Bezpieczeństwo.** Domyślna piaskownica `read-only`, zestawy uprawnień (piaskownica + polityka zatwierdzeń),
 oczyszczone środowisko procesów potomnych.
@@ -547,6 +588,8 @@ Pierwszorzędna obsługa llama.cpp i cztery poziomy osadzania: TUI, `--print` / 
 **Wielu agentów i hybryda.** Subagenci (oficjalne rozszerzenie-przykład) w osobnych procesach, opisani w Markdown
 z polem `model:` — jeden na Anthropic, drugi lokalnie. Wirtualne modele: łatwe tury lokalnie, trudne do Claude,
 z kosztem per model w podsumowaniu sesji.
+
+**Głos i obraz.** Brak głosu. Obrazy wklejane do terminala, `@obraz` w prompcie, narzędzie `read` czyta obrazy.
 
 **Bezpieczeństwo.** **Brak** zatwierdzeń i piaskownicy — z założenia. Uruchamiaj w kontenerze albo piaskownicy
 (patrz [02-KLOCKI.md](02-KLOCKI.md#piaskownice)).
@@ -585,6 +628,10 @@ inny harness przez ACP (np. Claude Code). Izolacja w git worktree.
 **Głos i obraz.** Rozmowa w czasie rzeczywistym tylko przez chmurowe API (OpenAI, xAI); lokalny TTS Kokoro
 (bez polskiego). Wizja, zrzuty ekranu, sterowanie pulpitem, przeglądarka Playwright.
 
+**Bezpieczeństwo.** Potwierdzenia domyślnie włączone; trzystopniowa polityka powłoki: komendy tylko do odczytu
+przechodzą same, lista zakazów (np. `git push -f`, `| bash`) blokuje, reszta pyta. Piaskownica systemowa
+jest niedojrzała.
+
 **Słabe strony.** Heurystyczne parsowanie Markdown; mała społeczność; dużo zmian pisze jego własny agent
 autonomiczny, więc tempo i rotacja kodu są wysokie.
 
@@ -613,10 +660,16 @@ WASM, host z ograniczeniami), Prometheus / OTLP / Langfuse, podpisane wydania i 
 `tool_mode = "auto" | "native" | "text"`. Wbudowany backend GGUF nie ma ścieżki ROCm — użyj llama-swap.
 
 **Wielu agentów i hybryda.** Koordynator na `anthropic/…`, presety wykonawców z
-`model = "custom-llamaswap/deepseek-v4-flash"`, własnymi narzędziami, piaskownicą i zakresem pamięci.
+`model = "custom-llamaswap/deepseek-v4-flash"` (dokładny format nazwy dla własnego dostawcy niezweryfikowany —
+sprawdź nazwy w `/v1/models`), własnymi narzędziami, piaskownicą i zakresem pamięci.
 Preset `coordinator` ma `delegate_only = true`. Heartbeat może działać na osobnym, lokalnym modelu.
 
-**Głos.** Najmocniejszy lokalny stos w kategorii: lokalny Whisper, Sherpa-ONNX, Voxtral i lokalne TTS.
+**Głos i obraz.** Najmocniejszy lokalny stos w kategorii: STT lokalnie (Whisper, Sherpa-ONNX, Voxtral), TTS
+lokalnie (Piper z polskimi głosami, Coqui), odpowiedzi jako notatki głosowe na Telegramie. Obrazy przez dostawców
+z wizją; zrzuty ekranu i przeglądarka.
+
+**Bezpieczeństwo.** `backend = "auto"` wybiera piaskownicę (Podman → Docker → host z ograniczeniami);
+`approval_mode`, zatwierdzanie zapisu i edycji, haki przed wywołaniem narzędzia, ochrona przed SSRF.
 
 **Słabe strony.** **Praktycznie jeden opiekun** (około 3,6 tys. commitów lidera wobec <100 następnej osoby);
 status alfa; obawy o samomodyfikujące się umiejętności.
@@ -648,6 +701,12 @@ katalog chmurowy bywa stosowany do lokalnego aliasu (#7979, pułapka H3).
 **Wielu agentów i hybryda.** Niezależni agenci z własnym modelem i pamięcią; `spawn_subagent` z izolacją
 w git worktree.
 
+**Głos i obraz.** Transkrypcja przez Whisper API albo lokalny Whisper (otwarte błędy, np. #8035); narzędzie
+`view_media` i obrazy z kanałów — potrzebny model z wizją.
+
+**Bezpieczeństwo.** Opisane w przewadze: piaskownica jądra, Tool Guard z poziomami STRICT / SMART / AUTO / OFF,
+ochrona plików z sekretami, skaner umiejętności.
+
 **Słabe strony.** Kanały nastawione na Chiny (DingTalk zalecany; brak WhatsAppa i Signala), ponad 1000 otwartych
 zgłoszeń i PR, otwarte błędy transkrypcji.
 
@@ -677,10 +736,13 @@ oraz `set_tracing_disabled(True)` — inaczej eksport śladów do OpenAI zwraca 
 z llama-server (pułapka H1).
 
 **Wielu agentów i hybryda.** Każdy `Agent(model=...)` osobno; Claude przez adapter LiteLLM albo any-llm
-(brak natywnego dostawcy Anthropic). Przy LiteLLM przypnij wersje — patrz [02-KLOCKI.md](02-KLOCKI.md#brama-i-routing-modeli).
+(brak natywnego dostawcy Anthropic). Przy LiteLLM przypnij wersje — patrz [02-KLOCKI.md](02-KLOCKI.md#bramka-i-routing-modeli).
 
 **Głos.** `VoicePipeline` = STT → Twój workflow → TTS; domyślnie modele OpenAI, ale interfejsy są wymienne,
 więc lokalny Whisper i Piper wchodzą przez własne adaptery.
+
+**Bezpieczeństwo.** Agenci w piaskownicy (lokalnie dla zaufanego kodu albo w Dockerze), guardrails wejścia
+i wyjścia, redakcja błędów narzędzi (v0.23.0). Obrazy przechodzą jako części wiadomości.
 
 **Słabe strony.** Domyślne ustawienia OpenAI do nadpisania; wyjście strukturalne tłumiło wywołania narzędzi
 na ścisłych serwerach (#3709, naprawione); wersje 0.x.
@@ -755,6 +817,10 @@ Langfuse.
 **Głos i harmonogram.** STT i TTS konfigurowalne, także lokalne usługi zgodne z OpenAI; bez rozmów na żywo.
 „Scheduled Chats" — eksperymentalne, od v0.8.8.
 
+**Bezpieczeństwo i obraz.** Reguły zatwierdzeń deny → ask → allow, egzekwowane też w uruchomieniach bezgłowych
+i planowanych; tryby zatwierdzania kodu; interpreter w NsJail albo mikro-VM libkrun. Natywne przesyłanie obrazów,
+OCR i generowanie obrazów.
+
 **Słabe strony.** Ciężki stos (MongoDB, Meilisearch, pgvector); dużo funkcji w becie; powracające błędy schematów
 narzędzi z llama.cpp; regresja prompt cache (#16877); krytyczne CVE w obszarze MCP.
 
@@ -783,6 +849,12 @@ Powtarzające się niezgodności schematów narzędzi z llama.cpp (#12773 — na
 
 **Wielu agentów i hybryda.** Każdy agent i subagent przypina `provider/model` — główny na `anthropic/claude-…`,
 subagenci na llama-swap.
+
+**Głos i obraz.** Eksperymentalne „Speech to Text" przez chmurowy Whisper OpenAI; obrazy w CLI prawdopodobnie
+jak w OpenCode (niezweryfikowane).
+
+**Bezpieczeństwo.** Reguły uprawnień z wzorcami per agent, izolacja w git worktree, tryb prywatności maskujący
+dane osobowe; brak piaskownicy systemowej.
 
 **Słabe strony.** Duża część funkcji „zawsze włączonych" (Cloud Agents, Slack) to płatna usługa; tryb Orchestrator
 wycofany w trakcie życia; ryzyko rozjazdu z upstreamem.

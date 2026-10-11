@@ -161,7 +161,7 @@ alert / zgłoszenie
        logi (Loki), metryki (Prometheus), ostatnie wdrożenia (GitHub/GitLab), stan klastra (K8s)
   → każdy zwraca JSON: {fakty, cytaty z logów, pewność}
   → Opus: diagnoza + propozycja poprawki (diff / komenda)
-  → Ty zatwierdzasz → Opus albo Ty wykonujecie zmianę
+  → Ty zatwierdzasz → zmianę wykonuje Opus albo Ty
 ```
 
 Klocki: kubernetes-mcp-server (`read_only = true`), mcp-grafana (`--disable-write`), github-mcp-server (`--read-only`),
@@ -211,7 +211,7 @@ Kurs: [część 11 kursu 2](../kurs_aplikacje_agentowe/11-HARMONOGRAM-PROAKTYWNO
 
 ### U4 — rozmowa głosowa po polsku
 
-Lokalna mowa-do-mowy po polsku na AMD nie istnieje (październik 2026) — zostaje kaskada STT → LLM → TTS.
+Lokalnej mowy-do-mowy po polsku na AMD nie znalazłem (październik 2026) — zostaje kaskada STT → LLM → TTS.
 Ponieważ VRAM zajmuje DeepSeek, szybkie elementy głosu idą na CPU:
 
 ```text

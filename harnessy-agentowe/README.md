@@ -109,7 +109,7 @@ Szczegóły, konfiguracja lokalnego modelu, słabe strony i pomysły do ukradzen
 | 8 | [OpenCode](01-PROFILE.md#8-opencode) | kodujący | agent kodujący z serwerem HTTP (TUI to tylko jeden klient) | programowanie i DevOps w terminalu; osadzanie przez API | architektura klient–serwer z OpenAPI; agenci i subagenci z własnym modelem i uprawnieniami na wzorcach komend | MIT |
 | 9 | [DeerFlow](01-PROFILE.md#9-deerflow) | osobisty | „super-agent" ByteDance do długich zadań | badania, kod i treści z subagentami w piaskownicach | rodowód deep research + jawny model per subagent (dokumentowany „lokalny dla oszczędności") + zadania planowane z celem i warunkiem stopu | MIT |
 | 10 | [ZeroClaw](01-PROFILE.md#10-zeroclaw) | osobisty | runtime agenta w jednym pliku binarnym Rust, 30+ kanałów | osobisty agent działający na Twoich narzędziach pod kontrolą | najgłębszy model bezpieczeństwa: profile ryzyka, poziomy autonomii, automatyczna piaskownica, podpisane potwierdzenia | MIT / Apache-2.0 |
-| 11 | [Microsoft Agent Framework](01-PROFILE.md#11-microsoft-agent-framework) | framework Py | następca AutoGen i Semantic Kernel z silnikiem workflow | przedsiębiorstwowe przepływy wieloagentowe z checkpointami | stabilne API z długim wsparciem; gotowe orkiestracje (Magentic, Handoff); ochrona przed prompt injection (FIDES) | MIT |
+| 11 | [Microsoft Agent Framework](01-PROFILE.md#11-microsoft-agent-framework) | framework Py | następca AutoGen i Semantic Kernel z silnikiem workflow | korporacyjne przepływy wieloagentowe z checkpointami | stabilne API z długim wsparciem; gotowe orkiestracje (Magentic, Handoff); ochrona przed prompt injection (FIDES) | MIT |
 | 12 | [DeepSeek Harness](01-PROFILE.md#12-deepseek-harness) | kodujący | oficjalny harness DeepSeek złożony w całości z wtyczek | agent na modelach DeepSeek, osadzany w Web UI, CLI albo SDK | strojenie pod DeepSeek V4 od producenta; subagentami mogą być inne harnessy, także Claude Code | MIT |
 | 13 | [Pi](01-PROFILE.md#13-pi) | kodujący | minimalny harness kodujący + biblioteki, na których stoją inne harnessy | własny agent na małym rdzeniu; nauka | mały rdzeń z najgłębszym API rozszerzeń; natywny llama.cpp; „wirtualne modele" kierujące każde zapytanie gdzie trzeba | MIT |
 | 14 | [gptme](01-PROFILE.md#14-gptme) | kodujący | agent terminalowy i szkielet agentów autonomicznych | osobisty agent w terminalu, agenci działający stale z systemd | wymienny format narzędzi (Markdown / XML / natywny) — działa tam, gdzie parsowanie wywołań w llama.cpp zawodzi | MIT |
@@ -146,7 +146,7 @@ na Claude, a inni na Twoim llama-swap. Gwiazdki i wydania: API GitHuba, 11.10.20
 | 14 | gptme | <!-- gh:gptme/gptme -->4,4k | 0.34.0 (18.09) | ✅ formaty Markdown / XML | ✅ | ✅ | ⚠️ realtime chmurowy | ✅ | ✅ systemd | ⚠️ polityka powłoki |
 | 15 | Moltis | <!-- gh:moltis-org/moltis -->2,9k | 20260913.02 (14.09) | ✅ | ✅ presety | ✅ | ✅ lokalne STT / TTS | ⚠️ | ✅ cron, heartbeat | ✅ wybór piaskownicy |
 | 16 | QwenPaw | <!-- gh:agentscope-ai/QwenPaw -->35,6k | 2.2.1 (11.09) | ✅ | ✅ model per agent | ✅ | ⚠️ błędy transkrypcji | ✅ | ✅ | ✅ piaskownica jądra |
-| 17 | OpenAI Agents SDK | <!-- gh:openai/openai-agents-python -->30,0k | 0.23.1 (2.10) | ⚠️ uwaga na Responses API | ✅ Claude przez LiteLLM | ✅ | ✅ potok STT / TTS | ✅ | ❌ | ✅ agenci w piaskownicy |
+| 17 | OpenAI Agents SDK | <!-- gh:openai/openai-agents-python -->30,0k | 0.23.1 (2.10) | ⚠️ uwaga na Responses API | ✅ Claude przez LiteLLM | ✅ | ⚠️ potok STT / TTS (lokalnie przez własne adaptery) | ✅ | ❌ | ✅ agenci w piaskownicy |
 | 18 | n8n | <!-- gh:n8n-io/n8n -->207,0k | 2.42.6 (9.10) | ⚠️ wyłącz Responses API | ✅ model per węzeł | ✅ | ❌ do złożenia | ✅ | ✅ najlepsze wyzwalacze | ⚠️ zatwierdzenia, historia CVE |
 | 19 | LibreChat | <!-- gh:LibreChat-AI/LibreChat -->45,5k | 0.8.8 (1.10) | ✅ | ✅ zespoły subagentów | ✅ | ✅ STT / TTS | ✅ | ⚠️ eksperymentalny | ✅ interpreter w mikro-VM |
 | 20 | Kilo Code | <!-- gh:Kilo-Org/kilocode -->27,6k | JetBrains 7.1.9 (8.10) | ⚠️ błędy schematów | ✅ model per subagent | ✅ | ⚠️ chmurowy Whisper | ⚠️ | ❌ | ⚠️ reguły uprawnień |
@@ -159,7 +159,10 @@ Przed podłączeniem któregokolwiek do llama-swap przeczytaj
 
 ## Który do którego zastosowania
 
-Ocena 1–5 według badania dokumentacji (nie pomiaru). Pogrubione — najlepsze w kolumnie.
+Ocena 1–5 według badania dokumentacji (nie pomiaru). Pogrubione — najlepsze w kolumnie. Te liczby mierzą
+dopasowanie funkcji do zastosowania i nie są rekomendacją: tabela „Co wybrać" niżej bierze pod uwagę także
+gotowość do użycia (np. LangGraph ma 5 w U1, ale do DevOps lepiej wziąć gotowy OpenCode, niż budować agenta
+na frameworku).
 
 | # | Harness | U1 DevOps | U2 dochód pasywny | U3 rynki i okazje | U4 głos | U5 obrazy |
 |---|---|---|---|---|---|---|
@@ -230,7 +233,7 @@ do internetu.
 | [Cline](https://github.com/cline/cline) | 33 (68 pkt) | zmiany formatu narzędzi wielokrotnie psuły lokalne modele; dyktowanie to płatna usługa |
 | [CrewAI](https://github.com/crewAIInc/crewAI) | 34 (68 pkt) | powracające „puste odpowiedzi" z modelami lokalnymi, telemetria domyślnie, harmonogram tylko w płatnej platformie |
 | [Codex CLI](https://github.com/openai/codex) | 59 (57 pkt) | od 1.02.2026 tylko Responses API — z llama.cpp kruche; brak dostawcy Anthropic |
-| Aider, Roo Code, Continue, Flowise, Plandex | wykluczone | zatrzymane albo zarchiwizowane w 2026 — [szczegóły](01-PROFILE.md#wykluczeni-na-wejściu) |
+| Aider, Roo Code, Continue, Flowise, Plandex | wykluczone | zatrzymane albo zarchiwizowane w latach 2025–2026 — [szczegóły](01-PROFILE.md#wykluczeni-na-wejściu) |
 
 ---
 
