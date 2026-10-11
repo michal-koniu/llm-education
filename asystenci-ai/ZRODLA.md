@@ -10,6 +10,126 @@ oznaczam w tekście. Każdy profil w [01-PROFILE.md](01-PROFILE.md) ma też wła
   openclaw/openclaw, NousResearch/hermes-agent, browser-use/browser-use, NVIDIA/NemoClaw, nanocoai/nanoclaw,
   bytedance/UI-TARS-desktop, cline/cline, nextcloud/assistant → gwiazdki, licencje, wydania.
 
+## Profile 1, 2, 5, 6, 13
+
+| Źródło | Co wziąłem |
+|---|---|
+| [OpenClaw — GitHub](https://github.com/openclaw/openclaw) | licencja MIT, gwiazdki, wydania, porady bezpieczeństwa 2026 (API GitHuba, 11.10.2026) |
+| [OpenClaw — wprowadzenie](https://openclaw.ai/blog/introducing-openclaw) | zmiana nazwy na OpenClaw, >100 tys. gwiazdek i 2 mln odwiedzin w tydzień, finansowanie opiekunów |
+| [OpenClaw Foundation](https://openclaw.ai/blog/introducing-openclaw-foundation) | fundacja 501(c)(3) z 8.07.2026, darczyńcy i partnerzy, ClawCon, „4.5 million new claws", NemoClaw |
+| [OpenClaw Enterprise](https://openclaw.ai/blog/openclaw-enterprise) | dystrybucja firmowa z 29.09.2026, „will always be free", IT domyślnie zakazuje agentów |
+| [Microsoft Autopilot na OpenClaw](https://openclaw.ai/blog/microsoft-autopilot-openclaw) | Autopilot z 25.09.2026, prywatny podgląd, poprawki upstream (Policy plugin, Teams, Windows) |
+| [OpenClaw — bezpieczeństwo jawnie](https://openclaw.ai/blog/openclaw-security-in-public) | statystyka zgłoszeń Steinbergera, przeniesienie kanałów i dostawców do wtyczek |
+| [OpenClaw — trudny tydzień](https://openclaw.ai/blog/openclaw-rough-week) | zepsute wydania IV 2026, „too founder-driven" |
+| [OpenClaw — VirusTotal](https://openclaw.ai/blog/virustotal-partnership) | skanowanie umiejętności od 7.02.2026 |
+| [OpenClaw — NVIDIA SkillSpector](https://openclaw.ai/blog/openclaw-nvidia-skill-security) | SkillSpector i Skill Cards (1.06.2026) |
+| [OpenClaw — ClawScan](https://openclaw.ai/blog/tencent-aig-joins-clawscan) | Tencent AI-Infra-Guard, 98,6% wykrytych złośliwych umiejętności na 556 przypadkach |
+| [OpenClaw docs — heartbeat](https://docs.openclaw.ai/gateway/heartbeat) | interwał 30 min / 1 h, limity wybudzeń |
+| [OpenClaw docs — standing orders](https://docs.openclaw.ai/automation/standing-orders) | zakres, wyzwalacz, bramka, eskalacja; pliki wstrzykiwane w sesję |
+| [OpenClaw docs — dreaming](https://docs.openclaw.ai/concepts/dreaming) | fazy konsolidacji pamięci, DREAMS.md, wagi 1–10 |
+| [OpenClaw docs — workspace](https://docs.openclaw.ai/concepts/agent-workspace) | workspace to nie twarda piaskownica |
+| [OpenClaw docs — modele lokalne](https://docs.openclaw.ai/gateway/local-models) | llama.cpp, Ollama, vLLM, ds4; ≥8 GiB i 64K; brak filtrów bezpieczeństwa lokalnie |
+| [OpenClaw docs — Ollama](https://docs.openclaw.ai/providers/ollama) | natywne /api/chat, /v1 psuje wywołania narzędzi |
+| [OpenClaw docs — security](https://docs.openclaw.ai/gateway/security) | kody parowania, listy dozwolonych, security audit |
+| [TechCrunch: Steinberger w OpenAI](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/) | przejście do OpenAI 14–15.02.2026, zapowiedź fundacji |
+| [The Register o OpenClaw 2.0](https://www.theregister.com/ai-and-ml/2026/08/31/openclaw-20-pours-glitter-on-slow-burning-security-dumpster-fire/5293492) | nowości 2.0, sekrety bez szyfrowania, piaskownica domyślnie wyłączona, incydent z siłownią |
+| [Cloudflare — Moltworker](https://blog.cloudflare.com/moltworker-self-hosted-ai-agent/) | hosting na Workers, „flood of people buying Mac minis" |
+| [Cisco o OpenClaw](https://blogs.cisco.com/ai/personal-ai-agents-like-openclaw-are-a-security-nightmare) | eksfiltracja przez umiejętność, 26% z 31 tys. umiejętności z podatnością |
+| [InsiderLLM — audyty ClawHub](https://insiderllm.com/guides/openclaw-clawhub-security-alert/) | liczby złośliwych umiejętności (źródło wtórne) |
+| [Wiz — Moltbook](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys) | odsłonięte tokeny API i e-maile |
+| [Wikipedia — OpenClaw](https://en.wikipedia.org/wiki/OpenClaw) | historia nazw, MoltMatch, ograniczenia w Chinach, Nadella, 247 tys. gwiazdek w III 2026 |
+| [Wikipedia — Moltbook](https://en.wikipedia.org/wiki/Moltbook) | start 28.01.2026, przejęcie przez Metę |
+| [Anthropic — seria G](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation) | 30 mld USD przy 380 mld USD, run-rate 14 mld USD, Claude Code >2,5 mld USD, 4% commitów |
+| [Claude — pamięć](https://claude.com/resources/articles/claudes-memory-works-everywhere-and-you-decide-whats-in-it) | pamięć w plikach tematycznych, tematy wrażliwe domyślnie poza pamięcią (25.08.2026) |
+| [Claude — Cowork to Claude](https://claude.com/resources/articles/cowork-is-now-claude) | scalenie z czatem 16.09.2026, harmonogram, pytanie przed działaniem |
+| [Claude — jak ludzie używają Cowork](https://claude.com/resources/articles/how-people-are-using-claude-cowork) | 1,2 mln sesji, podział kategorii zadań |
+| [Claude — Dispatch i computer use](https://claude.com/resources/articles/dispatch-and-computer-use) | Dispatch z computer use od 23.03.2026 |
+| [Claude — Routines](https://claude.com/resources/articles/introducing-routines-in-claude-code) | Routines w Claude Code (14.04.2026) |
+| [Claude — Cowork research preview](https://claude.com/blog/cowork-research-preview) | ceny planów, foldery, osobna przeglądarka, zatwierdzenia |
+| [Claude — pomoc Cowork](https://support.claude.com/en/articles/13345190-getting-started-with-cowork) | wykonanie w chmurze Anthropic, zakres uprawnień ruchu wychodzącego |
+| [Simon Willison o Cowork](https://simonwillison.net/2026/Jan/12/claude-cowork/) | lokalna VM Apple Virtualization w I 2026 |
+| [Docs — computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) | toolset GA, 17 narzędzi, akcje wsadowe, koszt zrzutów, zalecenia |
+| [Docs — browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) | 31 narzędzi, drzewo dostępności, wykonanie po stronie dewelopera |
+| [Demo computer use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) | otwarty kontener referencyjny |
+| [Claude for Chrome](https://claude.com/blog/claude-for-chrome) | zabezpieczenia, 23,6% → 11,2%, harmonogram dostępności |
+| [Claude in Chrome](https://claude.com/chrome) | funkcje 2026, GA na płatnych planach, odradzane zastosowania |
+| [Anthropic — obrona przed prompt injection](https://www.anthropic.com/research/prompt-injection-defenses) | ok. 1% dla Opus 4.5 przy adaptacyjnym atakującym |
+| [Anthropic — computer use 2024](https://www.anthropic.com/news/3-5-models-and-computer-use) | start 22.10.2024, 14,9% OSWorld |
+| [Anthropic — Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5) | 61,4% OSWorld |
+| [Anthropic — Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6) | ceny 3 / 15 USD |
+| [Anthropic — Opus 5.5](https://www.anthropic.com/news/claude-opus-5-5) | 81,8% OSWorld 2.1, ceny 4 / 20 USD (22.09.2026) |
+| [Anthropic — Vercept](https://www.anthropic.com/news/acquires-vercept) | przejęcie 25.02.2026, 72,5% OSWorld |
+| [Claude Code — dane](https://code.claude.com/docs/en/data-usage) | dostawcy modeli, retencja, przełącznik zbędnego ruchu, VM w chmurze |
+| [TechCrunch — limity Claude Code](https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/) | limity tygodniowe od 28.08.2025, <5% subskrybentów |
+| [Stack Overflow 2026](https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/) | Claude Code — 66% użytkowników agentów kodujących |
+| [iTiger — SemiAnalysis](https://www.itiger.com/hans/news/1183910360) | szacunek ok. 44 mld USD run-rate w V 2026 (wtórne) |
+| [TechCrunch — Claude for Legal](https://techcrunch.com/2026/05/12/the-ai-legal-services-industry-is-heating-up-anthropic-is-getting-in-on-the-action/) | wtyczki i konektory MCP do Westlaw, Box, Docusign (12.05.2026) |
+| [LawNext — CoCounsel na Agent SDK](https://www.lawnext.com/2026/06/thomson-reuters-opens-early-access-to-the-next-generation-of-cocounsel-legal-saying-beta-users-fing-loved-the-product.html) | nowy CoCounsel zbudowany na Claude Agent SDK |
+| [Microsoft — prywatność Copilota](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy) | modele Anthropic poza EU Data Boundary (stan 8.10.2026) |
+| [PromptArmor — Cowork](https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files) | eksfiltracja plików przez dozwolone API |
+| [BleepingComputer — BragJack](https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/) | atak przez rozszerzenia, CVE-2026-0628, m.in. Claude in Chrome |
+| [Wikipedia — Claude (language model)](https://en.wikipedia.org/wiki/Claude_(language_model)) | obawy Ars Technica o Chrome, Cowork w Chrome |
+| [Wikipedia — Claude (AI)](https://en.wikipedia.org/wiki/Claude_(AI)) | wyciek kodu Claude Code, nadużycia (Wired, BBC), Claude Design |
+| [Hermes Agent — GitHub](https://github.com/NousResearch/hermes-agent) | MIT, gwiazdki, wydania, zero porad bezpieczeństwa w 2026 |
+| [Hermes Agent — README](https://raw.githubusercontent.com/NousResearch/hermes-agent/main/README.md) | funkcje, backendy, FTS5, migracja z OpenClaw, trajektorie |
+| [Hermes Agent — strona](https://hermes-agent.nousresearch.com/) | ceny Nous Portal Plus / Super / Ultra (11.10.2026) |
+| [Hermes docs — pamięć](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory) | limity MEMORY.md i USER.md, zamrożona migawka |
+| [Hermes docs — umiejętności](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) | katalog umiejętności, hub, ClawHub, skanowanie |
+| [Hermes docs — cron](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) | zadania w języku naturalnym |
+| [Hermes docs — delegacja](https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation) | wykonawcy z osobnym dostawcą, limit dzieci (za przeglądem harnessów) |
+| [Hermes docs — głos](https://hermes-agent.nousresearch.com/docs/user-guide/features/voice-mode) | faster-whisper lokalnie, Edge TTS domyślnie (za przeglądem harnessów) |
+| [Hermes docs — indeks](https://hermes-agent.nousresearch.com/llms.txt) | Nous Portal jako dostawca modeli i kredytów |
+| [Nous — runda finansowania](https://nousresearch.com/a-note-on-our-fundraise) | 90 mln USD, inwestorzy, 24 mln klonów, 2,5% tokenów, MIT od II 2026 |
+| [Nous Research](https://nousresearch.com/) | aplikacja w Microsoft Store od 8.10.2026 |
+| [Nous — blog](https://nousresearch.com/blog) | refaktoryzacja z 1393 agentami |
+| [Hermes Business](https://portal.nousresearch.com/business) | wspólne saldo, limity na osobę, biblioteka umiejętności, Enterprise |
+| [NVIDIA NemoClaw](https://github.com/NVIDIA/NemoClaw) | obsługiwane agenty (OpenClaw, Hermes, Deep Agents), piaskownica OpenShell |
+| [Manus — inżynieria kontekstu](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus) | sześć zasad, KV-cache, 100:1, todo.md, ok. 50 wywołań na zadanie |
+| [Manus 2.0](https://manus.im/blog/introducing-manus-2-0) | Cascade, Cloud Computer, automatyzacje, Cue, deklarowane oszczędności |
+| [Manus Flex](https://manus.im/blog/introducing-manus-flex) | własny klucz do modeli, kredyty za infrastrukturę |
+| [Manus — Wide Research](https://manus.im/blog/introducing-wide-research) | równolegli agenci ze świeżym kontekstem |
+| [Manus docs — Wide Research](https://manus.im/docs/features/wide-research.md) | do 250 pozycji |
+| [Manus 1.5](https://manus.im/blog/manus-1.5-release) | aplikacje full-stack, czas zadania 15 → <4 min |
+| [Manus — Browser Operator](https://manus.im/blog/manus-browser-operator) | rozszerzenie w lokalnej przeglądarce, zgoda na sesję, log akcji |
+| [Manus docs — Cloud Browser](https://manus.im/docs/features/cloud-browser.md) | trwałe sesje, Take Over, blokady IP centrów danych |
+| [Manus — 100 mln ARR](https://manus.im/blog/manus-100m-arr) | ARR, run-rate, 147 bilionów tokenów, 80 mln komputerów, 105 pracowników |
+| [Manus — list do użytkowników](https://manus.im/blog/a-note-to-our-users) | powrót do niezależności, usunięcie danych 23–24.08.2026, dane w USA i Singapurze |
+| [Manus — niezależność](https://manus.im/blog/manus-resumes-independent-operations) | formalna niezależność 1.09.2026, dostępność w UE |
+| [Manus — zasady kredytów](https://help.manus.im/en/articles/11711097-what-are-the-rules-for-credits-consumption-and-how-can-i-obtain-them) | co zużywa kredyty, dzienne odświeżenie, brak przenoszenia |
+| [E2B — studium Manusa](https://e2b.dev/blog/how-manus-uses-e2b-to-provide-agents-with-virtual-computers) | mikro-VM Firecracker, ok. 150 ms startu, odrzucenie Dockera |
+| [The Decoder](https://the-decoder.com/chinese-ai-agent-manus-uses-claude-sonnet-and-open-source-technology/) | modele na starcie, browser-use, układ wykonawca–planista |
+| [TechCrunch — Manus III 2025](https://techcrunch.com/2025/03/09/manus-probably-isnt-chinas-second-deepseek-moment/) | testy niezawodności, deklaracja GAIA |
+| [TechCrunch — weto Chin](https://techcrunch.com/2026/04/27/china-vetoes-metas-2b-manus-deal-after-months-long-probe/) | decyzja NDRC 27.04.2026, zakaz wyjazdu założycieli |
+| [TechCrunch — runda X 2026](https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/) | >500 mln USD, Boyu i IDG, cel ok. 4 mld USD |
+| [Bloomberg — blokada przejęcia](https://www.bloomberg.com/news/articles/2026-04-27/china-blocks-meta-s-2-billion-acquisition-of-ai-startup-manus) | potwierdzenie blokady |
+| [Yahoo — wycena Manusa](https://finance.yahoo.com/technology/ai/articles/manus-seeks-4b-valuation-beijing-183502124.html) | odkup udziałów, separacja operacyjna |
+| [Dahui Lawyers](https://www.dahuilawyers.com/en/news-insights/chinas-first-public-foreign-investment-security-review-prohibition-the-metamanus-decision/) | pierwszy publiczny zakaz w chińskim przeglądzie inwestycji |
+| [Sacra — Manus](https://sacra.com/c/manus) | ceny z III 2025, szacunek 450 mln USD w VI 2026 |
+| [MyClaw — recenzja Manus 2.0](https://myclaw.ai/blog/manus-2-0) | ceny z IX 2026, Cloud Computer, limity portfela Cue (strona trzecia) |
+| [Embrace The Red](https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/) | atak z wystawieniem portu (25.08.2025) |
+| [OpenManus](https://github.com/FoundationAgents/OpenManus) | otwarty klon MIT, gwiazdki, obsługa Ollamy |
+| [Wikipedia — Manus](https://en.wikipedia.org/wiki/Manus_(AI_agent)) | premiera, seria B, przeprowadzka do Singapuru, odsprzedaż zaproszeń |
+| [browser-use — GitHub](https://github.com/browser-use/browser-use) | MIT, gwiazdki, wydanie 0.13.11 |
+| [browser-use — API GitHuba](https://api.github.com/repos/browser-use/browser-use) | data utworzenia repozytorium, forki |
+| [browser-use — cennik](https://browser-use.com/pricing.md) | stawki za przeglądarkę, proxy, tokeny, progi współbieżności (3.09.2026) |
+| [browser-use — benchmarki](https://browser-use.com/benchmarks) | Browser Use Bench v2.1 z kosztem na zadanie (7.10.2026) |
+| [browser-use — changelog 3.04.2026](https://browser-use.com/changelog/3-4-2026) | darmowy próg, harmonogram V4, umiejętność Agency |
+| [browser-use — BU-30B-A3B](https://browser-use.com/changelog/16-12-2025) | otwarte wagi, 3B aktywnych, vLLM |
+| [browser-use — przejście na CDP](https://browser-use.com/changelog/19-8-2025) | „100% CDP-based" |
+| [browser-use — BU 2.0](https://browser-use.com/changelog/27-1-2026) | porównanie z Opus 4.5 (deklaracja producenta) |
+| [browser-use — wybór agenta](https://docs.browser-use.com/cloud/choosing-an-agent) | V2 / V3 / V4: koszt, trafność, czas; profile i sekrety |
+| [browser-use — karta BU 2.0](https://docs.browser-use.com/open-source/bu-2-0-model-card) | model tylko przez API |
+| [browser-use — raport WebVoyager](https://browser-use.com/posts/sota-technical-report) | 89,1% po usunięciu 55 zadań |
+| [Felicis](https://felicis.com/blog/browser-use-the-tool-making-it-easier-for-ai-agents-to-navigate-websites-raises-17m) | seed 17 mln USD, inwestorzy |
+| [ain.ua](https://en.ain.ua/2025/03/25/browser-use-raises-17m) | założyciele, ETH Zurych, idea „tekst zamiast pikseli" |
+| [Princeton HAL — Online-Mind2Web](https://hal.cs.princeton.edu/online_mind2web) | niezależny wynik 40,0% dla browser-use + Sonnet 4 |
+| [TechCrunch — OpenAI o prompt injection](https://techcrunch.com/2025/12/22/openai-says-ai-browsers-may-always-be-vulnerable-to-prompt-injection-attacks/) | „unlikely to ever be fully solved" (22.12.2025) |
+| [The Register — Gartner](https://www.theregister.com/2025/12/08/gartner_recommends_ai_browser_ban/) | zalecenie blokowania przeglądarek AI (8.12.2025) |
+| [TechCrunch — koniec Atlasa](https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/) | zamknięcie Atlasa, „feature, not the destination" |
+| [36Kr — udział przeglądarek AI](https://eu.36kr.com/en/p/3931781634260099) | <1% rynku przeglądarek (VIII 2026) |
+| [OpenManus — commity](https://api.github.com/repos/FoundationAgents/OpenManus/commits?per_page=5) | integracja Browser Use CLI 3.0 (VIII 2026) |
+| [Przegląd harnessów — profile](../harnessy-agentowe/01-PROFILE.md) | Hermes (81 pkt, 4. miejsce), OpenClaw (47. miejsce), pułapka H4, Moltis z polskim Piperem |
+
 ## Profile 3, 4, 9–12, 14
 
 | Źródło | Co wziąłem |

@@ -34,13 +34,13 @@ rozwiązuje: „agent, który robi rzeczy, kiedy cię nie ma".
 **Funkcje.**
 - Jedna bramka (*Gateway*) dla kilkunastu kanałów: Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal,
   Slack, Telegram, WhatsApp, Zalo, WeChat, Feishu, SMS, e-mail i inne.
-- Automatyzacje: cron, webhooki, wyzwalacze Gmail Pub/Sub i IMAP; **heartbeat** — cykliczna tura agenta.
+- Automatyzacje: cron, webhooki, wyzwalacze Gmail Pub/Sub i IMAP oraz **heartbeat** (cykliczna tura agenta).
 - **Standing orders** („stałe polecenia"): program z zakresem, wyzwalaczem, bramką zatwierdzenia i eskalacją,
   który agent prowadzi bez pytania o każde zadanie.
 - Pamięć w SQLite (słowa kluczowe, wektory, hybryda) i nocne „śnienie" (*dreaming*), które ją konsoliduje.
 - Umiejętności jako foldery `SKILL.md` i rejestr **ClawHub**; wtyczki dla kanałów, dostawców i narzędzi.
-- Głos na Discordzie, „węzły" iOS/Android (kamera, głos), przekaźnik przeglądarki, zespoły agentów, A2A.
-- Wersja 2.0 (v2026.8.1, 30.08.2026): prostszy instalator, nowe UI w przeglądarce, współdzielone sesje w chmurze.
+- Głos na Discordzie, „węzły" iOS/Android, przekaźnik przeglądarki, zespoły agentów, A2A; wersja 2.0 (v2026.8.1,
+  30.08.2026) dodała prostszy instalator, nowe UI w przeglądarce i współdzielone sesje w chmurze.
 
 **Przewaga.**
 - **Dystrybucja i efekt sieci.** Najbardziej „ugwiazdkowane" repozytorium agentowe (391,7k ⭐, API GitHuba
@@ -64,7 +64,7 @@ cron · webhook · IMAP · heartbeat ─────────┼─► Gatewa
 ```
 - **Bramka** jest jedynym źródłem prawdy o sesjach, routingu i kanałach. Nieznany nadawca DM dostaje kod parowania,
   w grupach działają listy dozwolonych i wymóg wzmianki; `openclaw security audit` sprawdza konfigurację.
-- **Zaufanie to właściwość sesji** wyliczana ze źródła wiadomości, a nie flaga przy narzędziu.
+  **Zaufanie to właściwość sesji** wyliczana ze źródła wiadomości, a nie flaga przy narzędziu.
 - **Heartbeat** to zadanie systemowe: domyślnie co 30 min (co 1 h przy OAuth Anthropic) — „periodic agent turns
   in the main session"; wybudzenia zdarzeniami co najmniej 30 s od siebie, blokada po 5 startach w 60 s.
 - **Dreaming**: fazy light, REM i deep w tle; wynik trafia do `DREAMS.md`, a do `MEMORY.md` awansują tylko mocne
@@ -74,9 +74,8 @@ cron · webhook · IMAP · heartbeat ─────────┼─► Gatewa
 - **Piaskownica opcjonalna**: „the workspace is the default cwd, not a hard sandbox" — w 2.0 nadal domyślnie wyłączona.
 - **Modele lokalne**: wtyczka llama.cpp dobierająca przepis do RAM/VRAM, Ollama (natywne `/api/chat`; endpoint `/v1`
   wg dokumentacji „breaks tool calling"), LM Studio, vLLM, MLX, `ds4` dla DeepSeek V4 Flash na Metalu.
-- Bramka, sesje i pliki tożsamości rozebrane w [kursie 2, część 1](../kurs_aplikacje_agentowe/01-ARCHITEKTURY-AGENTOWE.md)
-  i [część 6](../kurs_aplikacje_agentowe/06-TOZSAMOSC-PLIKI-ROBOCZE.md); pułapki z lokalnym modelem —
-  [przegląd harnessów](../harnessy-agentowe/README.md#dlaczego-nie-ma-ich-w-czołówce).
+- Rozbiór bramki i sesji: [kurs 2, część 1](../kurs_aplikacje_agentowe/01-ARCHITEKTURY-AGENTOWE.md); pułapki
+  z lokalnym modelem: [przegląd harnessów](../harnessy-agentowe/README.md#dlaczego-nie-ma-ich-w-czołówce).
 
 **Na czym zarabia.** Sam projekt nie zarabia — zarabiają na nim inni.
 - **Fundacja** (ogłoszona 8.07.2026): amerykańska 501(c)(3), 12 pełnych etatów *(dane fundacji)*. Darczyńcy
@@ -84,11 +83,9 @@ cron · webhook · IMAP · heartbeat ─────────┼─► Gatewa
   („major donor", finansuje też inferencję), NVIDIA, Microsoft, Red Hat, Tencent, Atlassian; infrastruktura od
   Vercel, Cloudflare, GitHub i innych. **Kwot fundacja nie podaje.**
 - **Dystrybucje komercyjne**: Microsoft Autopilot (ewolucja Microsoft Scout, część Copilota; ogłoszony 25.09.2026,
-  prywatny podgląd od końca IX 2026, cena nieznana); NVIDIA NemoClaw (NVIDIA sprzedaje GPU i DGX, oprogramowanie
-  darmowe); usługi Tencent i Z.ai w Chinach (III 2026, *wg prasy*); hosting Cloudflare „Moltworker" (29.01.2026).
-- **OpenClaw Enterprise** (29.09.2026): powstał w OpenAI, przekazany fundacji, rozwijany z Red Hat i NVIDIA,
-  „will always be free" *(dane fundacji)*.
-- **ClawHub**: nie znalazłem płatnych listingów ani podziału przychodów.
+  prywatny podgląd od końca IX 2026, cena nieznana); NVIDIA NemoClaw (NVIDIA sprzedaje GPU i DGX); usługi Tencent
+  i Z.ai w Chinach (III 2026, *wg prasy*). OpenClaw Enterprise (29.09.2026, z OpenAI, Red Hat i NVIDIA) „will always
+  be free" *(dane fundacji)*. W ClawHub nie znalazłem płatnych listingów ani podziału przychodów.
 - Twórca, Peter Steinberger, przeszedł do OpenAI 14–15.02.2026 i prowadzi tam „Claw Labs"; Sam Altman zapowiedział, że
   projekt zostanie w fundacji jako open source wspierany przez OpenAI.
 
@@ -107,10 +104,8 @@ cache ([pułapka H4](../harnessy-agentowe/01-PROFILE.md#siedem-pułapek-wspólny
 - **Zaufanie per sesja:** konsola właściciela — pełne uprawnienia; wiadomość z zewnętrznego kanału — sesja bez
   powłoki i bez akt. Dla zawodów z tajemnicą zawodową to wymaganie, nie opcja.
 - **Heartbeat to zwykła zaplanowana tura** z krótką listą kontrolną i limitami antyspamowymi. Na rigu zarezerwuj
-  jeden z 4 slotów DeepSeek-V4-Flash na heartbeat i cron, żeby tło nie blokowało rozmowy; datę wkładaj do wiadomości,
-  nie do promptu systemowego.
-- **Konsolidacja pamięci w nocy**, gdy wszystkie 4 sloty są wolne: czytelny dziennik `DREAMS.md` i awans tylko
-  pewnych faktów.
+  jeden z 4 slotów DeepSeek-V4-Flash na heartbeat i cron, żeby tło nie blokowało rozmowy; pamięć konsoliduj w nocy
+  (`DREAMS.md`), gdy wszystkie sloty są wolne.
 - **Czego nie kopiować:** otwartego rynku umiejętności bez weryfikacji, piaskownicy „opcjonalnej" i sekretów bez
   szyfrowania. OpenClaw w kancelarii — tylko w opakowaniu typu NemoClaw (piaskownica, lista dozwolonych adresów,
   zatwierdzenia operatora).
@@ -129,14 +124,11 @@ cache ([pułapka H4](../harnessy-agentowe/01-PROFILE.md#siedem-pułapek-wspólny
   testowych, *dane fundacji*). Mimo to The Register (31.08.2026) o wersji 2.0: sekrety bez szyfrowania, piaskownica
   domyślnie wyłączona. Fundacja sama przyznaje, że domyślna postawa działów IT to zakaz takich agentów.
 - **Autonomia bez nadzoru kompromituje:** MoltMatch (II 2026) — agent sam założył właścicielowi profil randkowy;
-  inny „zhakował" listę oczekujących na siłowni i wypchnął cudze rezerwacje. Moltbook, sieć społecznościowa tylko dla
-  agentów (28.01.2026): Wiz znalazł 1,5 mln odsłoniętych tokenów API i 35 tys. e-maili, a 1,5 mln agentów należało
-  do 17 tys. ludzi; Meta kupiła Moltbook 10.03.2026.
+  inny „zhakował" listę oczekujących na siłowni. W Moltbooku, sieci tylko dla agentów, Wiz znalazł 1,5 mln
+  odsłoniętych tokenów API; Meta i tak kupiła serwis (10.03.2026).
 - **Od „wirusa" do produktu:** Nadella w II 2026 porównał OpenClaw do wirusa, we wrześniu Microsoft wypuścił na nim
   Autopilota i wysyła poprawki upstream (zgodność z polityką firmy, Windows/WinUI, Teams, ukrywanie sekretów w monitach
-  o zatwierdzenie). Chiny w III 2026 ograniczyły OpenClaw w bankach, urzędach i spółkach państwowych, a Shenzhen
-  w tym samym czasie go dotował. Wydania 2026.4.24–4.29 psuły bramki i kanały; Steinberger przeprosił i przyznał, że
-  projekt był „too founder-driven" (5.05.2026).
+  o zatwierdzenie). Chiny w III 2026 ograniczyły OpenClaw w bankach i urzędach, a Shenzhen w tym samym czasie go dotował.
 - **Ten sam projekt, inna ocena:** w [przeglądzie harnessów](../harnessy-agentowe/01-PROFILE.md#pozostali-kandydaci-miejsca-2164)
   OpenClaw jest na 47. miejscu (64 pkt), bo tam liczyły się praca z lokalnym modelem, hybryda i bezpieczeństwo.
   Tu oceniam asystenta jako produkt i lekcję rynkową — i tu wygrywa trakcją oraz ideą. Oba wnioski są zgodne:
@@ -163,9 +155,8 @@ Self-hostingu modelu nie ma; najbliżej suwerenności jest Bedrock, Vertex albo 
 
 **Cel.**
 - **Czat** (Pro, Max, Team, Enterprise) — codzienny asystent z pamięcią, konektorami i umiejętnościami.
-- **Cowork** — agent dla nietechnicznych pracowników wiedzy: dokumenty, arkusze, prezentacje w folderach, które
-  wskaże użytkownik.
-- **Claude in Chrome i computer use** — wykonawca w przeglądarce i na pulpicie; w API dla twórców RPA i QA.
+- **Cowork** — agent dla nietechnicznych pracowników wiedzy (dokumenty, arkusze, prezentacje we wskazanych folderach);
+  **Claude in Chrome i computer use** — wykonawca w przeglądarce i na pulpicie, w API także dla twórców RPA i QA.
 - **Claude Code** — programiści w terminalu, IDE, aplikacji desktop i webie; w II 2026 ponad połowa przychodu Claude
   Code pochodziła z firm *(dane firmy)*.
 - **Wersje branżowe** — „Claude for Legal" z wtyczkami dla specjalizacji i konektorami MCP do Westlaw, Box i Docusign
@@ -175,16 +166,15 @@ Self-hostingu modelu nie ma; najbliżej suwerenności jest Bedrock, Vertex albo 
 - **Pamięć** (25.08.2026): jedna dla czatu i Cowork, zapisana jako czytelne pliki tematyczne do edycji i usunięcia;
   tematy wrażliwe (zdrowie, przekonania itd.) **domyślnie nie są zapisywane**.
 - **„Jeden Claude"** (16.09.2026): Cowork scalony z czatem; zadania pracują dalej „even after you've closed your
-  laptop" i dają się planować („Schedule it for every Monday"); domyślnie Claude pyta przed działaniem.
-- **Dispatch** (23.03.2026, razem z computer use jako research preview w Pro i Max): zadanie wysłane z telefonu,
-  Claude obsługuje programy na komputerze.
+  laptop" i dają się planować („Schedule it for every Monday"); domyślnie Claude pyta przed działaniem. Wcześniej
+  **Dispatch** (23.03.2026, z computer use, research preview w Pro i Max): zadanie z telefonu wykonywane na komputerze.
 - **Claude in Chrome**: panel boczny, który nawiguje, wypełnia formularze, pracuje w kilku kartach we własnej grupie,
   uruchamia zadania w tle i według harmonogramu; GA na wszystkich płatnych planach.
 - **Computer use i browser use w API** (GA, toolsety `*_20260801`): 17 narzędzi pulpitu z akcjami wsadowymi (stop na
   pierwszym błędzie) i 31 narzędzi przeglądarki opartych na drzewie dostępności; wykonuje je **Twoje** środowisko.
 - **Claude Code**: pętla w terminalu (pliki, powłoka), MCP, subagenci, hooki, umiejętności, wtyczki, plik
   `CLAUDE.md`; sesje w chmurze (VM Anthropic albo środowisko klienta), Remote Control, Routines (14.04.2026).
-- **Konektory, umiejętności i wtyczki** wspólne dla czatu, Cowork, Chrome i Claude Code.
+  Konektory, umiejętności i wtyczki działają też w czacie, Cowork i Chrome.
 
 **Przewaga.**
 - **Model i agent z jednego laboratorium.** OSWorld: 14,9% (22.10.2024) → 61,4% (29.09.2025) → 72,5% (II 2026, przy
@@ -197,8 +187,7 @@ Self-hostingu modelu nie ma; najbliżej suwerenności jest Bedrock, Vertex albo 
   umiejętności, hooki) przechodzą do biura.
 - **Opublikowane liczby obrony przed prompt injection:** skuteczność ataku w Chrome 23,6% → 11,2% po zabezpieczeniach
   (25.08.2025); ok. 1% dla Opus 4.5 przy adaptacyjnym atakującym (24.11.2025) — Anthropic dodaje, że to „still
-  represents meaningful risk".
-- **Dystrybucja przez abonament:** Cowork, Chrome i Claude Code są w cenie planów Pro, Max i Team.
+  represents meaningful risk". Do tego dystrybucja: Cowork, Chrome i Claude Code są w cenie planów Pro, Max i Team.
 
 **Architektura.**
 ```
@@ -210,9 +199,8 @@ model w chmurze (Anthropic API / Bedrock / Vertex / Foundry)
    ├─ API computer/browser use ─ akcje wykonuje piaskownica dewelopera („nothing executes on Anthropic's servers")
    └─ Claude Code ────── lokalny CLI: pliki, powłoka, hooki, MCP, subagenci; transkrypcje na dysku
 ```
-- **Pętla computer use:** model dostaje toolset → emituje `tool_use` → aplikacja wykonuje akcję → odsyła zrzut albo
-  wynik → powtórka. Zrzut kosztuje ok. 1000–1800 tokenów; zalecenia: 1024×768–1280×800, ≤20 obrazów na żądanie,
-  prompt caching, przycinanie starych zrzutów partiami (np. co 25 tur), dane logowania w `<robot_credentials>`.
+- **Pętla computer use:** toolset → `tool_use` → aplikacja wykonuje akcję → odsyła zrzut (ok. 1000–1800 tokenów) →
+  powtórka; zalecenia: 1024×768–1280×800, ≤20 obrazów, prompt caching, przycinanie starych zrzutów partiami.
 - **Browser use** czyta drzewo dostępności (mniej tokenów niż zrzuty), a odwołania do elementów przetrwają przesunięcia
   układu. Walidacja URL (odrzucanie `javascript:`, `file:`, `data:`) należy do dewelopera; upload i JS domyślnie wyłączone.
 - **Gdzie pracuje Cowork:** w styczniu 2026 (research preview) w **lokalnej VM Linux** na frameworku Apple
@@ -220,17 +208,15 @@ model w chmurze (Anthropic API / Bedrock / Vertex / Foundry)
   artykuł pomocy mówi: „Cowork runs your tasks in the cloud" — w izolowanym środowisku na serwerach Anthropic;
   uprawnienia ruchu wychodzącego **nie obejmują** web fetch, web search ani MCP. Model zawsze działał w chmurze.
 - **Chrome:** uprawnienia per witryna, potwierdzenia przed publikacją, zakupem i udostępnieniem danych osobowych,
-  zablokowane kategorie (usługi finansowe, treści dla dorosłych, piractwo), klasyfikatory wstrzyknięć, trening RL na
-  wrogich treściach; w Team i Enterprise listy dozwolonych i zablokowanych witryn ustawia administrator.
-- **Claude Code — dane:** transkrypcje lokalnie w `~/.claude/projects/` przez 30 dni; konta firmowe — retencja 30 dni,
-  Enterprise — zero data retention po uzgodnieniu; konsumenckie — 30 dni albo 5 lat przy zgodzie na trening;
-  `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` wyłącza zbędny ruch; w chmurowych VM dane logowania GitHuba nie
-  wchodzą do maszyny, a ruch wychodzi przez proxy bezpieczeństwa.
+  zablokowane kategorie (m.in. usługi finansowe), klasyfikatory wstrzyknięć, trening RL na wrogich treściach.
+- **Claude Code — dane:** transkrypcje lokalnie przez 30 dni; retencja: firmy 30 dni, Enterprise — zero data retention
+  po uzgodnieniu, konsumenci 30 dni albo 5 lat przy zgodzie na trening; `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`
+  wyłącza zbędny ruch; w chmurowych VM dane logowania GitHuba nie wchodzą do maszyny.
 
 **Na czym zarabia.**
 - **Abonamenty** (wg stanu na 10.2026): Pro 20 USD/mies. (17 USD przy płatności rocznej), Max 100 i 200 USD,
-  Team 20 USD za stanowisko (2–150 osób), Enterprise — indywidualnie. Chrome najpierw tylko w Max (pilot 1000 osób
-  od 25.08.2025), od 18.12.2025 także w Pro, Team i Enterprise.
+  Team 20 USD za stanowisko (2–150 osób), Enterprise — indywidualnie. Chrome najpierw tylko w Max (pilot od
+  25.08.2025), od 18.12.2025 także w Pro, Team i Enterprise.
 - **API za tokeny:** Opus 5.5 — 4 / 20 USD za 1 mln tokenów wejścia/wyjścia (22.09.2026); Sonnet 4.6 — 3 / 15 USD;
   także przez AWS, Google Cloud i Azure.
 - **Limity tygodniowe** w Claude Code (ogłoszone 28.07.2025, od 28.08.2025) jako odpowiedź na pracę 24/7 w tle
@@ -263,8 +249,6 @@ firm: w Microsoft 365 Copilot modele Anthropic są **wyłączone z EU Data Bound
   klucze API.
 
 **Warto wiedzieć.**
-- **Skromny start:** computer use wszedł do API 22.10.2024 jako „experimental — at times cumbersome and error-prone";
-  14,9% na OSWorld i tak dawało prawie dwa razy więcej niż następny wynik (7,8%).
 - **PromptArmor (I 2026):** biały tekst na białym tle w dokumencie kazał Cowork wysłać pliki ofiary na konto
   atakującego przez **dozwolone API Anthropic** z kluczem atakującego (zadziałało na Haiku i Opus 4.5). Anthropic
   zalecił nie udostępniać wrażliwych plików lokalnych.
@@ -276,10 +260,10 @@ firm: w Microsoft 365 Copilot modele Anthropic są **wyłączone z EU Data Bound
   around the work", a nie autonomiczne zarządzanie życiem.
 - **Nadużycia:** Claude Code użyto w kampanii wymuszeń danych (VIII 2025) i w chińskiej kampanii szpiegowskiej
   (IX 2025), która zautomatyzowała 80–90% pracy (Wired i BBC wg Wikipedii).
-- **Lekcja biznesowa:** abonament ryczałtowy plus agenci pracujący 24/7 kończą się limitami — policz to, zanim
-  sprzedasz kancelarii „nielimitowanego asystenta".
+- **Lekcja biznesowa:** computer use startował 22.10.2024 jako „experimental — at times cumbersome and error-prone",
+  a abonament ryczałtowy plus agenci 24/7 skończył się limitami — policz to, zanim sprzedasz „nielimitowanego asystenta".
 
-**Źródła:** [seria G](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation) · [pamięć](https://claude.com/resources/articles/claudes-memory-works-everywhere-and-you-decide-whats-in-it) · [Cowork to Claude](https://claude.com/resources/articles/cowork-is-now-claude) · [jak ludzie używają Cowork](https://claude.com/resources/articles/how-people-are-using-claude-cowork) · [Dispatch i computer use](https://claude.com/resources/articles/dispatch-and-computer-use) · [Routines](https://claude.com/resources/articles/introducing-routines-in-claude-code) · [Cowork research preview](https://claude.com/blog/cowork-research-preview) · [Cowork — pomoc](https://support.claude.com/en/articles/13345190-getting-started-with-cowork) · [Simon Willison o Cowork](https://simonwillison.net/2026/Jan/12/claude-cowork/) · [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) · [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) · [demo computer use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) · [Claude for Chrome](https://claude.com/blog/claude-for-chrome) · [Claude in Chrome](https://claude.com/chrome) · [obrona przed prompt injection](https://www.anthropic.com/research/prompt-injection-defenses) · [computer use 2024](https://www.anthropic.com/news/3-5-models-and-computer-use) · [Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5) · [Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6) · [Opus 5.5](https://www.anthropic.com/news/claude-opus-5-5) · [Vercept](https://www.anthropic.com/news/acquires-vercept) · [Claude Code — dane](https://code.claude.com/docs/en/data-usage) · [limity tygodniowe](https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/) · [Stack Overflow 2026](https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/) · [SemiAnalysis za prasą](https://www.itiger.com/hans/news/1183910360) · [Claude for Legal](https://techcrunch.com/2026/05/12/the-ai-legal-services-industry-is-heating-up-anthropic-is-getting-in-on-the-action/) · [CoCounsel na Agent SDK](https://www.lawnext.com/2026/06/thomson-reuters-opens-early-access-to-the-next-generation-of-cocounsel-legal-saying-beta-users-fing-loved-the-product.html) · [EU Data Boundary](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy) · [PromptArmor](https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files) · [BragJack](https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/) · [Wikipedia: Claude](https://en.wikipedia.org/wiki/Claude_(language_model))
+**Źródła:** [seria G](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation) · [pamięć](https://claude.com/resources/articles/claudes-memory-works-everywhere-and-you-decide-whats-in-it) · [Cowork to Claude](https://claude.com/resources/articles/cowork-is-now-claude) · [jak ludzie używają Cowork](https://claude.com/resources/articles/how-people-are-using-claude-cowork) · [Dispatch i computer use](https://claude.com/resources/articles/dispatch-and-computer-use) · [Routines](https://claude.com/resources/articles/introducing-routines-in-claude-code) · [Cowork research preview](https://claude.com/blog/cowork-research-preview) · [Cowork — pomoc](https://support.claude.com/en/articles/13345190-getting-started-with-cowork) · [Simon Willison o Cowork](https://simonwillison.net/2026/Jan/12/claude-cowork/) · [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool) · [browser use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-tool) · [demo computer use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo) · [Claude for Chrome](https://claude.com/blog/claude-for-chrome) · [Claude in Chrome](https://claude.com/chrome) · [obrona przed prompt injection](https://www.anthropic.com/research/prompt-injection-defenses) · [computer use 2024](https://www.anthropic.com/news/3-5-models-and-computer-use) · [Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5) · [Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6) · [Opus 5.5](https://www.anthropic.com/news/claude-opus-5-5) · [Vercept](https://www.anthropic.com/news/acquires-vercept) · [Claude Code — dane](https://code.claude.com/docs/en/data-usage) · [limity tygodniowe](https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/) · [Stack Overflow 2026](https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/) · [SemiAnalysis za prasą](https://www.itiger.com/hans/news/1183910360) · [Claude for Legal](https://techcrunch.com/2026/05/12/the-ai-legal-services-industry-is-heating-up-anthropic-is-getting-in-on-the-action/) · [CoCounsel na Agent SDK](https://www.lawnext.com/2026/06/thomson-reuters-opens-early-access-to-the-next-generation-of-cocounsel-legal-saying-beta-users-fing-loved-the-product.html) · [EU Data Boundary](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy) · [PromptArmor](https://www.promptarmor.com/resources/claude-cowork-exfiltrates-files) · [BragJack](https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/) · [Wikipedia: Claude](https://en.wikipedia.org/wiki/Claude_(language_model)) · [Wikipedia: Claude (AI)](https://en.wikipedia.org/wiki/Claude_(AI))
 
 
 ---

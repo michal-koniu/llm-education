@@ -283,7 +283,7 @@ robi zaufany proces poza zasięgiem modelu — i tylko dla dozwolonej domeny.
 
 **U siebie.** Sejf (plik szyfrowany albo systemowy keyring) + proxy narzędzi: agent pisze `{{sekret:ksef}}`, proxy
 podstawia wartość tylko w żądaniu do domeny przypisanej temu sekretowi i wycina ją z odpowiedzi i logów. Profil
-zaufanego profilu (ePUAP), portale sądowe i bankowość — logowanie zawsze robi człowiek w przejętej sesji.
+zaufany (ePUAP), portale sądowe i bankowość — logowanie zawsze robi człowiek w przejętej sesji.
 
 ### 2.8. Zatwierdzenia skalowane wpływem na świat
 
@@ -328,8 +328,9 @@ sam pisze umiejętności po złożonych zadaniach, poprawia je w użyciu i skanu
 ([dokumentacja](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)), a Hermes Business dzieli
 „najlepsze umiejętności" w zespole ([Nous](https://portal.nousresearch.com/business)). Poke ma „przepisy" — automatyzacje
 zwykłym tekstem, którymi użytkownicy się dzielą ([TechCrunch, 8.04.2026](https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/)).
-Thomson Reuters, LexisNexis i Cohere North 2 dodały warstwę umiejętności, żeby firmy kodowały własne know-how
-([Cohere](https://cohere.com/blog/introducing-north-2)).
+LexisNexis ma w Protégé umiejętności swoje i partnerów, a własne umiejętności klientów zapowiada „wkrótce" (24.08.2026,
+[LexisNexis](https://www.lexisnexis.com/community/pressroom/b/news/posts/lexis-with-protege-accelerates-frictionless-agentic-productivity-from-first-idea-to-review-ready-legal-work-product));
+Cohere North 2 (5.10.2026) ma umiejętności wielokrotnego użytku ([Cohere](https://cohere.com/blog/introducing-north-2)).
 
 **Dlaczego działa.** Prompt systemowy zostaje krótki (cache), a wiedza proceduralna jest wersjonowana i do przejrzenia.
 **Ciemna strona:** otwarty rynek umiejętności to nowa powierzchnia ataku — sekcja 5.
@@ -351,7 +352,7 @@ pamięć jest pełna, agent musi skonsolidować wpisy zamiast cicho je gubić
 ([dreaming](https://docs.openclaw.ai/concepts/dreaming)). [Claude](01-PROFILE.md#2-claude) trzyma pamięć jako pliki
 tematyczne do edycji, a tematów wrażliwych (zdrowie, przekonania) domyślnie nie zapisuje
 ([Anthropic, 25.08.2026](https://claude.com/resources/articles/claudes-memory-works-everywhere-and-you-decide-whats-in-it)).
-[Harvey](01-PROFILE.md#4-harvey) II zamyka pracę w „Spaces" sprawy — dokumenty, strony, zadania, uprawnienia
+[Harvey](01-PROFILE.md#4-harvey) II (18.08.2026) zamyka pracę w „Spaces" sprawy — dokumenty, strony, zadania, uprawnienia
 ([Harvey](https://www.harvey.ai/blog/introducing-harvey-ii)).
 
 **Dlaczego działa.** Limit wymusza kurację (mniej śmieci w kontekście), stała migawka nie psuje cache, a plik da się
@@ -402,7 +403,7 @@ Lindy konto Apple ID w pół dnia; firma przepisała kanał trzy razy i pilnuje 
 (to samo ostrzeżenie przy Telegramie w [klockach](../harnessy-agentowe/02-KLOCKI.md#powiadomienia-i-kanały)).
 Dla profesjonalisty kanałem jest: lokalna aplikacja webowa w sieci biura, e-mail przez serwer kancelarii (wzorzec
 „DW do asystenta"), wtyczka Word — Spellbook i Noxtua siedzą w Wordzie
-([Noxtua](https://www.noxtua.com/)) — i Matrix na własnym serwerze. Dla mojego osobistego asystenta Telegram jest OK
+([Spellbook](https://www.spellbook.com/press), [Noxtua](https://www.noxtua.com/)) — i Matrix na własnym serwerze. Dla mojego osobistego asystenta Telegram jest OK
 dla spraw niewrażliwych. Kurs: [kurs 2, część 12](../kurs_aplikacje_agentowe/12-KANALY-INTERFEJSY.md).
 
 ### 2.13. Głos
@@ -436,9 +437,10 @@ nagrania; dodatkowy model-strażnik poprawia twierdzenia bez pokrycia i w wewnę
 ([Abridge](https://www.abridge.com/ai/science-confabulation-hallucination-elimination)).
 [OpenEvidence](01-PROFILE.md#12-openevidence) — RAG nad licencjonowaną literaturą (NEJM, JAMA, NCCN, Cochrane) z cytatami
 w tekście ([Wikipedia](https://en.wikipedia.org/wiki/OpenEvidence)). Hebbia: „widać, skąd wzięła się każda liczba"
-([Hebbia](https://www.hebbia.com/blog/introducing-matrix-2-0)); AlphaSense cytuje na poziomie zdania. W Polsce LEX
-Expert AI linkuje odpowiedzi do fragmentów w LEX — to poprzeczka, do której polscy prawnicy są przyzwyczajeni
-([research, sekcja C2](https://www.wolterskluwer.com/pl-pl)).
+([Hebbia](https://www.hebbia.com/blog/introducing-matrix-2-0)); AlphaSense cytuje na poziomie zdania
+([AlphaSense](https://www.alpha-sense.com/)). W Polsce LEX Expert AI (19.11.2025) linkuje każdą odpowiedź do źródeł
+i fragmentów w LEX — to poprzeczka, do której polscy prawnicy są już przyzwyczajeni
+([Prawo.pl](https://www.prawo.pl/prawnicy-sady/lex-expert-ai-nowym-narzedziem-dla-prawnikow)).
 
 **Dlaczego działa.** Weryfikacja zdania trwa sekundy zamiast minut. Dla adwokata to warunek: § 23e Zbioru Zasad
 Etyki Adwokackiej wymaga osobistej weryfikacji wyniku ([NRA, 12–13.06.2026](https://www.adwokatura.pl/z-zycia-nra/zmiany-w-zbiorze-zasad-etyki-adwokackiej-naczelna-rada-adwokacka-przyjela-nowe-regulacje-dotyczace-korzystania-ze-sztucznej-inteligencji-w-wykonywaniu-zawodu-adwokata/)).
@@ -603,24 +605,24 @@ Gemini Spark poza EOG — [Google](https://support.google.com/gemini/answer/1659
 [dane i prywatność](https://cursor.com/data-use); browser-use — [model BU 2.0](https://docs.browser-use.com/open-source/bu-2-0-model-card)
 i [klocki](../harnessy-agentowe/02-KLOCKI.md#agenci-przeglądarkowi).
 
-**Wniosek:** z piętnastu tylko trzy da się uruchomić bez internetu, i wszystkie trzy to otwarte harnessy, nie produkty
-dla profesjonalistów. **Nikt z czołówki nie sprzedaje polskiemu prawnikowi czy lekarzowi asystenta, który działa na
+**Wniosek:** z piętnastu tylko trzy da się uruchomić lokalnie (dwa w pełni, browser-use częściowo), i wszystkie trzy
+to otwarte narzędzia, nie produkty dla profesjonalistów. **Nikt z czołówki nie sprzedaje polskiemu prawnikowi czy lekarzowi asystenta, który działa na
 biurku** — to jest luka, którą opisuję w sekcji 4.
 
 ### Funkcja → lokalny zamiennik
 
 | Funkcja | Lokalny zamiennik (otwarty) | Co jest słabe offline |
 |---|---|---|
-| LLM — rozumowanie | mój rig: DeepSeek-V4-Flash (tylko tekst); na biurko: Qwen3.6-27B, Gemma-4-31B, gpt-oss-120b; Bielik-11B-v3 do polskiego stylu | najlepszy otwarty model w PLCC ma 89,83 wobec 92–97 dla zamkniętych; zamiana Opusa na mały model kosztowała w OpenJarvis 25–39 pp |
+| LLM — rozumowanie | mój rig: DeepSeek-V4-Flash (tylko tekst); na biurko: Qwen3.6-27B, Gemma-4-31B, gpt-oss-120b; Bielik-11B-v3 do polskiego stylu | najlepszy otwarty model w PLCC ma 89,83 wobec 92–97 dla zamkniętych (8.10.2026); zamiana Opusa na mały model kosztowała w OpenJarvis 25–39 pp |
 | Embeddingi i RAG | llama-swap serwuje też embeddingi; baza wektorowa w SQLite + BM25 + reranking ([kurs 1, część 4](../kurs_lokalne_modele/04-PAMIEC-RAG-I-KONTEKST.md)); SQLite FTS5 jak w Hermesie; Cognee bez klucza chmurowego | najlepsze wyszukiwanie przepisów na pytaniach z egzaminów na aplikacje: 72,3% top-1 (BM25: 61,7%) — wyszukiwanie wymaga własnych testów |
 | STT | whisper.cpp large-v3 (WER 4,74% FLEURS-pl), Parakeet-TDT-0.6B-v3 na CPU (7,31%), faster-whisper | polskie słownictwo medyczne i jakość mikrofonu w gabinecie — niezweryfikowane |
 | TTS | Piper pl_PL (CPU, brzmi robotycznie), Chatterbox Multilingual V3 (MIT, znak wodny), VoxCPM2 | jakość polskiego TTS; Kokoro tylko EN; brak lokalnej mowy-do-mowy po polsku na AMD |
 | OCR i wizja | Docling + PaddleOCR-VL-1.5 (mało VRAM, działa na CPU); Qwen3.6-35B-A3B; test DeepSeek-V4-Flash-Vision-Exp | DeepSeek-V4-Flash nie widzi obrazów; modele wizyjne słabo wykorzystują obraz w polskich pytaniach medycznych |
 | Wyszukiwanie w sieci | SearXNG (wymaga internetu); offline: lokalne lustra ISAP / ELI, SAOS, ChPL, wytycznych — synchronizowane osobnym procesem | świeża wiedza z sieci offline jest niemożliwa; lustro ma datę |
 | Kalendarz i e-mail | IMAP / SMTP do serwera biura, CalDAV (np. Nextcloud on-prem), szkice wprost w skrzynce, wzorzec „DW do asystenta" | wysłanie wiadomości z definicji wymaga sieci; kalendarze w chmurze odpadają |
-| Computer use | DOM: browser-use, Playwright MCP (drzewo dostępności, bez wizji), agent-browser; GUI: UI-TARS-desktop + UI-TARS-1.5-7B, Holo4-35B-A3B, Fara-7B | długie zadania: w OSWorld 2.0 najlepszy model z czołówki ukończył 20,6%; 7B na OSWorld ~27,5% |
+| Computer use | DOM: browser-use, Playwright MCP (drzewo dostępności, bez wizji), agent-browser; GUI: UI-TARS-desktop + UI-TARS-1.5-7B, Holo4-35B-A3B, Fara-7B | długie zadania: w OSWorld 2.0 (6.2026) najlepszy model z czołówki ukończył 20,6%; 7B na OSWorld ~27,5% |
 | Kanały | lokalna aplikacja webowa / PWA w sieci biura, Matrix na własnym serwerze, Gotify, ntfy hostowany samemu | WhatsApp, iMessage, Telegram to cudza chmura z definicji; natychmiastowe push na iOS wymaga przekaźnika ntfy.sh |
-| Moderacja i injection | Bielik-Guard 0.5B (polski klasyfikator szkód), BrowseSafe (otwarte wagi, wykrywanie injection) | BrowseSafe przepuszcza ~10% ataków; Bielik-Guard: precyzja 75,28% |
+| Moderacja i injection | Bielik-Guard 0.5B (polski klasyfikator szkód), BrowseSafe (otwarte wagi, wykrywanie injection) | BrowseSafe przepuszcza ~10% ataków (12.2025); Bielik-Guard: precyzja 75,28% |
 
 Źródła: [klocki](../harnessy-agentowe/02-KLOCKI.md) (głos, obraz, wyszukiwanie, kanały, pamięć);
 [03-ARCHITEKTURA, sekcja 3](../harnessy-agentowe/03-ARCHITEKTURA.md#3-co-jest-udowodnione-a-co-nie) (OpenJarvis);
@@ -703,7 +705,7 @@ To projekt złożony z wzorców z sekcji 2 — **niezmierzony**, dopóki go nie 
 ### Rozmiar sprzętu
 
 Ceny, dostępność i pomiary konkretnych pudełek są w [04-POLSKA-I-SUWERENNOSC.md](04-POLSKA-I-SUWERENNOSC.md). Tu
-tylko, co musi się zmieścić w pamięci:
+tylko, co musi się zmieścić w pamięci — to mój szacunek z rozmiarów wag, nie pomiar:
 
 | Klasa pamięci | Co się mieści | Dla kogo |
 |---|---|---|
@@ -777,9 +779,9 @@ Co już się wydarzyło:
   i Claude w Chrome ([BleepingComputer](https://www.bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions/)).
 - **Cowork:** ukryty biały tekst w dokumencie → wysyłka plików przez dozwolone API (2.6).
 - Obrona działa, ale nie do końca: Anthropic obniżył skuteczność ataków na Claude w Chrome z 23,6% do 11,2%, a dla
-  Opus 4.5 podaje ~1% przy adaptacyjnym atakującym *(dane firmy)*
+  Opus 4.5 podaje ~1% przy adaptacyjnym atakującym *(dane firmy, 2025)*
   ([Anthropic](https://www.anthropic.com/research/prompt-injection-defenses)); BrowseSafe wykrywa 91% w < 0,5 s, ale
-  ~10% ataków przechodzi.
+  ~10% ataków przechodzi *(12.2025)*.
 
 Najlepszy opisany wzorzec po stronie wykonania ma [Harvey](01-PROFILE.md#4-harvey) (7.10.2026): sprawdzenie każdego
 wywołania narzędzia, „przypinanie" definicji narzędzi przeciw ich podmianie, polityki Rego blokujące „śmiertelną
