@@ -1,0 +1,20 @@
+[Unit]
+Description=OSA agent system gateway
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=@OSA@
+ExecStart=@OSA@/.venv/bin/python @OSA@/brama.py
+Restart=on-failure
+RestartSec=10
+StartLimitBurst=5
+StartLimitIntervalSec=600
+# Narrowing: the gateway needs nothing outside its own directory
+PrivateTmp=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=@OSA@ %h/.local/run
+
+[Install]
+WantedBy=default.target
