@@ -1,165 +1,171 @@
 # llm-education
 
-**Po polsku: dwa kursy o tym, jak naprawdę działają lokalne modele językowe i jak zbudować wokół nich agenta,
-któremu można zaufać — oraz przegląd gotowych harnessów agentowych.**
+**Two courses on how local language models really work and how to build an agent around them
+that you can trust — plus a survey of ready-made agent harnesses.**
 
-> **Struktura:** treść po polsku jest w [`pl/`](pl/). Katalog [`en/`](en/) jest przygotowany na wersję angielską (jeszcze pusty).
+> **Structure:** the course content exists in two languages. English: [`en/`](en/). Polish (the original): [`pl/`](pl/).
+> Polish version of this page: [README_PL.md](README_PL.md).
 
-![Język: polski](https://img.shields.io/badge/język-polski-red)
-![Kurs 1: 10 części, ~47 h](https://img.shields.io/badge/kurs%201-10%20części%20·%20~47%20h-blue)
-![Kurs 2: 19 części, ~102 h](https://img.shields.io/badge/kurs%202-19%20części%20·%20~102%20h-blue)
-![Przegląd: 20 harnessów agentowych](https://img.shields.io/badge/przegląd-20%20harnessów%20agentowych-orange)
-![Przegląd: 15 asystentów AI](https://img.shields.io/badge/przegląd-15%20asystentów%20AI-orange)
-![Licencja: CC BY 4.0 + MIT](https://img.shields.io/badge/licencja-CC%20BY%204.0%20%2B%20MIT-lightgrey)
+![Language: English and Polish](https://img.shields.io/badge/language-English%20%2B%20Polish-red)
+![Course 1: 10 parts, ~47 h](https://img.shields.io/badge/course%201-10%20parts%20·%20~47%20h-blue)
+![Course 2: 19 parts, ~102 h](https://img.shields.io/badge/course%202-19%20parts%20·%20~102%20h-blue)
+![Survey: 20 agent harnesses](https://img.shields.io/badge/survey-20%20agent%20harnesses-orange)
+![Survey: 15 AI assistants](https://img.shields.io/badge/survey-15%20AI%20assistants-orange)
+![License: CC BY 4.0 + MIT](https://img.shields.io/badge/license-CC%20BY%204.0%20%2B%20MIT-lightgrey)
 
-Bez frameworków na start i bez magii. Każdy mechanizm budujesz sam, od zera, na modelach uruchomionych
-**na własnym komputerze**: tokenizer, próbkowanie, gramatyki, bazę wektorową, pętlę agenta, piaskownicę,
-harmonogram, ewaluację. Dopiero gdy rozumiesz, co robi biblioteka, świadomie wybierasz gotowe narzędzia.
+No frameworks to start with and no magic. You build every mechanism yourself, from scratch, on models running
+**on your own computer**: tokenizer, sampling, grammars, a vector database, the agent loop, a sandbox,
+a scheduler, evaluation. Only once you understand what a library does do you choose ready-made tools consciously.
 
-Kursy powstały jako mój własny plan nauki na domowej maszynie z kartami AMD Radeon AI PRO R9700
-(ROCm + [llama.cpp](https://github.com/ggml-org/llama.cpp)). Udostępniam je w nadziei, że przydadzą się
-innym osobom uczącym się po polsku.
-
----
-
-## Co jest w środku
-
-### Kurs 1 — [od modelu do własnego agenta](pl/kurs_lokalne_modele/00-KURS-INDEKS.md) (`pl/kurs_lokalne_modele/`)
-
-Po tym kursie potrafisz zbudować od zera własnego agenta, który czyta pliki, pisze kod, uruchamia polecenia,
-widzi obrazy, słucha i mówi, pamięta kontekst i działa offline — i rozumiesz każdą warstwę pod nim.
-
-| Część | Temat | Co budujesz |
-|---|---|---|
-| [01](pl/kurs_lokalne_modele/PODSTAWY-LOKALNYCH-MODELI.md) | Podstawy | tokeny, wagi, runtime, serwer; `llama-cli`, `llama-server`, `curl` |
-| [02](pl/kurs_lokalne_modele/02-WNETRZE-MODELU.md) | Wnętrze modelu | tokenizer, logity, próbkowanie, KV-cache, embeddingi — policzone ręcznie |
-| [03](pl/kurs_lokalne_modele/03-KONTROLA-I-NIEZAWODNOSC.md) | Kontrola | szablon czatu, gramatyki GBNF, determinizm, harness ewaluacyjny |
-| [04](pl/kurs_lokalne_modele/04-PAMIEC-RAG-I-KONTEKST.md) | Pamięć (RAG) | baza wektorowa w sqlite od zera, chunking, BM25, reranking, cytowania |
-| [05](pl/kurs_lokalne_modele/05-MULTIMODALNOSC.md) | Zmysły | wizja, Whisper (słuch), Piper (mowa) + lista sprzętu |
-| [06](pl/kurs_lokalne_modele/06-PETLA-AGENTA-OD-ZERA.md) | **Pętla agenta** | narzędzia, edycja plików, powłoka, błędy, dziennik — serce kursu |
-| [07](pl/kurs_lokalne_modele/07-SANDBOX-BEZPIECZENSTWO-MONITORING.md) | Piaskownica | bwrap, limity, sieć, prompt injection, audyt, monitoring |
-| [08](pl/kurs_lokalne_modele/08-OPTYMALIZACJA-OFFLINE.md) | Szybkość | prompt cache, dekodowanie spekulatywne, kwantyzacja, wiele kart |
-| [09](pl/kurs_lokalne_modele/09-KRAJOBRAZ-NARZEDZI.md) | Katalog narzędzi | vLLM, Docling, promptfoo i inne — ocenione pod kątem tego sprzętu |
-| [10](pl/kurs_lokalne_modele/10-HYBRYDA-LOKALNY-PLUS-CLAUDE.md) | Hybryda | granica prywatności, kiedy model w chmurze, offline-first |
-
-### Kurs 2 — [aplikacje agentowe](pl/kurs_aplikacje_agentowe/00-INDEKS.md) (`pl/kurs_aplikacje_agentowe/`)
-
-Kurs 1 uczy, **jak działa model**. Kurs 2 uczy, **jak zbudować wokół niego system, któremu można zaufać**.
-Budujesz jeden rosnący system i stawiasz na nim trzech agentów osobistych, którzy działają tygodniami,
-budzą się sami, pamiętają, są mierzeni i nie mogą zrobić Ci krzywdy:
-**Archiwista** (dokumenty lokalne, bez sieci), **Badacz** (sieć, ścisła piaskownica) i **Gospodarz**
-(kalendarz i przypomnienia).
-
-| Blok | Części | Tematy |
-|---|---|---|
-| Fundament | 01–03 | architektury agentowe, brama i konfiguracja, **harness długich zadań** |
-| Kontekst i pamięć | 04–06 | budżet uwagi, pamięć bi-temporalna, tożsamość w plikach |
-| Działanie | 07–10 | ergonomia narzędzi, **code-mode**, MCP / CLI / A2A, piaskownica produkcyjna |
-| Proaktywność | 11–13 | harmonogram, kanały, flota wielu agentów |
-| Jakość i zaufanie | 14–16 | **ewaluacja**, obserwowalność (OTel), bezpieczeństwo (OWASP ASI) |
-| Produkcja | 17–19 | router hybrydowy, wydania i utrzymanie, projekt końcowy |
-
-⚠️ **Kurs 2 zaczynaj dopiero po części 6 kursu 1** — cały stoi na pętli agenta, którą tam budujesz.
-
-### Przegląd — [harnessy agentowe dla lokalnych modeli](pl/harnessy-agentowe/README.md) (`pl/harnessy-agentowe/`)
-
-Kursy uczą budować od zera. Przegląd odpowiada na pytanie, **co już istnieje**: ranking 20 najlepszych otwartych
-harnessów (z 72 sprawdzonych), które zamieniają lokalny model w agenta — czym się różnią, jaki problem każdy rozwiązuje
-lepiej od konkurencji, jak podłączyć go do llama-swap i jak złożyć z nich aplikacje hybrydowe: Claude Opus jako planista,
-lokalni agenci jako wykonawcy. Stan na 11 października 2026.
-
-| Plik | Co w nim jest |
-|---|---|
-| [README](pl/harnessy-agentowe/README.md) | ranking, porównanie techniczne, wybór do zastosowania, werdykt „budować czy brać gotowe" |
-| [01-PROFILE](pl/harnessy-agentowe/01-PROFILE.md) | 20 profili z konfiguracją lokalnego modelu i siedem pułapek wspólnych dla wszystkich |
-| [02-KLOCKI](pl/harnessy-agentowe/02-KLOCKI.md) | wyszukiwanie, monitoring cen, dane finansowe, powiadomienia, harmonogram, pamięć, głos, obraz |
-| [03-ARCHITEKTURA](pl/harnessy-agentowe/03-ARCHITEKTURA.md) | wzorzec planista–wykonawcy na 4× R9700, tryb w pełni lokalny, pięć gotowych układów, koszty |
-| [ZRODLA](pl/harnessy-agentowe/ZRODLA.md) | źródła z datą sprawdzenia i tym, co z nich wziąłem |
-
-### Przegląd — [asystenci AI: 15 najlepszych](pl/asystenci-ai/README.md) (`pl/asystenci-ai/`)
-
-Czego uczą najlepsze istniejące asystenty AI — codzienne, profesjonalne, autonomicznie wykonujące zadania i „żyjące"
-w tle: otwarte i zamknięte, ich architektura, modele biznesowe, możliwość pracy offline i lekcje dla lokalnego asystenta
-dla polskich profesjonalistów, którzy nie mogą wysyłać danych do USA. Stan na 11 października 2026.
-
-| Plik | Co w nim jest |
-|---|---|
-| [README](pl/asystenci-ai/README.md) | mapa rynku, piętnastka w tabeli, 10 lekcji, metoda wyboru |
-| [01-PROFILE](pl/asystenci-ai/01-PROFILE.md) | 15 profili po dziewięć obszarów i lista „warto znać" |
-| [02-RYNEK](pl/asystenci-ai/02-RYNEK.md) | modele biznesowe, cenniki, liczby, przejęcia, porażki, trendy 2026 |
-| [03-WZORCE-TECHNICZNE](pl/asystenci-ai/03-WZORCE-TECHNICZNE.md) | wzorce techniczne, macierz offline, architektura lokalnego asystenta na biurko |
-| [04-POLSKA-I-SUWERENNOSC](pl/asystenci-ai/04-POLSKA-I-SUWERENNOSC.md) | RODO, AI Act, tajemnice zawodowe, konkurencja w Polsce i UE, polskie modele, sprzęt, szanse |
-| [ZRODLA](pl/asystenci-ai/ZRODLA.md) | źródła z datą sprawdzenia |
+The courses began as my own study plan on a home machine with AMD Radeon AI PRO R9700 cards
+(ROCm + [llama.cpp](https://github.com/ggml-org/llama.cpp)). I am sharing them in the hope that they will be useful to
+others who are learning.
 
 ---
 
-## Jak zacząć
+## What is inside
+
+Every link below has two versions: the English one under `en/` and the Polish original under `pl/`
+(the same file layout, with Polish directory and file names).
+
+### Course 1 — [from a model to your own agent](en/course_local_models/00-COURSE-INDEX.md) (`en/course_local_models/`, Polish: [`pl/kurs_lokalne_modele/`](pl/kurs_lokalne_modele/00-KURS-INDEKS.md))
+
+After this course you can build from scratch your own agent that reads files, writes code, runs commands,
+sees images, listens and speaks, remembers context and works offline — and you understand every layer underneath it.
+
+| Part | Topic | What you build |
+|---|---|---|
+| [01](en/course_local_models/LOCAL-MODELS-FUNDAMENTALS.md) | Fundamentals | tokens, weights, runtime, server; `llama-cli`, `llama-server`, `curl` |
+| [02](en/course_local_models/02-MODEL-INTERNALS.md) | Model internals | tokenizer, logits, sampling, KV-cache, embeddings — computed by hand |
+| [03](en/course_local_models/03-CONTROL-AND-RELIABILITY.md) | Control | chat template, GBNF grammars, determinism, an evaluation harness |
+| [04](en/course_local_models/04-MEMORY-RAG-AND-CONTEXT.md) | Memory (RAG) | a vector database in sqlite from scratch, chunking, BM25, reranking, citations |
+| [05](en/course_local_models/05-MULTIMODALITY.md) | Senses | vision, Whisper (hearing), Piper (speech) + a hardware list |
+| [06](en/course_local_models/06-AGENT-LOOP-FROM-SCRATCH.md) | **The agent loop** | tools, file editing, shell, errors, a log — the heart of the course |
+| [07](en/course_local_models/07-SANDBOX-SECURITY-MONITORING.md) | Sandbox | bwrap, limits, network, prompt injection, audit, monitoring |
+| [08](en/course_local_models/08-OPTIMIZATION-OFFLINE.md) | Speed | prompt cache, speculative decoding, quantization, multiple cards |
+| [09](en/course_local_models/09-TOOL-LANDSCAPE.md) | Tool catalogue | vLLM, Docling, promptfoo and others — assessed for this hardware |
+| [10](en/course_local_models/10-HYBRID-LOCAL-PLUS-CLAUDE.md) | Hybrid | the privacy boundary, when to use a cloud model, offline-first |
+
+### Course 2 — [agentic applications](en/course_agentic_apps/00-INDEX.md) (`en/course_agentic_apps/`, Polish: [`pl/kurs_aplikacje_agentowe/`](pl/kurs_aplikacje_agentowe/00-INDEKS.md))
+
+Course 1 teaches **how a model works**. Course 2 teaches **how to build a system around it that you can trust**.
+You build one growing system and run on it three personal agents that work for weeks,
+wake up on their own, remember, are measured and cannot do you harm:
+**the Archivist** (local documents, no network), **the Researcher** (network, strict sandbox) and **the Steward**
+(calendar and reminders).
+
+| Block | Parts | Topics |
+|---|---|---|
+| Foundation | 01–03 | agent architectures, the gateway and configuration, **a harness for long-running tasks** |
+| Context and memory | 04–06 | the attention budget, bi-temporal memory, identity in files |
+| Action | 07–10 | tool ergonomics, **code-mode**, MCP / CLI / A2A, a production sandbox |
+| Proactivity | 11–13 | scheduling, channels, a fleet of multiple agents |
+| Quality and trust | 14–16 | **evaluation**, observability (OTel), security (OWASP ASI) |
+| Production | 17–19 | a hybrid router, releases and maintenance, the capstone project |
+
+⚠️ **Start Course 2 only after part 6 of Course 1** — the whole of it stands on the agent loop that you build there.
+
+### Survey — [agent harnesses for local models](en/agent-harnesses/README.md) (`en/agent-harnesses/`, Polish: [`pl/harnessy-agentowe/`](pl/harnessy-agentowe/README.md))
+
+The courses teach building from scratch. The survey answers the question of **what already exists**: a ranking of the 20 best open
+harnesses (out of 72 examined) that turn a local model into an agent — how they differ, what problem each one solves
+better than the competition, how to connect it to llama-swap and how to assemble hybrid applications from them: Claude Opus as the planner,
+local agents as the executors. As of 11 October 2026.
+
+| File | What is in it |
+|---|---|
+| [README](en/agent-harnesses/README.md) | the ranking, a technical comparison, choosing by use case, the verdict "build or take off the shelf" |
+| [01-PROFILES](en/agent-harnesses/01-PROFILES.md) | 20 profiles with local-model configuration and seven pitfalls common to all of them |
+| [02-BUILDING-BLOCKS](en/agent-harnesses/02-BUILDING-BLOCKS.md) | search, price monitoring, financial data, notifications, scheduling, memory, voice, vision |
+| [03-ARCHITECTURE](en/agent-harnesses/03-ARCHITECTURE.md) | the planner–executors pattern on 4× R9700, a fully local mode, five ready-made layouts, costs |
+| [SOURCES](en/agent-harnesses/SOURCES.md) | sources with the date checked and what I took from them |
+
+### Survey — [AI assistants: the 15 best](en/ai-assistants/README.md) (`en/ai-assistants/`, Polish: [`pl/asystenci-ai/`](pl/asystenci-ai/README.md))
+
+What the best existing AI assistants teach — everyday, professional, ones that carry out tasks autonomously and ones that "live"
+in the background: open and closed, their architecture, business models, ability to work offline and lessons for a local assistant
+for Polish professionals who cannot send data to the USA. As of 11 October 2026.
+
+| File | What is in it |
+|---|---|
+| [README](en/ai-assistants/README.md) | a market map, the fifteen in a table, 10 lessons, a selection method |
+| [01-PROFILES](en/ai-assistants/01-PROFILES.md) | 15 profiles across nine areas and a "worth knowing" list |
+| [02-MARKET](en/ai-assistants/02-MARKET.md) | business models, price lists, numbers, acquisitions, failures, 2026 trends |
+| [03-TECHNICAL-PATTERNS](en/ai-assistants/03-TECHNICAL-PATTERNS.md) | technical patterns, an offline matrix, the architecture of a local desktop assistant |
+| [04-POLAND-AND-SOVEREIGNTY](en/ai-assistants/04-POLAND-AND-SOVEREIGNTY.md) | GDPR, the AI Act, professional secrecy, competition in Poland and the EU, Polish models, hardware, opportunities |
+| [SOURCES](en/ai-assistants/SOURCES.md) | sources with the date checked |
+
+---
+
+## Getting started
 
 ```bash
 git clone https://github.com/michal-koniu/llm-education.git
 cd llm-education
-source rig-env.sh        # ustawia ścieżki kursów, modeli i llama.cpp
+source rig-env.sh        # sets the paths for the courses, models and llama.cpp
 ```
 
-Potem otwórz [część 1 kursu 1](pl/kurs_lokalne_modele/PODSTAWY-LOKALNYCH-MODELI.md). Każda lekcja zaczyna się od
-`source rig-env.sh` w katalogu repozytorium — w poleceniach lekcji stoi moja ścieżka
-(`~/Desktop/github_repos/llm-education`), u Ciebie może być inna.
+Then open [part 1 of Course 1](en/course_local_models/LOCAL-MODELS-FUNDAMENTALS.md). Every lesson begins with
+`source rig-env.sh` in the repository directory — the lesson commands contain my path
+(`~/Desktop/github_repos/llm-education`), yours may be different.
 
-**Dostosuj `rig-env.sh` do swojej maszyny:** ścieżki do modeli (`$M`, `$BIELIK`, …), do llama.cpp (`$LB`)
-i widoczne karty (`HIP_VISIBLE_DEVICES`).
+**Adapt `rig-env.sh` to your machine:** the paths to the models (`$M`, `$BIELIK`, …), to llama.cpp (`$LB`)
+and the visible cards (`HIP_VISIBLE_DEVICES`).
 
-## Gdzie powstają pliki
+## Where files are created
 
-Wszystko, co tworzą kursy, powstaje **wewnątrz repozytorium**, w katalogach ignorowanych przez git:
+Everything the courses create is created **inside the repository**, in directories ignored by git:
 
-| Zmienna | Katalog | Co tam trafia |
+| Variable | Directory | What goes there |
 |---|---|---|
-| `$KURS` | `pl/kurs_lokalne_modele/praca/` | skrypty, bazy, ewaluacje, gramatyki z kursu 1 |
-| `$AGENT` | `pl/kurs_lokalne_modele/praca/agent/` | agent budowany od części 6 |
-| `$OSA` | `pl/kurs_aplikacje_agentowe/praca/os-agenta/` | system z kursu 2 (z własnym repozytorium git) |
-| `$VENVS` | `.venvs/` | środowiska Pythona używane w lekcjach |
-| `$NARZEDZIA` | `narzedzia/` | whisper.cpp i piper z części 5 |
+| `$KURS` | `pl/kurs_lokalne_modele/praca/` | scripts, databases, evaluations, grammars from Course 1 |
+| `$AGENT` | `pl/kurs_lokalne_modele/praca/agent/` | the agent built from part 6 onwards |
+| `$OSA` | `pl/kurs_aplikacje_agentowe/praca/os-agenta/` | the system from Course 2 (with its own git repository) |
+| `$VENVS` | `.venvs/` | the Python environments used in the lessons |
+| `$NARZEDZIA` | `narzedzia/` | whisper.cpp and piper from part 5 |
 
-**Świadome wyjątki** — tych rzeczy nie trzyma się w katalogu projektu:
+(The working directories live under `pl/` — the variables in `rig-env.sh` point there, for both language versions.)
 
-- **modele** (`~/models`) i **llama.cpp** (`~/llama.cpp`) — duże, wspólne z innymi narzędziami na maszynie;
-- **jednostki systemd** (`~/.config/systemd/user/`) — systemd czyta je tylko stamtąd; `init.sh` generuje je
-  z pełną ścieżką projektu;
-- **sekrety** (`~/.config/osa/sekrety.json`, prawa 0600) — sekretów nie trzyma się w repozytorium,
-  nawet ignorowanym;
-- **gniazdo** (`~/.local/run/osa.sock`) — ścieżka gniazda ma limit 108 znaków;
-- **Twoje dane**, na których pracują agenci (`~/dokumenty`, `~/skany`) — to Twoje pliki, nie wytwory kursu.
+**Deliberate exceptions** — these things are not kept in the project directory:
 
-## Sprzęt i oprogramowanie
+- **models** (`~/models`) and **llama.cpp** (`~/llama.cpp`) — large, shared with other tools on the machine;
+- **systemd units** (`~/.config/systemd/user/`) — systemd reads them only from there; `init.sh` generates them
+  with the full project path;
+- **secrets** (`~/.config/osa/sekrety.json`, permissions 0600) — secrets are not kept in the repository,
+  not even an ignored one;
+- **the socket** (`~/.local/run/osa.sock`) — a socket path has a limit of 108 characters;
+- **Your data** that the agents work on (`~/dokumenty`, `~/skany`) — these are your files, not products of the course.
 
-- Kursy pisane i sprawdzane na: Ubuntu 24.04, ROCm, llama.cpp (+ llama-swap), karty AMD Radeon AI PRO R9700.
-- Większość ćwiczeń wymaga karty z **co najmniej 16 GB VRAM** (Bielik 11B w Q8, gpt-oss-20b). Części o wielu
-  kartach i dużych modelach (np. 8) — odpowiednio więcej.
-- Inne karty (NVIDIA, Apple Silicon) zadziałają tam, gdzie działa llama.cpp — zmienisz `rig-env.sh`
-  i zignorujesz uwagi specyficzne dla ROCm.
-- Python 3.12, `sqlite3`, `bwrap` (części o piaskownicy).
+## Hardware and software
 
-## Jak czytać lekcje
+- The courses were written and tested on: Ubuntu 24.04, ROCm, llama.cpp (+ llama-swap), AMD Radeon AI PRO R9700 cards.
+- Most exercises require a card with **at least 16 GB of VRAM** (Bielik 11B in Q8, gpt-oss-20b). Parts with multiple
+  cards and large models (e.g. 8) — correspondingly more.
+- Other cards (NVIDIA, Apple Silicon) will work wherever llama.cpp works — you will change `rig-env.sh`
+  and ignore the notes specific to ROCm.
+- Python 3.12, `sqlite3`, `bwrap` (the sandbox parts).
 
-- **Pułapki** mają numery (`P4`, `P29`, …) — to błędy, które naprawdę wystąpiły na tej maszynie, z objawem
-  i naprawą. Indeksy kursów zbierają je w jednym miejscu.
-- **Eksperymenty** mają pustą tabelę na Twój pomiar i moją predykcję. Gdy się rozjadą, **Twój pomiar
-  wygrywa** — popraw kurs.
-- Liczby w lekcjach pochodzą z mojej maszyny; Twoje będą inne. Ważny jest kierunek i rząd wielkości.
+## How to read the lessons
 
-## Powiązane repozytoria
+- **Pitfalls** are numbered (`P4`, `P29`, …) — these are errors that really occurred on this machine, with the symptom
+  and the fix. The course indexes collect them in one place.
+- **Experiments** have an empty table for your measurement and my prediction. When they diverge, **your measurement
+  wins** — correct the course.
+- The numbers in the lessons come from my machine; yours will differ. The direction and order of magnitude are what matter.
 
-| Repozytorium | Co to jest |
+## Related repositories
+
+| Repository | What it is |
 |---|---|
-| [local-llm-perf-bench](https://github.com/michal-koniu/local-llm-perf-bench) | pomiar szybkości modeli w llama.cpp |
-| [local-llm-quality-bench](https://github.com/michal-koniu/local-llm-quality-bench) | pomiar jakości modeli jako agentów, po polsku i angielsku |
-| [local-llm-bench-results](https://github.com/michal-koniu/local-llm-bench-results) | wyniki obu benchmarków z tej maszyny |
-| [radeon-r9700-rocm-notes](https://github.com/michal-koniu/radeon-r9700-rocm-notes) | notatki o sprzęcie: 4× R9700 + ROCm |
+| [local-llm-perf-bench](https://github.com/michal-koniu/local-llm-perf-bench) | measuring the speed of models in llama.cpp |
+| [local-llm-quality-bench](https://github.com/michal-koniu/local-llm-quality-bench) | measuring the quality of models as agents, in Polish and English |
+| [local-llm-bench-results](https://github.com/michal-koniu/local-llm-bench-results) | the results of both benchmarks from this machine |
+| [radeon-r9700-rocm-notes](https://github.com/michal-koniu/radeon-r9700-rocm-notes) | hardware notes: 4× R9700 + ROCm |
 
-## Licencja
+## License
 
-Treść lekcji: **CC BY 4.0** — możesz kopiować, zmieniać i wykorzystywać, także komercyjnie, podając autora.
-Kod (fragmenty w lekcjach, `rig-env.sh`, `szkielet/`): **MIT**. Szczegóły: [LICENSE.md](LICENSE.md).
+Lesson content: **CC BY 4.0** — you may copy, modify and use it, also commercially, with attribution to the author.
+Code (the snippets in the lessons, `rig-env.sh`, `skeleton/`): **MIT**. Details: [LICENSE.md](LICENSE.md).
 
-Znalazłeś błąd albo Twój pomiar mówi co innego niż lekcja? Otwórz zgłoszenie (issue) — właśnie po to
-lekcje mają tabele na pomiary.
+Found a mistake, or does your measurement say something different from the lesson? Open an issue — that is exactly why
+the lessons have tables for measurements.
