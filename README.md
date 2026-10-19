@@ -110,6 +110,27 @@ As of 19 October 2026.
 | [04-USING-UI-CLI-OPENCLAW](en/speeding-up-generation/04-USING-UI-CLI-OPENCLAW.md) | talking to the fast model: browser, terminal, agentic apps |
 | [tools/](en/speeding-up-generation/tools/README.md) | the scripts: GGUF inspection, draft search, benchmarks, a terminal chat |
 
+### Survey — [local LLM runtimes: from the map to the source code](en/local-llm-runtimes/README.md) (`en/local-llm-runtimes/`, Polish: [`pl/silniki-lokalnych-llm/`](pl/silniki-lokalnych-llm/README.md))
+
+What llama.cpp, Ollama, LM Studio, vLLM, SGLang, MLX and oMLX, ds4, llmman and a dozen other programs for running models on your own hardware are, what they do inside,
+what they are for and how they differ — from the market map down to the data structures in the code. Plus one non-technical chapter: how they make money and who is behind them.
+Desk research and source-code reading, no benchmarks of my own. As of 19 October 2026. The English text was translated from the Polish original by the local DeepSeek model and checked mechanically.
+
+| File | What is in it |
+|---|---|
+| [README](en/local-llm-runtimes/README.md) | the course map, ten surprises, how to read it |
+| [01-MAP-AND-LAYERS](en/local-llm-runtimes/01-MAP-AND-LAYERS.md) | seven layers from weights file to chat window, project tables, dependency web, timeline |
+| [02-HOW-INFERENCE-WORKS](en/local-llm-runtimes/02-HOW-INFERENCE-WORKS.md) | prefill and decoding, KV cache, MoE, batching, parallelism, speculation, sampling, glossary |
+| [03-QUANTIZATION-AND-FORMATS](en/local-llm-runtimes/03-QUANTIZATION-AND-FORMATS.md) | what is inside a GGUF file, quantization families, quality tables, analysis of the DeepSeek file |
+| [04-LLAMA-CPP-AND-THE-GGML-FAMILY](en/local-llm-runtimes/04-LLAMA-CPP-AND-THE-GGML-FAMILY.md) | ggml, GGUF, `llama-server` internals, multi-GPU split modes, HIP; ik_llama.cpp, llamafile, llama-swap |
+| [05-PACKAGED-RUNTIMES-OLLAMA-LM-STUDIO-AND-OTHERS](en/local-llm-runtimes/05-PACKAGED-RUNTIMES-OLLAMA-LM-STUDIO-AND-OTHERS.md) | Ollama, LM Studio, llmman, Jan, LocalAI, Lemonade, Docker Model Runner, RamaLama |
+| [06-SERVING-ENGINES-VLLM-SGLANG](en/local-llm-runtimes/06-SERVING-ENGINES-VLLM-SGLANG.md) | vLLM, SGLang, TensorRT-LLM, TGI; status on AMD gfx1201 |
+| [07-APPLE-MLX-OMLX-AND-DS4](en/local-llm-runtimes/07-APPLE-MLX-OMLX-AND-DS4.md) | unified memory, MLX, mlx-lm, oMLX, ds4, exo |
+| [08-SPECIALISTS-KTRANSFORMERS-AND-OTHERS](en/local-llm-runtimes/08-SPECIALISTS-KTRANSFORMERS-AND-OTHERS.md) | KTransformers, mistral.rs, MLC, NPU stacks |
+| [09-COMPARISON-AND-CHOICE](en/local-llm-runtimes/09-COMPARISON-AND-CHOICE.md) | matrix, scenarios, what runs on gfx1201, experiments |
+| [10-MONEY-AND-PEOPLE](en/local-llm-runtimes/10-MONEY-AND-PEOPLE.md) | **non-technical:** business models, funding, people, licences, dependency risks |
+| [SOURCES](en/local-llm-runtimes/SOURCES.md) | sources, pinned commits, the weakest-verified points |
+
 ---
 
 ## Getting started

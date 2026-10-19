@@ -109,6 +109,27 @@ Stan na 19 października 2026.
 | [05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE](pl/przyspieszanie-generowania/05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE.md) | dokumentacja llama.cpp po polsku — przekład wykonany lokalnym DeepSeekiem, ze zweryfikowanymi poprawkami |
 | [narzedzia/](pl/przyspieszanie-generowania/narzedzia/README.md) | skrypty: inspekcja GGUF, szukanie draftów, benchmarki, czat w terminalu |
 
+### Przegląd — [silniki lokalnych LLM: od mapy do kodu źródłowego](pl/silniki-lokalnych-llm/README.md) (`pl/silniki-lokalnych-llm/`)
+
+Czym są llama.cpp, Ollama, LM Studio, vLLM, SGLang, MLX i oMLX, ds4, llmman i kilkanaście innych programów do uruchamiania modeli na własnym sprzęcie, co robią w środku,
+do czego służą i czym się różnią — od mapy rynku po struktury danych w kodzie. Plus jeden rozdział nietechniczny: jak zarabiają i kto za nimi stoi.
+Research biurkowy i lektura kodu, bez własnych pomiarów. Stan na 19 października 2026.
+
+| Plik | Co w nim jest |
+|---|---|
+| [README](pl/silniki-lokalnych-llm/README.md) | mapa kursu, dziesięć niespodzianek, jak czytać |
+| [01-MAPA-I-WARSTWY](pl/silniki-lokalnych-llm/01-MAPA-I-WARSTWY.md) | siedem warstw od pliku z wagami do okna czatu, tabele projektów, sieć zależności, oś czasu |
+| [02-JAK-DZIALA-INFERENCJA](pl/silniki-lokalnych-llm/02-JAK-DZIALA-INFERENCJA.md) | prefill i dekodowanie, KV cache, MoE, batching, równoległość, spekulacja, próbkowanie, słowniczek |
+| [03-KWANTYZACJA-I-FORMATY](pl/silniki-lokalnych-llm/03-KWANTYZACJA-I-FORMATY.md) | co jest w pliku GGUF, rodziny kwantyzacji, tabele jakości, analiza pliku DeepSeek |
+| [04-LLAMA-CPP-I-RODZINA-GGML](pl/silniki-lokalnych-llm/04-LLAMA-CPP-I-RODZINA-GGML.md) | ggml, GGUF, `llama-server` od środka, tryby podziału na wiele GPU, HIP; ik_llama.cpp, llamafile, llama-swap |
+| [05-OPAKOWANIA-OLLAMA-LM-STUDIO-I-INNE](pl/silniki-lokalnych-llm/05-OPAKOWANIA-OLLAMA-LM-STUDIO-I-INNE.md) | Ollama, LM Studio, llmman, Jan, LocalAI, Lemonade, Docker Model Runner, RamaLama |
+| [06-SILNIKI-SERWEROWE-VLLM-SGLANG](pl/silniki-lokalnych-llm/06-SILNIKI-SERWEROWE-VLLM-SGLANG.md) | vLLM, SGLang, TensorRT-LLM, TGI; status na AMD gfx1201 |
+| [07-APPLE-MLX-OMLX-I-DS4](pl/silniki-lokalnych-llm/07-APPLE-MLX-OMLX-I-DS4.md) | pamięć zunifikowana, MLX, mlx-lm, oMLX, ds4, exo |
+| [08-SPECJALISCI-KTRANSFORMERS-I-INNE](pl/silniki-lokalnych-llm/08-SPECJALISCI-KTRANSFORMERS-I-INNE.md) | KTransformers, mistral.rs, MLC, stosy NPU |
+| [09-POROWNANIE-I-WYBOR](pl/silniki-lokalnych-llm/09-POROWNANIE-I-WYBOR.md) | macierz, scenariusze, co działa na gfx1201, eksperymenty |
+| [10-PIENIADZE-I-LUDZIE](pl/silniki-lokalnych-llm/10-PIENIADZE-I-LUDZIE.md) | **nietechniczny:** modele biznesowe, finansowanie, ludzie, licencje, ryzyka |
+| [ZRODLA](pl/silniki-lokalnych-llm/ZRODLA.md) | źródła, przypięte commity, najsłabiej zweryfikowane punkty |
+
 ---
 
 ## Jak zacząć
