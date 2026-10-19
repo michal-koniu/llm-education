@@ -1,7 +1,9 @@
 > **Przekład** dokumentu [`docs/speculative.md`](https://github.com/ggml-org/llama.cpp/blob/0ce8cd11416c8840498e6701bcbe39ad4b858c2b/docs/speculative.md) z repozytorium [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 > (commit `0ce8cd1`, 19 października 2026), licencja MIT, © 2023–2026 The ggml authors — pełna treść licencji na końcu pliku.
-> Przekładu dokonał lokalnie **DeepSeek-V4-Flash-0731** (ten sam model, który przyspieszam w tym katalogu), sekcja po sekcji.
-> **To surowy wynik modelu, jeszcze niezweryfikowany.** Źródłem prawdy jest oryginał.
+> Przekładu dokonał lokalnie **DeepSeek-V4-Flash-0731** (ten sam model, który przyspieszam w tym katalogu), sekcja po sekcji;
+> poprawki po weryfikacji opisuje sekcja „O tym przekładzie”. Źródłem prawdy jest oryginał.
+> **Uwaga o aktualności:** zdanie w sekcji DSpark, że obsługiwane są tylko drafty z rdzeniem Qwen3, jest w oryginale nieaktualne — konwerter i loader DeepSeek-V4 DSpark działają
+> (zob. [02-WDROZENIE-DEEPSEEK.md](02-WDROZENIE-DEEPSEEK.md)).
 
 # Speculative Decoding
 
@@ -22,7 +24,7 @@ Model draftu jest najczęściej stosowanym podejściem w speculative decoding.
 
 EAGLE-3 używa małego modelu draftu, który odczytuje ukryte stany modelu docelowego, aby przewidywać kolejne tokeny, dzięki czemu osiąga wyższy współczynnik akceptacji niż samodzielny model draftu o tej samej wielkości. Draft to jednowarstwowy transformer wytrenowany dla konkretnego modelu docelowego; współdzieli tokenizer modelu docelowego i opcjonalnie używa zredukowanego słownika draftu z własnym `lm_head`, który jest mapowany z powrotem za pomocą tabeli `d2t`.
 
-Skonwertuj punkt kontrolny EAGLE-3 za pomocą `--target-model-dir`, aby odziedziczył tokenizer modelu docelowego oraz indeksy warstw do odczytu. Obsługiwane są zarówno formaty punktów kontrolnych SpecForge `LlamaForCausalLMEagle3`, jak i vLLM/AngelSlim `Eagle3LlamaForCausalLM` (na przykład [`AngelSlim/Qwen3-4B_eagle3`](https://huggingface.co/AngelSlim/Qwen3-4B_eagle3) dla `Qwen/Qwen3-4B`):
+Skonwertuj checkpoint EAGLE-3 za pomocą `--target-model-dir`, aby odziedziczył tokenizer modelu docelowego oraz indeksy warstw do odczytu. Obsługiwane są zarówno formaty checkpointów SpecForge `LlamaForCausalLMEagle3`, jak i vLLM/AngelSlim `Eagle3LlamaForCausalLM` (na przykład [`AngelSlim/Qwen3-4B_eagle3`](https://huggingface.co/AngelSlim/Qwen3-4B_eagle3) dla `Qwen/Qwen3-4B`):
 
 ```bash
 python convert_hf_to_gguf.py AngelSlim/Qwen3-4B_eagle3 \
@@ -50,6 +52,7 @@ Obsługiwane modele draftu EAGLE-3 obejmują:
 - [nvidia/gpt-oss-120b-Eagle3-long-context](https://huggingface.co/nvidia/gpt-oss-120b-Eagle3-long-context)
 
 Pełną i aktualną listę obsługiwanych modeli znajdziesz w #18039.
+
 ### DFlash (`draft-dflash`)
 
 DFlash generuje cały blok tokenów draftu w jednym przejściu w przód (dyfuzja blokowa) i
@@ -78,7 +81,7 @@ Zobacz:
 
 ### DSpark (`draft-dspark`)
 
-DSpark rozszerza DFlash o semi-autoregresyjną _głowę Markowa_: draft nadal emituje cały blok
+DSpark rozszerza DFlash o półautoregresyjną _głowicę Markowa_: draft nadal emituje cały blok
 w jednym przejściu w przód, ale logity każdej pozycji w bloku są modyfikowane przez człon
 niskiego rzędu zależny od poprzedniego tokena, połączony w grafie w obrębie bloku. Pozwala to
 utrzymać generowanie draftu na poziomie jednego dekodowania na blok, jednocześnie odzyskując
@@ -100,7 +103,7 @@ llama-server -m Qwen3-4B.gguf -md Qwen3-4B-DSpark.gguf \
 `--spec-draft-n-max` jest ograniczany do wytrenowanego rozmiaru bloku modelu draftu.
 
 `--spec-draft-conf-min P` obcina każdy wygenerowany blok draftu na pierwszej pozycji, której
-przewidywany współczynnik akceptacji (z głowy pewności draftu, jeśli istnieje) spada poniżej
+przewidywany współczynnik akceptacji (z głowicy pewności draftu, jeśli istnieje) spada poniżej
 `P` (domyślnie 0 = wyłączone).
 
 Obecnie obsługiwane są tylko drafty z rdzeniem Qwen3; wsparcie dla innych rdzeni
@@ -124,6 +127,7 @@ zwiększenia dokładności.
 Zobacz:
 
 - #5479, #6828, #6848
+
 ### Mapa n-gramów (`ngram-simple`, `ngram-map-*`)
 
 Implementacje te przeszukują historię tokenów w poszukiwaniu wzorców i używają pasujących sekwencji jako kandydatów na draft.
@@ -140,7 +144,7 @@ llama-server [...] --spec-type ngram-simple --spec-draft-n-max 64
 
 #### Mapa n-gramów — klucz (`ngram-map-k`)
 
-Implementacja ta szuka bieżącego n-gramu o rozmiarze n (zwanego _kluczem_) w historii tokenów. Jeśli n-gram klucza jest wielokrotnie następowany przez te same m tokenów (zwane _mgramem_), tworzy draft przy użyciu tych m tokenów. Podejście to wymaga minimalnej liczby wystąpień (argument `--spec-ngram-map-k-min-hits`, domyślnie 1) przed wygenerowaniem draftów.
+Implementacja ta szuka bieżącego n-gramu o rozmiarze n (zwanego _kluczem_) w historii tokenów. Jeśli po n-gramie klucza wielokrotnie następują te same m tokenów (zwane _mgramem_), tworzy draft przy użyciu tych m tokenów. Podejście to wymaga minimalnej liczby wystąpień (argument `--spec-ngram-map-k-min-hits`, domyślnie 1) przed wygenerowaniem draftów.
 
 Liczba zaakceptowanych tokenów jest przechowywana dla każdego użytego n-gramu.
 
@@ -179,10 +183,10 @@ Obecnie pojedyncza pula hashów jest współdzielona między wszystkimi slotami 
 **Przykładowe użycie:**
 
 ```
-# uwagi:
-# - małe `n` nie są zalecane
-# - modele MoE wymagają długich draftów
-# - modele gęste: można zmniejszyć `--spec-ngram-mod-n-min` i `--spec-ngram-mod-n-max`
+# notes:
+# - small `n` are not recommended
+# - MoEs require long drafts
+# - dense models: can reduce `--spec-ngram-mod-n-min` and `--spec-ngram-mod-n-max`
 
 llama-server ... --spec-type ngram-mod --spec-ngram-mod-n-match 24 --spec-ngram-mod-n-min 48 --spec-ngram-mod-n-max 64
 ```
@@ -196,6 +200,7 @@ Zastosowania:
 Przykładowe wideo:
 
 - Zobacz #19164
+
 ### Różnice między ngram-simple, ngram-map i ngram-mod
 
 - ngram-simple wyszukuje poprzedni pasujący n-gram i wstawia następujący po nim m-gram.
@@ -263,97 +268,99 @@ Użyj dokładnie jednej z tych opcji:
                                         comma-separated list of devices to use for offloading the draft model
                                         (use --list-devices to see available devices)
 ```
+
 ### Parametry planowania CPU modelu draftu
 
 ```
 --spec-draft-threads, -td, --threads-draft  N
-                                        liczba wątków CPU używanych podczas generacji
+                                        number of CPU threads to use during generation
 --spec-draft-threads-batch, -tbd, --threads-batch-draft  N
-                                        liczba wątków używanych podczas przetwarzania wsadowego i promptu (domyślnie: taka sama jak --threads-draft)
+                                        number of threads to use during batch and prompt processing (default: same as --threads-draft)
 --spec-draft-cpu-mask, -Cd, --cpu-mask-draft  M
-                                        Maska powinowactwa CPU modelu draftu. Uzupełnia cpu-range-draft
+                                        Draft model CPU affinity mask. Complements cpu-range-draft
 --spec-draft-cpu-range, -Crd, --cpu-range-draft  lo-hi
-                                        Zakresy CPU dla powinowactwa. Uzupełnia --cpu-mask-draft
+                                        Ranges of CPUs for affinity. Complements --cpu-mask-draft
 --spec-draft-cpu-strict, --cpu-strict-draft  <0|1>
-                                        Użyj ścisłego rozmieszczenia CPU dla modelu draftu (domyślnie: taka sama jak --cpu-strict)
+                                        Use strict CPU placement for draft model (default: same as --cpu-strict)
 --spec-draft-prio, --prio-draft  N
-                                        ustaw priorytet procesu/wątku draftu : 0-normalny, 1-średni, 2-wysoki, 3-czasu rzeczywistego
+                                        set draft process/thread priority : 0-normal, 1-medium, 2-high, 3-realtime
 --spec-draft-poll, --poll-draft  <0|1>
-                                        Użyj pollingu, aby czekać na pracę modelu draftu (domyślnie: taka sama jak --poll)
+                                        Use polling to wait for draft model work (default: same as --poll)
 --spec-draft-cpu-mask-batch, -Cbd, --cpu-mask-batch-draft  M
-                                        Maska powinowactwa CPU modelu draftu dla wsadu. Uzupełnia cpu-range-batch-draft
+                                        Draft model CPU affinity mask for batch. Complements cpu-range-batch-draft
 --spec-draft-cpu-range-batch, -Crbd, --cpu-range-batch-draft  lo-hi
-                                        Zakresy CPU dla powinowactwa dla wsadu. Uzupełnia --cpu-mask-batch-draft
+                                        Ranges of CPUs for affinity for batch. Complements --cpu-mask-batch-draft
 --spec-draft-cpu-strict-batch, --cpu-strict-batch-draft  <0|1>
-                                        Użyj ścisłego rozmieszczenia CPU dla wsadu modelu draftu (domyślnie: --cpu-strict-draft)
+                                        Use strict CPU placement for draft model batch (default: --cpu-strict-draft)
 --spec-draft-prio-batch, --prio-batch-draft  N
-                                        ustaw priorytet procesu/wątku draftu dla wsadu : 0-normalny, 1-średni, 2-wysoki, 3-czasu rzeczywistego
+                                        set draft process/thread priority for batch : 0-normal, 1-medium, 2-high, 3-realtime
 --spec-draft-poll-batch, --poll-batch-draft  <0|1>
-                                        Użyj pollingu, aby czekać na pracę modelu draftu dla wsadu (domyślnie: --poll-draft)
+                                        Use polling to wait for draft model work for batch (default: --poll-draft)
 ```
 
 ### Parametry nadpisywania pamięci podręcznej KV i tensorów modelu draftu
 
 ```
 --spec-draft-type-k, -ctkd, --cache-type-k-draft  TYPE
-                                        Typ danych pamięci podręcznej KV dla K w modelu draftu
-                                        dozwolone wartości: f32, f16, bf16, q8_0, q4_0, q4_1, iq4_nl, q5_0, q5_1
+                                        KV cache data type for K for the draft model
+                                        allowed values: f32, f16, bf16, q8_0, q4_0, q4_1, iq4_nl, q5_0, q5_1
                                         (env: LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_K)
 --spec-draft-type-v, -ctvd, --cache-type-v-draft  TYPE
-                                        Typ danych pamięci podręcznej KV dla V w modelu draftu
-                                        dozwolone wartości: f32, f16, bf16, q8_0, q4_0, q4_1, iq4_nl, q5_0, q5_1
+                                        KV cache data type for V for the draft model
+                                        allowed values: f32, f16, bf16, q8_0, q4_0, q4_1, iq4_nl, q5_0, q5_1
                                         (env: LLAMA_ARG_SPEC_DRAFT_CACHE_TYPE_V)
---spec-draft-override-tensor, -otd, --override-tensor-draft  <wzorzec nazwy tensora>=<typ bufora>,...
-                                        nadpisz typ bufora tensora dla modelu draftu
+--spec-draft-override-tensor, -otd, --override-tensor-draft  <tensor name pattern>=<buffer type>,...
+                                        override tensor buffer type for draft model
 --spec-draft-cpu-moe, -cmoed, --cpu-moe-draft
-                                        przechowuj wszystkie wagi Mixture of Experts (MoE) w CPU dla modelu draftu
+                                        keep all Mixture of Experts (MoE) weights in the CPU for the draft model
                                         (env: LLAMA_ARG_SPEC_DRAFT_CPU_MOE)
 --spec-draft-n-cpu-moe, --spec-draft-ncmoe, -ncmoed, --n-cpu-moe-draft  N
-                                        przechowuj wagi MoE pierwszych N warstw w CPU dla modelu draftu
+                                        keep the MoE weights of the first N layers in the CPU for the draft model
                                         (env: LLAMA_ARG_SPEC_DRAFT_N_CPU_MOE)
 ```
-### Parametry modyfikacji n-gram
+
+### Parametry n-gram Mod
 
 ```
 --spec-ngram-mod-n-match                N
-                                        długość wyszukiwania ngram-mod (domyślnie: 24)
+                                        ngram-mod lookup length (default: 24)
 --spec-ngram-mod-n-min                  N
-                                        minimalna liczba tokenów ngram do użycia w speculative decoding opartym na n-gramach (domyślnie: 48)
+                                        minimum number of ngram tokens to use for ngram-based speculative decoding (default: 48)
 --spec-ngram-mod-n-max                  N
-                                        maksymalna liczba tokenów ngram do użycia w speculative decoding opartym na n-gramach (domyślnie: 64)
+                                        maximum number of ngram tokens to use for ngram-based speculative decoding (default: 64)
 ```
 
-### Proste parametry n-gram
+### Parametry n-gram Simple
 
 ```
 --spec-ngram-simple-size-n              N
-                                        rozmiar n-gramu N dla prostego speculative decoding opartego na n-gramach, długość wyszukiwanego n-gramu (domyślnie: 12)
+                                        ngram size N for ngram-simple speculative decoding, length of lookup n-gram (default: 12)
 --spec-ngram-simple-size-m              N
-                                        rozmiar n-gramu M dla prostego speculative decoding opartego na n-gramach, długość draftu m-gram (domyślnie: 48)
+                                        ngram size M for ngram-simple speculative decoding, length of draft m-gram (default: 48)
 --spec-ngram-simple-min-hits            N
-                                        minimalna liczba trafień dla prostego speculative decoding opartego na n-gramach (domyślnie: 1)
+                                        minimum hits for ngram-simple speculative decoding (default: 1)
 ```
 
-### Parametry klucza mapy n-gram
+### Parametry n-gram Map Key
 
 ```
 --spec-ngram-map-k-size-n               N
-                                        rozmiar n-gramu N dla speculative decoding opartego na n-gramach z mapą kluczy, długość wyszukiwanego n-gramu (domyślnie: 12)
+                                        ngram size N for ngram-map-k speculative decoding, length of lookup n-gram (default: 12)
 --spec-ngram-map-k-size-m               N
-                                        rozmiar n-gramu M dla speculative decoding opartego na n-gramach z mapą kluczy, długość draftu m-gram (domyślnie: 48)
+                                        ngram size M for ngram-map-k speculative decoding, length of draft m-gram (default: 48)
 --spec-ngram-map-k-min-hits             N
-                                        minimalna liczba trafień dla speculative decoding opartego na n-gramach z mapą kluczy (domyślnie: 1)
+                                        minimum hits for ngram-map-k speculative decoding (default: 1)
 ```
 
-### Parametry klucza mapy n-gram z 4 wartościami
+### Parametry n-gram Map Key-4-Values
 
 ```
 --spec-ngram-map-k4v-size-n             N
-                                        rozmiar n-gramu N dla speculative decoding opartego na n-gramach z mapą kluczy i 4 wartościami, długość wyszukiwanego n-gramu (domyślnie: 12)
+                                        ngram size N for ngram-map-k4v speculative decoding, length of lookup n-gram (default: 12)
 --spec-ngram-map-k4v-size-m             N
-                                        rozmiar n-gramu M dla speculative decoding opartego na n-gramach z mapą kluczy i 4 wartościami, długość draftu m-gram (domyślnie: 48)
+                                        ngram size M for ngram-map-k4v speculative decoding, length of draft m-gram (default: 48)
 --spec-ngram-map-k4v-min-hits           N
-                                        minimalna liczba trafień dla speculative decoding opartego na n-gramach z mapą kluczy i 4 wartościami (domyślnie: 1)
+                                        minimum hits for ngram-map-k4v speculative decoding (default: 1)
 ```
 
 ### `--spec-type TYPE`
@@ -383,6 +390,7 @@ Określa rozdzielaną przecinkami listę typów speculative decoding do użycia.
 ```bash
 ./llama-server [...] --spec-type ngram-mod,ngram-map-k4v
 ```
+
 ### `--spec-ngram-*-size-n N`
 
 Ustawia rozmiar N n-gramu wyszukiwania dla speculative decoding opartego na mapie n-gramów.
@@ -445,8 +453,31 @@ statistics ngram_map_k: #calls(b,g,a) = 6 1690 26, #gen drafts = 26, #acc drafts
 
 ## Benchmarking
 
-Aby zmierzyć efekt end-to-end speculative decoding (przepustowość, opóźnienie i akceptację draftów) dla różnych promptów, zobacz klienta SPEED-Bench w [tools/server/bench/speed-bench](../tools/server/bench/speed-bench/README.md).
+Aby zmierzyć efekt end-to-end speculative decoding (przepustowość, opóźnienie i akceptację draftów) dla różnych promptów, zobacz klienta SPEED-Bench w [tools/server/bench/speed-bench](https://github.com/ggml-org/llama.cpp/blob/0ce8cd11416c8840498e6701bcbe39ad4b858c2b/tools/server/bench/speed-bench/README.md).
 Działa on względem uruchomionego `llama-server` i może porównać przebieg bazowy z przebiegiem z speculative decoding.
+
+---
+
+## O tym przekładzie
+
+Przekład wykonał lokalnie DeepSeek-V4-Flash-0731 (7 fragmentów, 8152 tokenów, 281 s, ~29 tok/s na modelu obciążonym równolegle innymi zadaniami), a potem zweryfikowałem go
+mechanicznie (skrypt [`verify_translation.py`](narzedzia/verify_translation.py)) i ręcznie, czytając tekst przeciwko oryginałowi.
+
+**Co model zrobił dobrze:** wszystkie 20 bloków kodu, 20 adresów URL, 26 flag, 7 numerów PR, 30 nagłówków (te same poziomy) i tabela (13 wierszy) zostały zachowane; wzory
+i parametry (np. `p + p^2 + ... + p^K = L - 1`) są poprawne; polszczyzna techniczna jest płynna.
+
+**Co poprawiłem po weryfikacji (osobny commit, z widoczną różnicą):**
+
+1. W 7 z 20 bloków kodu model przetłumaczył angielskie *opisy* w wyjściu pomocy (`--help`) oraz komentarz `# notes:`, choć miał zostawić kod bez zmian — przywróciłem je z oryginału
+   (nazwy flag były nietknięte).
+2. Nagłówek „n-gram **Mod** Parameters” przełożył na „Parametry **modyfikacji** n-gram”, choć „mod” to nazwa modułu `ngram-mod` — poprawiłem; ujednoliciłem też pozostałe nagłówki sekcji parametrów.
+3. „Head” raz było „głową”, raz „głowicą”, a „checkpoint” raz „punktem kontrolnym” — ujednolicone („głowica”, „checkpoint”).
+4. Jedno zdanie o `ngram-map-k` („n-gram klucza jest wielokrotnie następowany…”) było poprawne, ale koślawe — przeredagowane.
+5. Brakowało pustych linii przed częścią nagłówków (artefakt sklejania fragmentów) — dodane.
+6. Względny odnośnik do README klienta SPEED-Bench (`../tools/...`), który w tym repozytorium nie istnieje, zamieniony na bezwzględny adres w llama.cpp.
+
+Jedyna pozostała rozbieżność mechaniczna jest niewinna: w oryginale brakuje zamykającego backticka przy `dur(b,g,a)` (literówka źródła), a przekład go domknął.
+
 
 ---
 
