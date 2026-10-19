@@ -93,6 +93,22 @@ dla polskich profesjonalistów, którzy nie mogą wysyłać danych do USA. Stan 
 | [04-POLSKA-I-SUWERENNOSC](pl/asystenci-ai/04-POLSKA-I-SUWERENNOSC.md) | RODO, AI Act, tajemnice zawodowe, konkurencja w Polsce i UE, polskie modele, sprzęt, szanse |
 | [ZRODLA](pl/asystenci-ai/ZRODLA.md) | źródła z datą sprawdzenia |
 
+### Praktyka — [przyspieszanie generowania tokenów](pl/przyspieszanie-generowania/README.md) (`pl/przyspieszanie-generowania/`)
+
+Jak przyspieszyłem DeepSeek-V4-Flash z 23,5 do ok. 50 tok/s dla jednego agenta na 4× R9700, nie ruszając modelu: **speculative decoding** z własną głowicą draftu modelu
+oraz **podział tensorowy** na czterech kartach — i procedura, jak zrobić to samo z każdym modelem, który pobiorę w przyszłości. Zmierzone, z porażkami włącznie.
+Stan na 19 października 2026.
+
+| Plik | Co w nim jest |
+|---|---|
+| [README](pl/przyspieszanie-generowania/README.md) | wynik w jednej tabeli, trzy dźwignie, co jest zmierzone, a co nie |
+| [01-JAK-TO-DZIALA](pl/przyspieszanie-generowania/01-JAK-TO-DZIALA.md) | lekcja: dlaczego generowanie jest wolne, jak działa speculative decoding i podział tensorowy, odmiany |
+| [02-WDROZENIE-DEEPSEEK](pl/przyspieszanie-generowania/02-WDROZENIE-DEEPSEEK.md) | dziennik: każdy krok, każdy pomiar, konfiguracja końcowa, pułapki, jak cofnąć |
+| [03-PROCEDURA-NOWY-MODEL](pl/przyspieszanie-generowania/03-PROCEDURA-NOWY-MODEL.md) | instrukcja dla kolejnego modelu: drzewo decyzyjne, polecenia, bramki, kryteria |
+| [04-UZYTKOWANIE-UI-CLI-OPENCLAW](pl/przyspieszanie-generowania/04-UZYTKOWANIE-UI-CLI-OPENCLAW.md) | rozmowa z szybkim modelem: przeglądarka, terminal, aplikacje agentowe |
+| [05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE](pl/przyspieszanie-generowania/05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE.md) | dokumentacja llama.cpp po polsku — przekład wykonany lokalnym DeepSeekiem, ze zweryfikowanymi poprawkami |
+| [narzedzia/](pl/przyspieszanie-generowania/narzedzia/README.md) | skrypty: inspekcja GGUF, szukanie draftów, benchmarki, czat w terminalu |
+
 ---
 
 ## Jak zacząć
