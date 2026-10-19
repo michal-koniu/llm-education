@@ -95,6 +95,21 @@ for Polish professionals who cannot send data to the USA. As of 11 October 2026.
 | [04-POLAND-AND-SOVEREIGNTY](en/ai-assistants/04-POLAND-AND-SOVEREIGNTY.md) | GDPR, the AI Act, professional secrecy, competition in Poland and the EU, Polish models, hardware, opportunities |
 | [SOURCES](en/ai-assistants/SOURCES.md) | sources with the date checked |
 
+### Practice — [speeding up token generation](en/speeding-up-generation/README.md) (`en/speeding-up-generation/`, Polish: [`pl/przyspieszanie-generowania/`](pl/przyspieszanie-generowania/README.md))
+
+How I took DeepSeek-V4-Flash from 23.5 to about 50 tok/s for one agent on 4× R9700 without touching the model: **speculative decoding** with the model's own
+draft head, plus **tensor split** across the four cards — and a procedure for doing the same with any model I download later. Measured, with the failures included.
+As of 19 October 2026.
+
+| File | What is in it |
+|---|---|
+| [README](en/speeding-up-generation/README.md) | the result in one table, the three levers, what is measured and what is not |
+| [01-HOW-IT-WORKS](en/speeding-up-generation/01-HOW-IT-WORKS.md) | a lesson: why generation is slow, how speculative decoding and tensor split work, the variants |
+| [02-DEEPSEEK-DEPLOYMENT](en/speeding-up-generation/02-DEEPSEEK-DEPLOYMENT.md) | the log: every step, every measurement, the final configuration, the traps, how to roll back |
+| [03-PROCEDURE-NEW-MODEL](en/speeding-up-generation/03-PROCEDURE-NEW-MODEL.md) | a runbook for the next model: decision tree, commands, gates, criteria |
+| [04-USING-UI-CLI-OPENCLAW](en/speeding-up-generation/04-USING-UI-CLI-OPENCLAW.md) | talking to the fast model: browser, terminal, agentic apps |
+| [tools/](en/speeding-up-generation/tools/README.md) | the scripts: GGUF inspection, draft search, benchmarks, a terminal chat |
+
 ---
 
 ## Getting started
