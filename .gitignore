@@ -3,6 +3,8 @@ pl/kurs_lokalne_modele/praca/
 pl/kurs_aplikacje_agentowe/praca/
 .venvs/
 narzedzia/
+# wyjątek: skrypty z lekcji o przyspieszaniu generowania (nie to samo co whisper.cpp/piper powyżej)
+!pl/przyspieszanie-generowania/narzedzia/
 
 # Stare wersje lekcji i prywatne notatki
 **/archiwum-*/
