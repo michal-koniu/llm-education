@@ -5,6 +5,8 @@ pl/kurs_aplikacje_agentowe/praca/
 narzedzia/
 # wyjątek: skrypty z lekcji o przyspieszaniu generowania (nie to samo co whisper.cpp/piper powyżej)
 !pl/przyspieszanie-generowania/narzedzia/
+# wyjątek: kalkulator z kursu wyceny AI boxa
+!pl/kurs_wycena_ai_box/narzedzia/
 
 # Stare wersje lekcji i prywatne notatki
 **/archiwum-*/

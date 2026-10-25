@@ -130,6 +130,40 @@ Research biurkowy i lektura kodu, bez własnych pomiarów. Stan na 19 październ
 | [10-PIENIADZE-I-LUDZIE](pl/silniki-lokalnych-llm/10-PIENIADZE-I-LUDZIE.md) | **nietechniczny:** modele biznesowe, finansowanie, ludzie, licencje, ryzyka |
 | [ZRODLA](pl/silniki-lokalnych-llm/ZRODLA.md) | źródła, przypięte commity, najsłabiej zweryfikowane punkty |
 
+### Ścieżka biznesowa — [od kontraktu B2B do własnej firmy](pl/kurs_od_kontraktu_do_firmy/00-INDEKS.md) (`pl/kurs_od_kontraktu_do_firmy/`)
+
+Jak założyć firmę obok dobrze płatnego kontraktu B2B i go nie stracić: na co pozwala umowa (IP, zakaz konkurencji,
+tajemnica bankowa, DORA, nowe od 2026 r. zasady przekwalifikowania umów), czyste IP dla inwestorów, budżet ryzyka
+w etapach i pułapka ryczałtu, tydzień założyciela po godzinach oraz dwie ścieżki — bootstrapping albo VC w Polsce —
+z warunkami odejścia spisanymi zawczasu. Stan na 25 października 2026.
+
+| Część | Temat | Co powstaje |
+|---|---|---|
+| [01](pl/kurs_od_kontraktu_do_firmy/01-POZYCJA-STARTOWA.md) | Pozycja startowa | dochód netto w trzech formach opodatkowania, 2-tygodniowy dziennik czasu |
+| [02](pl/kurs_od_kontraktu_do_firmy/02-AUDYT-KONTRAKTU.md) | Audyt kontraktu | macierz klauzul, pytania do prawnika, pismo do klienta |
+| [03](pl/kurs_od_kontraktu_do_firmy/03-CZYSTE-IP.md) | Czyste IP | pięć rozdzieleń, ślad dowodowy, rejestr IP |
+| [04](pl/kurs_od_kontraktu_do_firmy/04-PIENIADZE-RUNWAY-RYZYKO.md) | Pieniądze i ryzyko | trzy pule, etapowany budżet ryzyka, ryczałt vs koszty startupu |
+| [05](pl/kurs_od_kontraktu_do_firmy/05-ZALOZYCIEL-PO-GODZINACH.md) | Założyciel po godzinach | tydzień, cena dnia u klienta, Twoje agenty pracujące na Twój startup |
+| [06](pl/kurs_od_kontraktu_do_firmy/06-DWIE-SCIEZKI-I-DECYZJA-O-ODEJSCIU.md) | Dwie ścieżki | bootstrapping vs VC w Polsce, wyzwalacze odejścia |
+
+### Ścieżka biznesowa — [wycena prywatnego AI boxa](pl/kurs_wycena_ai_box/00-INDEKS.md) (`pl/kurs_wycena_ai_box/`)
+
+Cennik lokalnego AI boxa dla polskich kancelarii i biur, w którym każda liczba ma źródło: podłoga kosztowa, sufit
+wartości dla kancelarii, katalog agentów eksperckich jako silnik wzrostu, cztery modele sprzętowe i Twoja gotówka,
+rozmowy o gotowości do zapłaty po polsku i to, jak cennik wygląda w oczach inwestora. Z kalkulatorem w samej
+bibliotece standardowej (`floor`, `value`, `cash`, `vw`, `gg`, `nrr`). Stan na 25 października 2026.
+
+| Część | Temat | Co powstaje |
+|---|---|---|
+| [01](pl/kurs_wycena_ai_box/01-PODSTAWY-WYCENY.md) | Podstawy | cena „z brzucha” zapisana z góry, trzy kotwice |
+| [02](pl/kurs_wycena_ai_box/02-PODLOGA-KOSZTOWA.md) | Podłoga kosztowa | COGS na jedno biuro, docelowa marża |
+| [03](pl/kurs_wycena_ai_box/03-SUFIT-WARTOSCI.md) | Sufit wartości | wartość ekonomiczna dla trzech biur, pierwszy klient docelowy |
+| [04](pl/kurs_wycena_ai_box/04-METRYKA-WARTOSCI-I-PAKIETY.md) | Metryka wartości | katalog agentów, pakiety dobry / lepszy / najlepszy |
+| [05](pl/kurs_wycena_ai_box/05-SPRZET-I-GOTOWKA.md) | Sprzęt i gotówka | model sprzętowy i Twoje zapotrzebowanie na gotówkę |
+| [06](pl/kurs_wycena_ai_box/06-GOTOWOSC-DO-ZAPLATY.md) | Gotowość do zapłaty | zestaw do wywiadów, Van Westendorp, płatny pilotaż |
+| [07](pl/kurs_wycena_ai_box/07-CENNIK-I-WARUNKI.md) | Cennik | `price-book-v1.md` z rabatami i warunkami |
+| [08](pl/kurs_wycena_ai_box/08-WYCENA-POD-SKALE-I-INWESTOROW.md) | Skala | ARR, NRR i decyzja: bootstrapping czy VC |
+
 ---
 
 ## Jak zacząć
@@ -167,7 +201,9 @@ Wszystko, co tworzą kursy, powstaje **wewnątrz repozytorium**, w katalogach ig
 - **sekrety** (`~/.config/osa/sekrety.json`, prawa 0600) — sekretów nie trzyma się w repozytorium,
   nawet ignorowanym;
 - **gniazdo** (`~/.local/run/osa.sock`) — ścieżka gniazda ma limit 108 znaków;
-- **Twoje dane**, na których pracują agenci (`~/dokumenty`, `~/skany`) — to Twoje pliki, nie wytwory kursu.
+- **Twoje dane**, na których pracują agenci (`~/dokumenty`, `~/skany`) — to Twoje pliki, nie wytwory kursu;
+- **folder roboczy ścieżki biznesowej** (`~/founder/`) — notatki o umowie, dochodach i cenach są prywatne
+  i nie trafiają do publicznego repozytorium.
 
 ## Sprzęt i oprogramowanie
 

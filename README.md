@@ -131,6 +131,40 @@ Desk research and source-code reading, no benchmarks of my own. As of 19 October
 | [10-MONEY-AND-PEOPLE](en/local-llm-runtimes/10-MONEY-AND-PEOPLE.md) | **non-technical:** business models, funding, people, licences, dependency risks |
 | [SOURCES](en/local-llm-runtimes/SOURCES.md) | sources, pinned commits, the weakest-verified points |
 
+### Business track — [from a B2B contract to a founder](en/course_contract_to_founder/00-INDEX.md) (`en/course_contract_to_founder/`, Polish: [`pl/kurs_od_kontraktu_do_firmy/`](pl/kurs_od_kontraktu_do_firmy/00-INDEKS.md))
+
+How to start a company next to a well-paid B2B contract without losing it: what the contract allows (IP, non-compete,
+bank secrecy, DORA, the 2026 reclassification rules), clean IP for investors, a staged risk budget and the ryczałt
+trap, a part-time founder's week, and the two paths — bootstrapped or venture-funded in Poland — with quit triggers
+written in advance. As of 25 October 2026.
+
+| Part | Topic | What you produce |
+|---|---|---|
+| [01](en/course_contract_to_founder/01-STARTING-POSITION.md) | Starting position | net income under three tax forms, a 2-week time log |
+| [02](en/course_contract_to_founder/02-CONTRACT-AUDIT.md) | Contract audit | a clause matrix, the lawyer's questions, a letter to the client |
+| [03](en/course_contract_to_founder/03-CLEAN-IP.md) | Clean IP | five separations, an evidence trail, the IP register |
+| [04](en/course_contract_to_founder/04-MONEY-RUNWAY-RISK.md) | Money and risk | three pots, a staged risk budget, ryczałt vs startup costs |
+| [05](en/course_contract_to_founder/05-PART-TIME-FOUNDER.md) | Part-time founder | the week, the price of a customer day, your agents on your startup |
+| [06](en/course_contract_to_founder/06-TWO-PATHS-AND-THE-QUIT-DECISION.md) | Two paths | bootstrapped vs venture in Poland, quit triggers |
+
+### Business track — [pricing a private AI box](en/course_pricing_ai_box/00-INDEX.md) (`en/course_pricing_ai_box/`, Polish: [`pl/kurs_wycena_ai_box/`](pl/kurs_wycena_ai_box/00-INDEKS.md))
+
+A price book for the on-premise AI box for Polish professional offices, where every number has a source: the cost
+floor, the value ceiling for a law office, the expert-agent catalogue as the growth engine, four hardware models and
+your cash, willingness-to-pay conversations in Polish, and how the price list looks to an investor. With a
+standard-library calculator (`floor`, `value`, `cash`, `vw`, `gg`, `nrr`). As of 25 October 2026.
+
+| Part | Topic | What you produce |
+|---|---|---|
+| [01](en/course_pricing_ai_box/01-PRICING-FOUNDATIONS.md) | Foundations | a pre-registered gut price, three anchors |
+| [02](en/course_pricing_ai_box/02-COST-FLOOR.md) | Cost floor | COGS per office, a margin target |
+| [03](en/course_pricing_ai_box/03-VALUE-CEILING.md) | Value ceiling | economic value for three offices, the first target customer |
+| [04](en/course_pricing_ai_box/04-VALUE-METRIC-AND-PACKAGING.md) | Value metric | the agent catalogue, good/better/best packages |
+| [05](en/course_pricing_ai_box/05-HARDWARE-AND-CASH.md) | Hardware and cash | the hardware model and your cash need |
+| [06](en/course_pricing_ai_box/06-WILLINGNESS-TO-PAY.md) | Willingness to pay | an interview kit, Van Westendorp, a paid pilot |
+| [07](en/course_pricing_ai_box/07-PRICE-BOOK-AND-TERMS.md) | Price book | `price-book-v1.md` with discounts and terms |
+| [08](en/course_pricing_ai_box/08-PRICING-FOR-SCALE-AND-INVESTORS.md) | Scale | ARR, NRR and the bootstrapped-or-venture decision |
+
 ---
 
 ## Getting started
@@ -170,7 +204,9 @@ Everything the courses create is created **inside the repository**, in directori
 - **secrets** (`~/.config/osa/sekrety.json`, permissions 0600) — secrets are not kept in the repository,
   not even an ignored one;
 - **the socket** (`~/.local/run/osa.sock`) — a socket path has a limit of 108 characters;
-- **Your data** that the agents work on (`~/dokumenty`, `~/skany`) — these are your files, not products of the course.
+- **Your data** that the agents work on (`~/dokumenty`, `~/skany`) — these are your files, not products of the course;
+- **the business track's working folder** (`~/founder/`) — your contract, income and price notes are private and
+  never go into a public repository.
 
 ## Hardware and software
 
