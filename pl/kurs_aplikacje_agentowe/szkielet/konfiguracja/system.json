@@ -1,0 +1,62 @@
+{
+  "_uwaga": "Szablon. Progi z zerami uzupełniasz POMIAREM, nie zgadywaniem.",
+
+  "brama": {
+    "host": "127.0.0.1",
+    "port": 18789,
+    "plik_blokady": "$OSA/brama.lock",
+    "gniazdo": "~/.local/run/osa.sock"
+  },
+
+  "modele": {
+    "domyslny": { "url": "http://127.0.0.1:8080/v1", "nazwa": "gpt-oss-20b" },
+    "trudny":   { "url": "http://127.0.0.1:8080/v1", "nazwa": "qwen3-32b" },
+    "limit_tokenow_wyjscia": 2048,
+    "limit_sekund": 300
+  },
+
+  "kontekst": {
+    "_uwaga": "Wypełnij eksperymentem 4 (część 4). Limitem jest SYNTEZA, nie igła.",
+    "gpt-oss-20b": { "okno": 32768, "zalamanie_igla": 0, "zalamanie_synteza": 0, "prog_kompakcji": 0 },
+    "qwen3-32b":   { "okno": 32768, "zalamanie_igla": 0, "zalamanie_synteza": 0, "prog_kompakcji": 0 }
+  },
+
+  "sesje": { "katalog": "$OSA/dziennik", "max_zdarzen_na_plik": 50000 },
+
+  "zaufanie": {
+    "_uwaga": "P66: brak wpisu = najwęziej. Nie dopisuj tu nic bez namysłu.",
+    "gniazdo": "host",
+    "konsola": "host",
+    "cron":    "host",
+    "http":    "piaskownica",
+    "kanal_dm":"piaskownica"
+  },
+
+  "narzedzia": {
+    "budzet_obserwacji": 2000,
+    "prog_zgody": 10,
+    "_uwaga": "prog_zgody: promień rażenia, powyżej którego pytamy człowieka (część 7)"
+  },
+
+  "flota": {
+    "limit_rownoczesnych": 2,
+    "max_glebokosci": 2,
+    "max_delegacji": 12,
+    "_uwaga": "limit_rownoczesnych wypełnij pomiarem z części 13 §5.3"
+  },
+
+  "harmonogram": {
+    "interwal_s": 300,
+    "pilnosc_minimalna": 3,
+    "max_dziennie": 4,
+    "cisza_nocna": [22, 7],
+    "min_odstep_min": 45,
+    "bledow_pod_rzad": 3
+  },
+
+  "router": {
+    "_uwaga": "Kolejność: prywatność (BRAMKA) -> zdolność -> koszt. Część 17.",
+    "katalogi_zakazane": ["~/dokumenty", "~/.ssh", "~/.config", "$OSA/pamiec"],
+    "poziomy_z_pomiaru": "router/poziomy.json"
+  }
+}
