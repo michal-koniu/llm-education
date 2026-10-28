@@ -2,14 +2,15 @@
 
 English version: [README.md](README.md)
 
-**Po polsku: dwa kursy o tym, jak naprawdę działają lokalne modele językowe i jak zbudować wokół nich agenta,
-któremu można zaufać — oraz przegląd gotowych harnessów agentowych.**
+**Po polsku: trzy kursy o tym, jak naprawdę działają lokalne modele językowe, jak zbudować wokół nich agenta,
+któremu można zaufać, i jak go zabezpieczyć — oraz przegląd gotowych harnessów agentowych.**
 
 > **Struktura:** treść po polsku jest w [`pl/`](pl/), wersja angielska w [`en/`](en/).
 
 ![Język: polski](https://img.shields.io/badge/język-polski-red)
 ![Kurs 1: 10 części, ~47 h](https://img.shields.io/badge/kurs%201-10%20części%20·%20~47%20h-blue)
 ![Kurs 2: 19 części, ~102 h](https://img.shields.io/badge/kurs%202-19%20części%20·%20~102%20h-blue)
+![Kurs 3: 15 części, ~77 h](https://img.shields.io/badge/kurs%203-15%20części%20·%20~77%20h-blue)
 ![Przegląd: 20 harnessów agentowych](https://img.shields.io/badge/przegląd-20%20harnessów%20agentowych-orange)
 ![Przegląd: 15 asystentów AI](https://img.shields.io/badge/przegląd-15%20asystentów%20AI-orange)
 ![Licencja: CC BY 4.0 + MIT](https://img.shields.io/badge/licencja-CC%20BY%204.0%20%2B%20MIT-lightgrey)
@@ -62,6 +63,23 @@ budzą się sami, pamiętają, są mierzeni i nie mogą zrobić Ci krzywdy:
 | Produkcja | 17–19 | router hybrydowy, wydania i utrzymanie, projekt końcowy |
 
 ⚠️ **Kurs 2 zaczynaj dopiero po części 6 kursu 1** — cały stoi na pętli agenta, którą tam budujesz.
+
+### Kurs 3 — [bezpieczeństwo LLM, aplikacji agentowych i modeli lokalnych](pl/kurs_bezpieczenstwo_llm/00-INDEKS.md) (`pl/kurs_bezpieczenstwo_llm/`)
+
+Kursy 1 i 2 uczą budować. Kurs 3 uczy, **jak to, co zbudowałeś, jest atakowane i jak sprawić, żeby wytrzymało**:
+od modelu zagrożeń, przez to, dlaczego model nie odróżnia instrukcji od danych, aż do tokenów, formatów plików
+i otwartych portów. Atakujesz celowo dziurawego asystenta **Sieve** w laboratorium na 127.0.0.1, mierzysz
+skuteczność ataku, dodajesz obronę i mierzysz ponownie. Kurs jest obronny: nieszkodliwe kanarki, tylko własne systemy.
+
+| Blok | Części | Tematy |
+|---|---|---|
+| Podstawy | 01–03 | krajobraz i modelowanie zagrożeń, **laboratorium i ASR**, mechanika ataków |
+| Sam model | 04–05 | jailbreaki i dlaczego alignment to nie granica, bezpośredni injection i wycieki promptu |
+| Aplikacja wokół modelu | 06–09 | **pośredni injection i zatruwanie RAG**, **agenci i eksfiltracja**, MCP / skille / pamięć, obsługa wyjścia i zasoby |
+| Modele, dane, infrastruktura | 10–12 | łańcuch dostaw modeli (pickle, GGUF, szablony), prywatność, wystawione serwery lokalne |
+| Obrona jako inżynieria | 13–15 | guardrale i red teaming, wykrywanie i reagowanie na incydenty, capstone |
+
+⚠️ **Kurs 3 zaczynaj po części 6 kursu 1**; części 06–09 zakładają pomysły z kursu 2: narzędzia, pamięć i piaskownicę.
 
 ### Przegląd — [harnessy agentowe dla lokalnych modeli](pl/harnessy-agentowe/README.md) (`pl/harnessy-agentowe/`)
 

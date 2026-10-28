@@ -1,7 +1,7 @@
 # llm-education
 
-**Two courses on how local language models really work and how to build an agent around them
-that you can trust — plus a survey of ready-made agent harnesses.**
+**Three courses on how local language models really work, how to build an agent around them
+that you can trust and how to secure it — plus a survey of ready-made agent harnesses.**
 
 > **Structure:** the course content exists in two languages. English: [`en/`](en/). Polish (the original): [`pl/`](pl/).
 > Polish version of this page: [README_PL.md](README_PL.md).
@@ -9,6 +9,7 @@ that you can trust — plus a survey of ready-made agent harnesses.**
 ![Language: English and Polish](https://img.shields.io/badge/language-English%20%2B%20Polish-red)
 ![Course 1: 10 parts, ~47 h](https://img.shields.io/badge/course%201-10%20parts%20·%20~47%20h-blue)
 ![Course 2: 19 parts, ~102 h](https://img.shields.io/badge/course%202-19%20parts%20·%20~102%20h-blue)
+![Course 3: 15 parts, ~77 h](https://img.shields.io/badge/course%203-15%20parts%20·%20~77%20h-blue)
 ![Survey: 20 agent harnesses](https://img.shields.io/badge/survey-20%20agent%20harnesses-orange)
 ![Survey: 15 AI assistants](https://img.shields.io/badge/survey-15%20AI%20assistants-orange)
 ![License: CC BY 4.0 + MIT](https://img.shields.io/badge/license-CC%20BY%204.0%20%2B%20MIT-lightgrey)
@@ -64,6 +65,23 @@ wake up on their own, remember, are measured and cannot do you harm:
 | Production | 17–19 | a hybrid router, releases and maintenance, the capstone project |
 
 ⚠️ **Start Course 2 only after part 6 of Course 1** — the whole of it stands on the agent loop that you build there.
+
+### Course 3 — [security of LLMs, agentic apps and local models](en/course_llm_security/00-INDEX.md) (`en/course_llm_security/`, Polish: [`pl/kurs_bezpieczenstwo_llm/`](pl/kurs_bezpieczenstwo_llm/00-INDEKS.md))
+
+Courses 1 and 2 teach how to build. Course 3 teaches **how what you built gets attacked, and how to make it hold**:
+from the threat model, through why a model cannot tell instructions from data, down to tokens, file formats and
+open ports. You attack a deliberately vulnerable assistant, **Sieve**, running in a lab on 127.0.0.1, measure the
+attack success rate, add a defence and measure again. The course is defensive: benign canaries, your own systems only.
+
+| Block | Parts | Topics |
+|---|---|---|
+| Foundations | 01–03 | threat landscape and modelling, **the lab and ASR**, the mechanics behind the attacks |
+| The model itself | 04–05 | jailbreaks and why alignment is not a boundary, direct injection and prompt leaks |
+| The app around the model | 06–09 | **indirect injection and RAG poisoning**, **agents and exfiltration**, MCP / skills / memory, output handling and resources |
+| Models, data, infrastructure | 10–12 | model supply chain (pickle, GGUF, templates), privacy, exposed local servers |
+| Defence as engineering | 13–15 | guardrails and red-teaming, detection and incident response, the capstone |
+
+⚠️ **Start Course 3 after part 6 of Course 1**; parts 06–09 assume Course 2's tools, memory and sandbox ideas.
 
 ### Survey — [agent harnesses for local models](en/agent-harnesses/README.md) (`en/agent-harnesses/`, Polish: [`pl/harnessy-agentowe/`](pl/harnessy-agentowe/README.md))
 
