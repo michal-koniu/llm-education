@@ -261,8 +261,9 @@ Wszystko, co tworzą kursy, powstaje **wewnątrz repozytorium**, w katalogach ig
 
 ## Licencja
 
-Treść lekcji: **CC BY 4.0** — możesz kopiować, zmieniać i wykorzystywać, także komercyjnie, podając autora.
-Kod (fragmenty w lekcjach, `rig-env.sh`, `szkielet/`): **MIT**. Szczegóły: [LICENSE.md](LICENSE.md).
+Licencja obejmuje całe repozytorium: cała treść (lekcje, przeglądy, poradniki - każdy plik `*.md`, w obu językach) na
+**CC BY 4.0** — możesz kopiować, zmieniać i wykorzystywać, także komercyjnie, podając autora. Cały kod (skrypty,
+`rig-env.sh`, `szkielet/`, `narzedzia/`, `tools/`, fragmenty w lekcjach): **MIT**. Szczegóły: [LICENSE.md](LICENSE.md).
 
 Znalazłeś błąd albo Twój pomiar mówi co innego niż lekcja? Otwórz zgłoszenie (issue) — właśnie po to
 lekcje mają tabele na pomiary.
