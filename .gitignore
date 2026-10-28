@@ -1,0 +1,17 @@
+# Wszystko, co tworzą kursy, zostaje lokalnie (patrz README: "Gdzie powstają pliki")
+pl/kurs_lokalne_modele/praca/
+pl/kurs_aplikacje_agentowe/praca/
+.venvs/
+narzedzia/
+# wyjątek: skrypty z lekcji o przyspieszaniu generowania (nie to samo co whisper.cpp/piper powyżej)
+!pl/przyspieszanie-generowania/narzedzia/
+# wyjątek: kalkulator z kursu wyceny AI boxa
+!pl/kurs_wycena_ai_box/narzedzia/
+
+# Stare wersje lekcji i prywatne notatki
+**/archiwum-*/
+*.bak-*
+CZYTAJ-TO-PIERWSZE-notatki-prywatne.txt
+
+__pycache__/
+*.pyc
