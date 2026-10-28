@@ -263,8 +263,9 @@ Everything the courses create is created **inside the repository**, in directori
 
 ## License
 
-Lesson content: **CC BY 4.0** — you may copy, modify and use it, also commercially, with attribution to the author.
-Code (the snippets in the lessons, `rig-env.sh`, `skeleton/`): **MIT**. Details: [LICENSE.md](LICENSE.md).
+The whole repository is licensed: all content (lessons, surveys, guides - every `*.md`, both languages) under **CC BY 4.0** —
+you may copy, modify and use it, also commercially, with attribution to the author. All code (scripts, `rig-env.sh`,
+`skeleton/`, `narzedzia/`, `tools/`, snippets in the lessons): **MIT**. Details: [LICENSE.md](LICENSE.md).
 
 Found a mistake, or does your measurement say something different from the lesson? Open an issue — that is exactly why
 the lessons have tables for measurements.
