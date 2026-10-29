@@ -7,6 +7,8 @@ narzedzia/
 !pl/przyspieszanie-generowania/narzedzia/
 # wyjątek: kalkulator z kursu wyceny AI boxa
 !pl/kurs_wycena_ai_box/narzedzia/
+# wyjątek: kalkulator z poradnika o agentach samodoskonalących się
+!pl/agenty-samodoskonalace/narzedzia/
 
 # Stare wersje lekcji i prywatne notatki
 **/archiwum-*/
