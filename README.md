@@ -128,6 +128,25 @@ As of 19 October 2026.
 | [04-USING-UI-CLI-OPENCLAW](en/speeding-up-generation/04-USING-UI-CLI-OPENCLAW.md) | talking to the fast model: browser, terminal, agentic apps |
 | [tools/](en/speeding-up-generation/tools/README.md) | the scripts: GGUF inspection, draft search, benchmarks, a terminal chat |
 
+### Guide — [self-improving agents without regressions](en/self-improving-agents/README.md) (`en/self-improving-agents/`, Polish: [`pl/agenty-samodoskonalace/`](pl/agenty-samodoskonalace/README.md))
+
+How to build an agent that improves its own playbook, memory or skills over weeks of work without quietly breaking the version
+that already worked, and how to make it recognise when it is good enough to stop changing itself. A survey of 30+ self-improving
+systems and how they failed, the statistics of rare outcomes (why a few empty rounds prove nothing), and an architecture you can
+build: a frozen evaluator, delta edits, one change in flight, a gate cascade, shadow mode, a bandit, a sentinel and automatic
+rollback. Desk research with evidence tags, plus a standard-library calculator. As of 29 October 2026.
+
+| File | What is in it |
+|---|---|
+| [README](en/self-improving-agents/README.md) | the problem, a running example, the 15 rules, what you build |
+| [01-WHAT-CAN-IMPROVE](en/self-improving-agents/01-WHAT-CAN-IMPROVE.md) | survey: what each system changes, how it evaluates, what guards it, how it failed |
+| [02-MEASURING-WITH-RARE-EVENTS](en/self-improving-agents/02-MEASURING-WITH-RARE-EVENTS.md) | empty runs, hits needed per change, exact tests, SPRT, CUSUM, the winner's curse |
+| [03-THE-SAFE-LOOP](en/self-improving-agents/03-THE-SAFE-LOOP.md) | components, change doors, frozen evaluation assets, deltas, gates, shadow mode, bandit, rollback |
+| [04-KNOWING-WHEN-TO-STOP](en/self-improving-agents/04-KNOWING-WHEN-TO-STOP.md) | evidence-gated triggers, probation, backoff, maintenance mode, the lifecycle in code |
+| [05-PITFALLS](en/self-improving-agents/05-PITFALLS.md) | 25 failures in the order you will meet them |
+| [SOURCES](en/self-improving-agents/SOURCES.md) | sources with the date checked and how carefully |
+| [tools/](en/self-improving-agents/tools/README.md) | `rare_event_stats.py`: the arithmetic for your own hit rates |
+
 ### Survey — [local LLM runtimes: from the map to the source code](en/local-llm-runtimes/README.md) (`en/local-llm-runtimes/`, Polish: [`pl/silniki-lokalnych-llm/`](pl/silniki-lokalnych-llm/README.md))
 
 What llama.cpp, Ollama, LM Studio, vLLM, SGLang, MLX and oMLX, ds4, llmman and a dozen other programs for running models on your own hardware are, what they do inside,

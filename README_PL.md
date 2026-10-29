@@ -127,6 +127,26 @@ Stan na 19 października 2026.
 | [05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE](pl/przyspieszanie-generowania/05-ODNIESIENIE-LLAMA-CPP-SPECULATIVE.md) | dokumentacja llama.cpp po polsku — przekład wykonany lokalnym DeepSeekiem, ze zweryfikowanymi poprawkami |
 | [narzedzia/](pl/przyspieszanie-generowania/narzedzia/README.md) | skrypty: inspekcja GGUF, szukanie draftów, benchmarki, czat w terminalu |
 
+### Poradnik — [agenty samodoskonalące się bez regresji](pl/agenty-samodoskonalace/README.md) (`pl/agenty-samodoskonalace/`)
+
+Jak zbudować agenta, który przez tygodnie pracy poprawia własny playbook, pamięć albo skille, nie psując po cichu wersji, która
+już działała — i jak sprawić, żeby sam rozpoznał, że jest wystarczająco dobry, i przestał się zmieniać. Przegląd ponad 30
+systemów samodoskonalących się i ich porażek, statystyka rzadkich wyników (dlaczego kilka pustych rund niczego nie dowodzi)
+i architektura do zbudowania: zamrożony oceniający, edycje deltami, jedna zmiana naraz, kaskada bramek, tryb cienia, bandyta,
+wartownik i automatyczne wycofanie. Research biurkowy z oznaczeniem siły dowodów i kalkulator w samej bibliotece standardowej.
+Stan na 29 października 2026.
+
+| Plik | Co w nim jest |
+|---|---|
+| [README](pl/agenty-samodoskonalace/README.md) | problem, przykład przewodni, 15 zasad, co budujesz |
+| [01-CO-MOZNA-ULEPSZAC](pl/agenty-samodoskonalace/01-CO-MOZNA-ULEPSZAC.md) | przegląd: co każdy system zmienia, jak ocenia, co go chroni, jak zawiódł |
+| [02-POMIAR-PRZY-RZADKICH-ZDARZENIACH](pl/agenty-samodoskonalace/02-POMIAR-PRZY-RZADKICH-ZDARZENIACH.md) | puste serie, ile trafień na zmianę, testy dokładne, SPRT, CUSUM, klątwa zwycięzcy |
+| [03-BEZPIECZNA-PETLA](pl/agenty-samodoskonalace/03-BEZPIECZNA-PETLA.md) | komponenty, drzwi zmian, zamrożone zasoby do oceny, delty, bramki, tryb cienia, bandyta, wycofanie |
+| [04-KIEDY-PRZESTAC](pl/agenty-samodoskonalace/04-KIEDY-PRZESTAC.md) | wyzwalacze oparte na dowodach, okres próbny, rosnące przerwy, tryb utrzymania, cykl życia w kodzie |
+| [05-PULAPKI](pl/agenty-samodoskonalace/05-PULAPKI.md) | 25 porażek w kolejności, w jakiej je spotkasz |
+| [ZRODLA](pl/agenty-samodoskonalace/ZRODLA.md) | źródła z datą sprawdzenia i dokładnością weryfikacji |
+| [narzedzia/](pl/agenty-samodoskonalace/narzedzia/README.md) | `rare_event_stats.py`: arytmetyka dla tempa trafień Twojego agenta |
+
 ### Przegląd — [silniki lokalnych LLM: od mapy do kodu źródłowego](pl/silniki-lokalnych-llm/README.md) (`pl/silniki-lokalnych-llm/`)
 
 Czym są llama.cpp, Ollama, LM Studio, vLLM, SGLang, MLX i oMLX, ds4, llmman i kilkanaście innych programów do uruchamiania modeli na własnym sprzęcie, co robią w środku,
