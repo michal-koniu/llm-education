@@ -147,6 +147,24 @@ rollback. Desk research with evidence tags, plus a standard-library calculator. 
 | [SOURCES](en/self-improving-agents/SOURCES.md) | sources with the date checked and how carefully |
 | [tools/](en/self-improving-agents/tools/README.md) | `rare_event_stats.py`: the arithmetic for your own hit rates |
 
+### Guide — [making money around GTA 6: what is realistic](en/gta6-income-options/README.md) (`en/gta6-income-options/`, Polish: [`pl/gta6-mozliwosci-zarobku/`](pl/gta6-mozliwosci-zarobku/README.md))
+
+An educational guide for a technically strong reader with a local AI rig who wants to know which money options around a huge
+game launch are real, which are hype, and where agents actually help. 25 options rated on income, probability, automation,
+speed and risk with the arithmetic shown, the six places where "agents do everything" fails, an agent pipeline with human
+gates, a 90-day launch plan with kill criteria, and a list of what is excluded and why. Desk research with evidence tags,
+as of 30 October 2026; facts and platform rules change fast, so re-check them before acting. Not legal, tax or investment advice.
+
+| File | What is in it |
+|---|---|
+| [README](en/gta6-income-options/README.md) | the summary in ten points, the rating table, recommendations, hype to discount, glossary, known gaps |
+| [01-STATUS-AND-RULES](en/gta6-income-options/01-STATUS-AND-RULES.md) | game status, launch analogues, Rockstar/Take-Two/Cfx/Tebex rules, platform and search rules |
+| [02-OPTIONS-RATED](en/gta6-income-options/02-OPTIONS-RATED.md) | every option: how it pays, evidence, agents vs human, risks, low/base/high income, the selection rule |
+| [03-AGENT-PIPELINES](en/gta6-income-options/03-AGENT-PIPELINES.md) | where agents fail, the recommended combination, the pipeline with human gates and guard rails |
+| [04-LAUNCH-PLAN-90-DAYS](en/gta6-income-options/04-LAUNCH-PLAN-90-DAYS.md) | phases, key dates, kill criteria, time and money budget |
+| [05-EXCLUDED](en/gta6-income-options/05-EXCLUDED.md) | what is excluded and why, and what is legal but not recommended |
+| [SOURCES](en/gta6-income-options/SOURCES.md) | all sources with quality notes |
+
 ### Survey — [local LLM runtimes: from the map to the source code](en/local-llm-runtimes/README.md) (`en/local-llm-runtimes/`, Polish: [`pl/silniki-lokalnych-llm/`](pl/silniki-lokalnych-llm/README.md))
 
 What llama.cpp, Ollama, LM Studio, vLLM, SGLang, MLX and oMLX, ds4, llmman and a dozen other programs for running models on your own hardware are, what they do inside,
