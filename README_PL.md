@@ -147,24 +147,10 @@ Stan na 29 października 2026.
 | [ZRODLA](pl/agenty-samodoskonalace/ZRODLA.md) | źródła z datą sprawdzenia i dokładnością weryfikacji |
 | [narzedzia/](pl/agenty-samodoskonalace/narzedzia/README.md) | `rare_event_stats.py`: arytmetyka dla tempa trafień Twojego agenta |
 
-### Poradnik — [zarabianie wokół GTA 6: co jest realne](pl/gta6-mozliwosci-zarobku/README.md) (`pl/gta6-mozliwosci-zarobku/`)
+### Poradnik — zarabianie wokół GTA 6 (przeniesiony)
 
-Poradnik edukacyjny dla osoby technicznie biegłej, z lokalnym zestawem AI, która chce wiedzieć, które sposoby zarabiania wokół
-wielkiej premiery gry są realne, które to szum, i gdzie agenty naprawdę pomagają. 25 opcji ocenionych pod kątem dochodu,
-prawdopodobieństwa, automatyzacji, szybkości i ryzyka, z pokazanym rachunkiem; sześć miejsc, w których „agenty robią wszystko"
-zawodzi; potok agentów z bramkami ludzkimi; 90-dniowy plan premiery z kryteriami porzucenia oraz lista tego, co wykluczone,
-i dlaczego. Research biurkowy z oznaczeniem siły dowodów, stan na 30 października 2026; fakty i zasady platform zmieniają się
-szybko, więc sprawdź je ponownie, zanim zadziałasz. To nie jest porada prawna, podatkowa ani inwestycyjna.
-
-| Plik | Co w nim jest |
-|---|---|
-| [README](pl/gta6-mozliwosci-zarobku/README.md) | podsumowanie w dziesięciu punktach, tabela ocen, rekomendacje, szum do zdyskontowania, słowniczek, znane luki |
-| [01-STATUS-I-ZASADY](pl/gta6-mozliwosci-zarobku/01-STATUS-I-ZASADY.md) | stan gry, analogie premierowe, zasady Rockstara/Take-Two/Cfx/Tebex, zasady platform i wyszukiwarki |
-| [02-OPCJE-Z-OCENA](pl/gta6-mozliwosci-zarobku/02-OPCJE-Z-OCENA.md) | każda opcja: jak płaci, dowody, agenty a człowiek, ryzyka, dochód niski/bazowy/wysoki, reguła wyboru |
-| [03-POTOKI-AGENTOW](pl/gta6-mozliwosci-zarobku/03-POTOKI-AGENTOW.md) | gdzie agenty zawodzą, zalecana kombinacja, potok z bramkami ludzkimi i zabezpieczeniami |
-| [04-PLAN-90-DNI](pl/gta6-mozliwosci-zarobku/04-PLAN-90-DNI.md) | fazy, kluczowe daty, kryteria porzucenia, budżet czasu i pieniędzy |
-| [05-WYKLUCZONE](pl/gta6-mozliwosci-zarobku/05-WYKLUCZONE.md) | co wykluczone i dlaczego oraz co legalne, ale niezalecane |
-| [ZRODLA](pl/gta6-mozliwosci-zarobku/ZRODLA.md) | wszystkie źródła z uwagami o jakości |
+Ten poradnik jest teraz w repozytorium [financial-education](https://github.com/michal-koniu/financial-education),
+obok kursu praktycznej makroekonomii dla inwestorów: po polsku `pl/gta6-mozliwosci-zarobku/`, po angielsku `en/gta6-income-options/`.
 
 ### Przegląd — [silniki lokalnych LLM: od mapy do kodu źródłowego](pl/silniki-lokalnych-llm/README.md) (`pl/silniki-lokalnych-llm/`)
 
